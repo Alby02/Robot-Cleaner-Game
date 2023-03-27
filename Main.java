@@ -15,6 +15,6 @@ public class Main {
         WhereIAmController contro = new WhereIAmController(map, view, view2);
 
 
-        //Test susu
+    
     }
 }

@@ -13,5 +13,8 @@ public class Main {
         GUIView view = new GUIView(map);
         TextualView view2 = new TextualView();
         WhereIAmController contro = new WhereIAmController(map, view, view2);
+
+
+        //Test susu
     }
 }

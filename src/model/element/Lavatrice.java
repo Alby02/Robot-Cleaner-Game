@@ -1,4 +1,4 @@
-package src.model.element;
+package model.element;
 
 public class Lavatrice extends Interagibile implements Ostacolo {
 

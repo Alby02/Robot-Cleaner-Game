@@ -1,14 +1,14 @@
-package src.controller;
+package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collection;
 import java.util.HashSet;
 
-import src.model.map.IllegalPositionGameException;
-import src.model.map.Mappa;
-import src.model.map.Move;
-import src.view.WhereIAmView;
+import model.map.IllegalPositionGameException;
+import model.map.Mappa;
+import model.map.Move;
+import view.WhereIAmView;
 
 public class WhereIAmController implements ActionListener {
     private Mappa model;

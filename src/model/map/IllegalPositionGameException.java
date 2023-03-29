@@ -1,4 +1,4 @@
-package src.model.map;
+package model.map;
 
 public class IllegalPositionGameException extends Exception {
     IllegalPositionGameException()

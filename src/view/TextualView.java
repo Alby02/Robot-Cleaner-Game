@@ -1,10 +1,10 @@
-package src.view;
+package view;
 
 import java.beans.PropertyChangeEvent;
 import java.io.IOException;
 import java.util.Scanner;
 
-import src.controller.WhereIAmController;
+import controller.WhereIAmController;
 
 public class TextualView implements WhereIAmView {
     static Scanner tastiera = new Scanner(System.in);

@@ -1,8 +1,8 @@
-package src.view;
+package view;
 
 import java.beans.PropertyChangeListener;
 
-import src.controller.WhereIAmController;
+import controller.WhereIAmController;
 
 public interface WhereIAmView extends PropertyChangeListener {
 

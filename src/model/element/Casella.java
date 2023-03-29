@@ -1,6 +1,6 @@
-package src.model.element;
+package model.element;
 
-import src.model.Elemento;
+import model.Elemento;
 
 public abstract class Casella implements Elemento{
    

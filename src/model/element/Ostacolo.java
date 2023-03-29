@@ -1,5 +1,5 @@
 
-package src.model.element;
+package model.element;
 
 /**
  * Ostacolo

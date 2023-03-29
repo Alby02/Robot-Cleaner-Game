@@ -1,4 +1,4 @@
-package src.model.map;
+package model.map;
 
 public enum Move {
     DX, //ruota destra

@@ -1,10 +1,10 @@
-package src.view;
+package view;
 
 import javax.swing.*;
 
-import src.controller.WhereIAmController;
-import src.model.element.*;
-import src.model.map.*;
+import controller.WhereIAmController;
+import model.element.*;
+import model.map.*;
 
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
@@ -35,7 +35,7 @@ public class GUIView extends JFrame implements WhereIAmView {
                 this.setIcon(WALL);
                 this.setBorder(null);
             }
-            else if(tipo == src.model.map.Robot.class)
+            else if(tipo == model.map.Robot.class)
             {
                 this.setBorder(null);
                 this.setIcon(ROBOT);

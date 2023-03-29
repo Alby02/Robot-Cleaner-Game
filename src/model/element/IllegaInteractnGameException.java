@@ -1,4 +1,4 @@
-package src.model.element;
+package model.element;
 
 public class IllegaInteractnGameException extends Exception {
 

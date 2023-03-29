@@ -1,11 +1,11 @@
 
-package src.model.map;
+package model.map;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import src.model.Elemento;
-import src.model.element.*;
+import model.Elemento;
+import model.element.*;
 
 public class Mappa{
     Elemento mappa[][];

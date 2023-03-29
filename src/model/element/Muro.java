@@ -1,4 +1,4 @@
-package src.model.element;
+package model.element;
 
 public class Muro extends Casella implements Ostacolo{
 

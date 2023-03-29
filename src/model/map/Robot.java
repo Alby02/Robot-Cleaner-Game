@@ -1,7 +1,7 @@
-package src.model.map;
+package model.map;
 
-import src.model.Elemento;
-import src.model.element.Ostacolo;
+import model.Elemento;
+import model.element.Ostacolo;
 
 public class Robot implements Elemento {
     private int x; //i

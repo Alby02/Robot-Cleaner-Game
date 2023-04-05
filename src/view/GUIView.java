@@ -70,6 +70,7 @@ public class GUIView extends JFrame implements WhereIAmView {
         this.scacco = modello;
         Class mappa[][] = this.scacco.getMap();
         this.setSize(1000, 1050);
+        this.setResizable(false);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
 

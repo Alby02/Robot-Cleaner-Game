@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import controller.WhereIAmController;
 import model.cell.*;
-import model.cell.element.Muro;
+import model.cell.element.base.Wall;
 import model.map.*;
 
 import java.awt.*;
@@ -31,7 +31,7 @@ public class GUIView extends JFrame implements WhereIAmView {
 
         public void setByType(Class tipo) {
             
-            if(tipo == Muro.class)
+            if(tipo == Wall.class)
             {
                 this.setIcon(WALL);
                 this.setBorder(null);

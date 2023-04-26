@@ -1,8 +1,6 @@
 package model.cell.builder;
 
-import model.Elemento;
-
-public abstract class Casella implements Elemento{
+public abstract class Casella{
    
     private int i;
     private int j;

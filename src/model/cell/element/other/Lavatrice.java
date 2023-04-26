@@ -2,7 +2,7 @@ package model.cell.element.other;
 
 import model.cell.builder.Interagibile;
 
-public class Lavatrice extends Interagibile implements Ostacolo {
+public class Washer extends CellStateChainge {
 
     public Lavatrice(int i, int j) {
         super(i, j);

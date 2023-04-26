@@ -1,12 +1,12 @@
 package model.cell.element;
 
-import model.cell.builder.Casella;
+import model.cell.builder.Cell;
 
-public class Vuoto extends Casella {
+public class Wall extends Cell{
 
-    public Vuoto(int i, int j) {
+    public Wall(int i, int j) {
         super(i, j);
         //TODO Auto-generated constructor stub
     }
-    
+
 }

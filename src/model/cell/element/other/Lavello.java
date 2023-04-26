@@ -2,9 +2,9 @@ package model.cell.element.other;
 
 import model.cell.builder.Interagibile;
 
-public class Lavello extends Interagibile implements Ostacolo {
+public class Sink extends CellStateChainge  {
 
-    public Lavello(int i, int j) {
+    public Sink(int i, int j) {
         super(i, j);
         //TODO Auto-generated constructor stub
     }

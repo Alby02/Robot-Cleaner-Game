@@ -2,7 +2,7 @@ package model.cell.element.other;
 
 import model.cell.builder.Interagibile;
 
-public class Fornello extends Interagibile implements Ostacolo {
+public class Oven extends CellStateChainge {
 
     public Fornello(int i, int j) {
         super(i, j);

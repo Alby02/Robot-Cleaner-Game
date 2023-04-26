@@ -3,7 +3,8 @@ package view;
 import javax.swing.*;
 
 import controller.WhereIAmController;
-import model.element.*;
+import model.cell.*;
+import model.cell.element.Muro;
 import model.map.*;
 
 import java.awt.*;

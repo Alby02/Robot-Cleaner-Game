@@ -5,7 +5,10 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 import model.Elemento;
-import model.element.*;
+import model.cell.*;
+import model.cell.builder.Casella;
+import model.cell.element.Muro;
+import model.cell.element.Vuoto;
 
 public class Mappa{
     Elemento mappa[][];

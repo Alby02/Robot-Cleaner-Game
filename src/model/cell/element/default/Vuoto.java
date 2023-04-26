@@ -1,4 +1,6 @@
-package model.element;
+package model.cell.element;
+
+import model.cell.builder.Casella;
 
 public class Vuoto extends Casella {
 

@@ -1,7 +1,7 @@
 package model.map;
 
 import model.Elemento;
-import model.element.Ostacolo;
+import model.cell.builder.Ostacolo;
 
 public class Robot implements Elemento {
     private int x; //i

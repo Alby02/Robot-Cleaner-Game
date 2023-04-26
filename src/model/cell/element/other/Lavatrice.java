@@ -1,8 +1,10 @@
-package model.element;
+package model.cell.element.other;
 
-public class Lavello extends Interagibile implements Ostacolo {
+import model.cell.builder.Interagibile;
 
-    public Lavello(int i, int j) {
+public class Lavatrice extends Interagibile implements Ostacolo {
+
+    public Lavatrice(int i, int j) {
         super(i, j);
         //TODO Auto-generated constructor stub
     }

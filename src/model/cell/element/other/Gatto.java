@@ -1,4 +1,6 @@
-package model.element;
+package model.cell.element.other;
+
+import model.cell.builder.Casella;
 
 public class Gatto extends Casella implements Ostacolo {
 

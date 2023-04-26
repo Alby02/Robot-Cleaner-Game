@@ -1,4 +1,6 @@
-package model.element;
+package model.cell.element.other;
+
+import model.cell.builder.Interagibile;
 
 public class Fornello extends Interagibile implements Ostacolo {
 

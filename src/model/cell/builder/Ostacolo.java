@@ -1,5 +1,5 @@
 
-package model.element;
+package model.cell.builder;
 
 /**
  * Ostacolo

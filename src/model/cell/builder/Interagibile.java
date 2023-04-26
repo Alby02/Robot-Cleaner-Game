@@ -1,4 +1,4 @@
-package model.element;
+package model.cell.builder;
 
 public abstract class Interagibile extends Casella{    
 

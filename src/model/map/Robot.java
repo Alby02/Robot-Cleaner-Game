@@ -1,9 +1,8 @@
 package model.map;
 
-import model.Elemento;
-import model.cell.builder.Ostacolo;
+import model.cell.builder.Cell;;
 
-public class Robot implements Elemento {
+public class Robot {
     private int x; //i
     private int y; //j
     private Orientamento dir;
@@ -22,33 +21,34 @@ public class Robot implements Elemento {
         if(M == Move.FOR)
         {
             int i = this.x, j = this.y;
+            /* TODO need to be fixed
             switch(this.dir.get())
             {
                 case Destra:
-                    if(!(this.scacchi.getCasella(this.x+1, y) instanceof Ostacolo))
+                    if((this.scacchi.getCasella(this.x+1, y))
                         this.x++;
                     else 
                         throw new IllegalPositionGameException();
                     break;
                 case Alto:
-                    if(!(this.scacchi.getCasella(x, this.y+1) instanceof Ostacolo))
+                    if((this.scacchi.getCasella(x, this.y+1))
                         this.y++;
                     else
                         throw new IllegalPositionGameException();
                     break;
                 case Sinistra:
-                    if(!(this.scacchi.getCasella(this.x-1, y) instanceof Ostacolo))
+                    if((this.scacchi.getCasella(this.x-1, y))
                         this.x--;
                     else 
                         throw new IllegalPositionGameException();
                     break;
                 case Basso:
-                    if(!(this.scacchi.getCasella(x, this.y-1) instanceof Ostacolo))
+                    if((this.scacchi.getCasella(x, this.y-1))
                         this.y--;
                     else 
                         throw new IllegalPositionGameException();
                     break;
-            }
+            }*/
             this.scacchi.setNewRobotPosition(i, j, this.x, this.y);
         }
         else

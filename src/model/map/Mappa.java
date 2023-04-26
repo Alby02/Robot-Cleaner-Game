@@ -4,19 +4,17 @@ package model.map;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import model.Elemento;
-import model.cell.*;
-import model.cell.builder.Casella;
-import model.cell.element.Muro;
-import model.cell.element.Vuoto;
+import model.cell.builder.Cell;
+import model.cell.element.base.*;
+import model.cell.element.other.*;
 
 public class Mappa{
-    Elemento mappa[][];
+    Cell mappa[][];
     Robot robot;
     public PropertyChangeSupport support;
 
     public Mappa() {
-        this.mappa = new Elemento[10][10];
+        this.mappa = new Cell[10][10];
         this.support = new PropertyChangeSupport(this);
         Azzera();
     }
@@ -24,7 +22,7 @@ public class Mappa{
     public Mappa(int x) throws MapToSmallException {
         if (x < 10)
             throw new MapToSmallException();
-        this.mappa = new Elemento[x][x];
+        this.mappa = new Cell[x][x];
         this.support = new PropertyChangeSupport(this);
         Azzera();
     }
@@ -33,14 +31,14 @@ public class Mappa{
         for (int i = 0; i < mappa.length; i++) {
             for (int j = 0; j < mappa[i].length; j++) {
                 if (i == 0 || j == 0 || i == mappa.length - 1 || j == mappa[i].length - 1) {
-                    mappa[i][j] = new Muro(i, j);
+                    mappa[i][j] = new Wall(i, j);
                 } else {
                     mappa[i][j] = randCasella(i, j);
                 }
             }
         }
         this.robot = new Robot(this);
-        this.mappa[1][1] = this.robot;
+        //this.mappa[1][1] = this.robot; //TODO need fixing
     }
 
     public Class[][] getMap()
@@ -54,13 +52,13 @@ public class Mappa{
         return mappa;
     }
 
-    public Elemento getCasella(int x, int y)
+    public Cell getCasella(int x, int y)
     {
         return this.mappa[x][y];
     }
 
-    private Casella randCasella(int i, int j) {
-        return new Vuoto(i, j);
+    private Cell randCasella(int i, int j) {
+        return null;//new Vuoto(i, j);
     }
 
     public Robot getRobot()
@@ -79,7 +77,7 @@ public class Mappa{
 
     public void setNewRobotPosition(int oldI, int oldJ, int newI, int newJ)
     {
-        this.mappa[newI][newJ] = this.robot;
-        this.mappa[oldI][oldJ] = new Vuoto(oldI, oldJ);
+        //this.mappa[newI][newJ] = this.robot; TODO Need fixing
+        this.mappa[oldI][oldJ] = null;//new Vuoto(oldI, oldJ);
     }
 }

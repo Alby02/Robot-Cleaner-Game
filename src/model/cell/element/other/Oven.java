@@ -1,19 +1,21 @@
 package model.cell.element.other;
 
-import model.cell.builder.Interagibile;
+import model.cell.builder.*;
 
-public class Oven extends CellStateChainge {
+public class Oven extends CellState {
 
-    public Fornello(int i, int j) {
+    public Oven(int i, int j) {
         super(i, j);
         //TODO Auto-generated constructor stub
     }
 
     @Override
-    public void interagi() throws IllegaInteractnGameException {
+    public void interact() throws IllegaInteractnGameException {
         // TODO Auto-generated method stub
-        this.status = !this.status;
+        throw new UnsupportedOperationException("Unimplemented method 'interact'");
     }
+
+  
 
 
     

@@ -1,11 +1,11 @@
 package model.cell.builder;
 
-public abstract class Casella{
+public abstract class Cell{
    
     private int i;
     private int j;
 
-    public Casella(int i, int j) {
+    public Cell(int i, int j) {
         this.i = i;
         this.j = j;
     }

@@ -3,8 +3,8 @@ package view;
 import javax.swing.*;
 
 import controller.WhereIAmController;
-import model.cell.*;
-import model.cell.element.base.Wall;
+import model.cell.builder.Cell;
+import model.cell.builder.CellFactory;
 import model.map.*;
 
 import java.awt.*;
@@ -18,41 +18,41 @@ public class GUIView extends JFrame implements WhereIAmView {
 
     private class ColouredLabel extends JLabel {
         //private final Color Vuoto = Color.WHITE;
-        private final ImageIcon WALL = new ImageIcon("src/img/Muro.jpg");
-        private final ImageIcon ROBOT = new ImageIcon(new ImageIcon("src/img/Wall-E.jpg").getImage().getScaledInstance(1024/10, 1024/10, Image.SCALE_DEFAULT));
-        private final ImageIcon LAMINATO = new ImageIcon("src/img/Laminato.jpg");
         
-        public ColouredLabel(Class tipo) {
+        private  final ImageIcon ROBOT = new ImageIcon(new ImageIcon("src/img/Wall-E.jpg").getImage().getScaledInstance(1024/10, 1024/10, Image.SCALE_DEFAULT));
+        
+        CellFactory factory;
+
+        public ColouredLabel(CellFactory factory, Cell tipo) {
+            this.factory = factory;
             this.setOpaque(true);
-            this.setByType(tipo);
-            
-            
+            this.setByType(tipo);            
         }
 
-        public void setByType(Class tipo) {
+        public void setByType(Cell tipo) {
             
-            if(tipo == Wall.class)
+            if(tipo == null)
             {
-                this.setIcon(WALL);
-                this.setBorder(null);
-            }
-            else if(tipo == model.map.Robot.class)
-            {
-                this.setBorder(null);
-                this.setIcon(ROBOT);
+                this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
             }
             else{
-                this.setIcon(LAMINATO);
-                this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+                this.setBorder(null);
+            }
+            this.setIcon(factory.getIcon(tipo));
                 /*
                 this.setBackground(Vuoto);
-                */
-            }   
+                */   
         }
 
         public void setSelected()
         {
             this.setBorder(BorderFactory.createLineBorder(Color.BLUE, 3));
+        }
+
+        public void setRobot()
+        {
+            this.setBorder(null);
+            this.setIcon(ROBOT);
         }
         
 
@@ -67,13 +67,15 @@ public class GUIView extends JFrame implements WhereIAmView {
     private Mappa scacco;
 
     public GUIView(Mappa modello) throws HeadlessException {
-        super("Where I am?");
+        super("Gioco");
         this.scacco = modello;
-        Class mappa[][] = this.scacco.getMap();
+        Cell mappa[][] = this.scacco.getMap();
         this.setSize(1000, 1050);
         this.setResizable(false);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
+
+        CellFactory fact = new CellFactory();
 
         main = new JPanel();
         main.setLayout(new GridLayout(10,10));
@@ -81,13 +83,13 @@ public class GUIView extends JFrame implements WhereIAmView {
         this.labels= new ColouredLabel[mappa.length][mappa[0].length];
         for(int i=0;i<this.labels.length;i++) {
             for(int j=0; j<this.labels[i].length; j++){
-                this.labels[i][j] = new ColouredLabel(mappa[i][j]);
+                this.labels[i][j] = new ColouredLabel(fact, mappa[i][j]);
                 main.add(labels[i][j]);
             }
         }
         
         this.labels[this.scacco.getRobot().getCellFacingI()][this.scacco.getRobot().getCellFacingJ()].setSelected();
-
+        this.labels[this.scacco.getRobot().getI()][this.scacco.getRobot().getJ()].setRobot();
         this.add(main, BorderLayout.CENTER);
         
         JPanel button = new JPanel();
@@ -126,12 +128,13 @@ public class GUIView extends JFrame implements WhereIAmView {
 
     @Override
     public void showPosition() {
-        Class mappa[][] = this.scacco.getMap();
+        Cell mappa[][] = this.scacco.getMap();
         for(int i=0;i<this.labels.length;i++) {
             for(int j=0; j<this.labels[i].length; j++){
                 this.labels[i][j].setByType(mappa[i][j]);
             }
         }
+        this.labels[this.scacco.getRobot().getI()][this.scacco.getRobot().getJ()].setRobot();
         this.labels[this.scacco.getRobot().getCellFacingI()][this.scacco.getRobot().getCellFacingJ()].setSelected();
     }
 

@@ -1,4 +1,4 @@
-package model.cell.element.base;
+package model.cell.element;
 
 import model.cell.builder.Cell;
 

@@ -1,10 +1,10 @@
-package model.cell.element.other;
+package model.cell.element;
 
 import model.cell.builder.*;
 
-public class Oven extends CellState {
+public class Water extends Cell implements Removable{
 
-    public Oven(int i, int j) {
+    public Water(int i, int j) {
         super(i, j);
         //TODO Auto-generated constructor stub
     }
@@ -14,9 +14,5 @@ public class Oven extends CellState {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'interact'");
     }
-
-  
-
-
     
 }

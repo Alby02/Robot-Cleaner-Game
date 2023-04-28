@@ -5,8 +5,8 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 import model.cell.builder.Cell;
-import model.cell.element.base.*;
-import model.cell.element.other.*;
+import model.cell.element.*;
+
 
 public class Mappa{
     Cell mappa[][];
@@ -41,20 +41,14 @@ public class Mappa{
         //this.mappa[1][1] = this.robot; //TODO need fixing
     }
 
-    public Class[][] getMap()
+    public Cell[][] getMap()
     {
-        Class mappa[][] = new Class[this.mappa.length][this.mappa[0].length];
-        for (int i = 0; i < this.mappa.length; i++) {
-            for (int j = 0; j < this.mappa[i].length; j++) {
-                mappa[i][j] = this.mappa[i][j].getClass(); 
-            }
-        }
-        return mappa;
+        return this.mappa;
     }
 
-    public Cell getCasella(int x, int y)
+    public Cell getCasella(int i, int j)
     {
-        return this.mappa[x][y];
+        return this.mappa[i][j];
     }
 
     private Cell randCasella(int i, int j) {

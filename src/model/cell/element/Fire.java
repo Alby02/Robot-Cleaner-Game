@@ -1,10 +1,10 @@
-package model.cell.element.other;
+package model.cell.element;
 
 import model.cell.builder.*;
 
-public class Water extends Cell implements Removable{
+public class Fire extends Cell implements Removable{
 
-    public Water(int i, int j) {
+    public Fire(int i, int j) {
         super(i, j);
         //TODO Auto-generated constructor stub
     }

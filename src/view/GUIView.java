@@ -20,7 +20,13 @@ public class GUIView extends JFrame implements WhereIAmView {
         private final ImageIcon WALL = new ImageIcon("src/img/Muro.jpg");
         private final ImageIcon ROBOT = new ImageIcon(new ImageIcon("src/img/Wall-E.jpg").getImage().getScaledInstance(1024/10, 1024/10, Image.SCALE_DEFAULT));
         private final ImageIcon LAMINATO = new ImageIcon("src/img/Laminato.jpg");
-        
+        private final ImageIcon WASH = new ImageIcon("src/img/lavatrice.jpg");
+        private final ImageIcon STOVE_ON = new ImageIcon("src/img/stove_on.jpg");
+        private final ImageIcon STOVE_OFF = new ImageIcon("src/img/stove_off.jpg");
+
+
+
+
         public ColouredLabel(Class tipo) {
             this.setOpaque(true);
             this.setByType(tipo);
@@ -40,12 +46,27 @@ public class GUIView extends JFrame implements WhereIAmView {
                 this.setBorder(null);
                 this.setIcon(ROBOT);
             }
+            else if(tipo == Lavatrice.class){
+                
+                this.setBorder(null);
+                this.setIcon(WASH);
+
+            }
+            else if(tipo == Fornello.class){
+
+                this.setBorder(null);
+                this.setIcon(STOVE_ON);
+
+
+            }
             else{
+
                 this.setIcon(LAMINATO);
                 this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
                 /*
                 this.setBackground(Vuoto);
                 */
+
             }   
         }
 

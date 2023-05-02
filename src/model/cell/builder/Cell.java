@@ -1,13 +1,11 @@
-package model.element;
+package model.cell.builder;
 
-import model.Elemento;
-
-public abstract class Casella implements Elemento{
+public abstract class Cell{
    
     private int i;
     private int j;
 
-    public Casella(int i, int j) {
+    public Cell(int i, int j) {
         this.i = i;
         this.j = j;
     }

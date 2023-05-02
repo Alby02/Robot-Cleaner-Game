@@ -1,18 +1,17 @@
 package model.map;
 
-import model.Elemento;
-import model.element.Ostacolo;
+import model.cell.builder.Removable;
 
-public class Robot implements Elemento {
-    private int x; //i
-    private int y; //j
+public class Robot {
+    private int i; //i
+    private int j; //j
     private Orientamento dir;
     private Mappa scacchi;
 
     public Robot(Mappa mappa)
     {
-        this.x = 1;
-        this.y = 1;
+        this.i = 1;
+        this.j = 1;
         this.dir = new Orientamento();
         this.scacchi = mappa;
     }
@@ -21,35 +20,35 @@ public class Robot implements Elemento {
     {
         if(M == Move.FOR)
         {
-            int i = this.x, j = this.y;
+            int i = this.i, j = this.j;
             switch(this.dir.get())
             {
                 case Destra:
-                    if(!(this.scacchi.getCasella(this.x+1, y) instanceof Ostacolo))
-                        this.x++;
+                    if(this.scacchi.getCasella(this.i+1, this.j) == null || this.scacchi.getCasella(this.i+1, this.j) instanceof Removable)
+                        this.i++;
                     else 
                         throw new IllegalPositionGameException();
                     break;
                 case Alto:
-                    if(!(this.scacchi.getCasella(x, this.y+1) instanceof Ostacolo))
-                        this.y++;
+                    if(this.scacchi.getCasella(this.i,this.j + 1) == null || this.scacchi.getCasella(this.i, this.j+1)instanceof Removable)
+                        this.j++;
                     else
                         throw new IllegalPositionGameException();
                     break;
                 case Sinistra:
-                    if(!(this.scacchi.getCasella(this.x-1, y) instanceof Ostacolo))
-                        this.x--;
+                    if(this.scacchi.getCasella(this.i-1, this.j) == null || this.scacchi.getCasella(this.i-1, this.j) instanceof Removable)
+                        this.i--;
                     else 
                         throw new IllegalPositionGameException();
                     break;
                 case Basso:
-                    if(!(this.scacchi.getCasella(x, this.y-1) instanceof Ostacolo))
-                        this.y--;
+                    if(this.scacchi.getCasella(this.i, this.j-1) == null || this.scacchi.getCasella(this.i, this.j-1) instanceof Removable)
+                        this.j--;
                     else 
                         throw new IllegalPositionGameException();
                     break;
             }
-            this.scacchi.setNewRobotPosition(i, j, this.x, this.y);
+            this.scacchi.setNewRobotPosition(i, j, this.i, this.j);
         }
         else
             this.dir.aggiorna(M);
@@ -58,7 +57,7 @@ public class Robot implements Elemento {
 
     public int getCellFacingI()
     {
-        int x = this.x;
+        int x = this.i;
 
         switch(this.dir.get())
         {
@@ -79,7 +78,7 @@ public class Robot implements Elemento {
 
     public int getCellFacingJ()
     {
-        int y = this.y;
+        int y = this.j;
 
         switch(this.dir.get())
         {
@@ -97,6 +96,11 @@ public class Robot implements Elemento {
 
         return y;
     }
+
+    public int getI()
+    {return i;}
+    public int getJ()
+    {return j;}
 
 
     

@@ -14,6 +14,7 @@ public class App {
         TextualView view2 = new TextualView();
         WhereIAmController contro = new WhereIAmController(map, view, view2);
 
+        //TODO add thred for random event (passare mappa)
 
     
     }

@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.io.IOException;
 import java.util.Scanner;
@@ -14,6 +15,7 @@ public class TextualView implements WhereIAmView {
         //doNothing
     }
 
+    @Override
     public void propertyChange(PropertyChangeEvent event) {
         if (event.getPropertyName().equals("position")) {
             this.showPosition();
@@ -42,40 +44,7 @@ public class TextualView implements WhereIAmView {
             try {
                 char action = (char) System.in.read();
                 tastiera.nextLine();
-                switch (action) {
-                case 'A':
-                    this.controller.doAction(action);
-                    System.out.println("Agent has moved left");
-                    break;
-                case 'W':
-                    this.controller.doAction(action);
-                    System.out.println("Agent has moved forward");
-                    break;
-                case 'D':
-                    this.controller.doAction(action);
-                    System.out.println("Agent has moved right");
-                    break;
-                case 'E':
-                    this.controller.doAction(action);
-                    System.out.println("Agent interaced with something");
-                    break;
-                case 'a':
-                    this.controller.doAction(action);
-                    System.out.println("Agent has moved left");
-                    break;
-                case 'w':
-                    this.controller.doAction(action);
-                    System.out.println("Agent has moved forward");
-                    break;
-                case 'd':
-                    this.controller.doAction(action);
-                    System.out.println("Agent has moved right");
-                    break;
-                case 'e':
-                    this.controller.doAction(action);
-                    System.out.println("Agent interaced with something");
-                    break;
-                }
+                this.controller.actionPerformed(new ActionEvent(controller, 0, String.valueOf(action)));
             } catch (IOException e) {
                 this.communicateError("An IO Error occurred");
             }

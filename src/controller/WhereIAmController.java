@@ -18,6 +18,7 @@ public class WhereIAmController implements ActionListener {
     public WhereIAmController(Mappa model, WhereIAmView... views) {
         this.model = model;
         this.views = new HashSet<>();
+        this.proprerty = new PropertyChangeSupport(this);
         for(WhereIAmView v : views) {
             this.views.add(v);
             this.proprerty.addPropertyChangeListener(v);
@@ -49,38 +50,6 @@ public class WhereIAmController implements ActionListener {
         this.move(M);
     }
 
-    public void doAction (char action) {
-        Move M = null;
-        switch (action) {
-            case 'A':
-                M = Move.SX;
-                break;
-            case 'W':
-                M = Move.FOR;
-                break;
-            case 'D':
-                M = Move.DX;
-                break;
-            case 'E':
-                M = Move.ACT;
-                break;
-            case 'a':
-                M = Move.SX;
-                break;
-            case 'w':
-                M = Move.FOR;
-                break;
-            case 'd':
-                M = Move.DX;
-                break;
-            case 'e':
-                M = Move.ACT;
-                break;
-            default:
-                System.out.println("Key not used, try W,A,D or E");
-        }
-        this.move(M);
-    }
 
     private void move(Move M) {
         try {

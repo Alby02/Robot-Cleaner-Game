@@ -124,6 +124,7 @@ public class GUIView extends JFrame implements WhereIAmView {
 
     }
 
+    @Override
     public void propertyChange(PropertyChangeEvent event) {
         if (event.getPropertyName().equals("position")) {
             this.showPosition();

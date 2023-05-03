@@ -1,8 +1,8 @@
 package model.map;
 
 public class MapToSmallException extends Exception  {
-    public MapToSmallException()
+    public MapToSmallException(String m)
     {
-        super("Dimensioni non consone");
+        super(m);//usato in mappa
     }
 }

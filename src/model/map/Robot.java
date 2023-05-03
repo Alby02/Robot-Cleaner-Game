@@ -27,25 +27,25 @@ public class Robot {
                     if(this.scacchi.getCasella(this.i+1, this.j) == null || this.scacchi.getCasella(this.i+1, this.j) instanceof Removable)
                         this.i++;
                     else 
-                        throw new IllegalPositionGameException();
+                        throw new IllegalPositionGameException("Illegal Position Game Exception");
                     break;
                 case Alto:
                     if(this.scacchi.getCasella(this.i,this.j + 1) == null || this.scacchi.getCasella(this.i, this.j+1)instanceof Removable)
                         this.j++;
                     else
-                        throw new IllegalPositionGameException();
+                        throw new IllegalPositionGameException("Illegal Position Game Exception");
                     break;
                 case Sinistra:
                     if(this.scacchi.getCasella(this.i-1, this.j) == null || this.scacchi.getCasella(this.i-1, this.j) instanceof Removable)
                         this.i--;
                     else 
-                        throw new IllegalPositionGameException();
+                        throw new IllegalPositionGameException("Illegal Position Game Exception");
                     break;
                 case Basso:
                     if(this.scacchi.getCasella(this.i, this.j-1) == null || this.scacchi.getCasella(this.i, this.j-1) instanceof Removable)
                         this.j--;
                     else 
-                        throw new IllegalPositionGameException();
+                        throw new IllegalPositionGameException("Illegal Position Game Exception");
                     break;
             }
             this.scacchi.setNewRobotPosition(i, j, this.i, this.j);

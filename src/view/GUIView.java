@@ -97,10 +97,10 @@ public class GUIView extends JFrame implements WhereIAmView {
         button.setPreferredSize(new Dimension(1000, 50));
 
         this.buttons = new JButton[4];
-        this.buttons[0] = new JButton("LEFT");
-        this.buttons[1] = new JButton("FORWARD");
-        this.buttons[2] = new JButton("INTERACT");
-        this.buttons[3] = new JButton("RIGHT");
+        this.buttons[0] = new JButton("LEFT(A)");
+        this.buttons[1] = new JButton("FORWARD(W)");
+        this.buttons[2] = new JButton("INTERACT(E)");
+        this.buttons[3] = new JButton("RIGHT(D)");
 
         for (JButton but : this.buttons) {
             button.add(but);

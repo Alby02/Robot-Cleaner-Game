@@ -21,7 +21,7 @@ public class Mappa{
 
     public Mappa(int x) throws MapToSmallException {
         if (x < 10)
-            throw new MapToSmallException();
+            throw new MapToSmallException("Dimensioni non consone");
         this.mappa = new Cell[x][x];
         this.support = new PropertyChangeSupport(this);
         Azzera();

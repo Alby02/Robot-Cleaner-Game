@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.util.Collection;
 import java.util.HashSet;
 
-import model.map.IllegalPositionGameException;
 import model.map.Mappa;
 import model.map.Move;
 import view.WhereIAmView;
@@ -18,7 +17,6 @@ public class WhereIAmController implements ActionListener {
         this.model = model;
         this.views = new HashSet<>();
         for(WhereIAmView v : views) {
-            System.out.println("Passo");
             this.views.add(v);
             model.addObserver(v);
             v.addController(this);
@@ -29,16 +27,16 @@ public class WhereIAmController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Move M = null;
         switch(e.getActionCommand()){
-            case "LEFT":
+            case "LEFT(A)":
                 M = Move.SX;
                 break;
-            case "FORWARD":
+            case "FORWARD(W)":
                 M = Move.FOR;
                 break;
-            case "RIGHT":
+            case "RIGHT(D)":
                 M = Move.DX;
                 break;
-            case "INTERACT":
+            case "INTERACT(E)":
                 M = Move.ACT;
                 break;
         }
@@ -48,18 +46,32 @@ public class WhereIAmController implements ActionListener {
     public void doAction (char action) {
         Move M = null;
         switch (action) {
-            case 'L':
+            case 'A':
                 M = Move.SX;
                 break;
-            case 'F':
+            case 'W':
                 M = Move.FOR;
                 break;
             case 'D':
                 M = Move.DX;
                 break;
-            case 'I':
+            case 'E':
                 M = Move.ACT;
                 break;
+            case 'a':
+                M = Move.SX;
+                break;
+            case 'w':
+                M = Move.FOR;
+                break;
+            case 'd':
+                M = Move.DX;
+                break;
+            case 'e':
+                M = Move.ACT;
+                break;
+            default:
+                System.out.println("Key not used, try W,A,D or E");
         }
         this.move(M);
     }

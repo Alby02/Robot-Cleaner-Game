@@ -1,8 +1,8 @@
 package model.map;
 
 public class IllegalPositionGameException extends Exception {
-    IllegalPositionGameException()
+    IllegalPositionGameException(String m)
     {
-        super("Illegal Position Game Exception");
+        super(m);//usato nel robot
     }
 }

@@ -23,7 +23,6 @@ public class TextualView implements WhereIAmView {
     @Override
     public void showPosition() {
         System.out.println("Agent has moved");
-
     }
 
     @Override
@@ -38,9 +37,8 @@ public class TextualView implements WhereIAmView {
     }
 
     public void startView() {
-
+        System.out.println("\n\n\nType W to move forward, A to move left, D to move right, E to interact and ESC to exit");
         while (true) {
-            System.out.println("Type a to move left, d to move right, e to exit");
             try {
                 char action = (char) System.in.read();
                 tastiera.nextLine();

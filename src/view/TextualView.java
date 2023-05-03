@@ -22,7 +22,7 @@ public class TextualView implements WhereIAmView {
 
     @Override
     public void showPosition() {
-        System.out.println("Agent has moved");
+        //da ricontrollare
     }
 
     @Override
@@ -36,13 +36,46 @@ public class TextualView implements WhereIAmView {
         this.startView();
     }
 
-    public void startView() {
+    public void startView() {   //da ricontrollare
         System.out.println("\n\n\nType W to move forward, A to move left, D to move right, E to interact and ESC to exit");
         while (true) {
             try {
                 char action = (char) System.in.read();
                 tastiera.nextLine();
-                this.controller.doAction(action);
+                switch (action) {
+                case 'A':
+                    this.controller.doAction(action);
+                    System.out.println("Agent has moved left");
+                    break;
+                case 'W':
+                    this.controller.doAction(action);
+                    System.out.println("Agent has moved forward");
+                    break;
+                case 'D':
+                    this.controller.doAction(action);
+                    System.out.println("Agent has moved right");
+                    break;
+                case 'E':
+                    this.controller.doAction(action);
+                    System.out.println("Agent interaced with something");
+                    break;
+                case 'a':
+                    this.controller.doAction(action);
+                    System.out.println("Agent has moved left");
+                    break;
+                case 'w':
+                    this.controller.doAction(action);
+                    System.out.println("Agent has moved forward");
+                    break;
+                case 'd':
+                    this.controller.doAction(action);
+                    System.out.println("Agent has moved right");
+                    break;
+                case 'e':
+                    this.controller.doAction(action);
+                    System.out.println("Agent interaced with something");
+                    break;
+                }
             } catch (IOException e) {
                 this.communicateError("An IO Error occurred");
             }

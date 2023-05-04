@@ -24,7 +24,7 @@ public class TextualView implements WhereIAmView {
 
     @Override
     public void showPosition() {
-        //da ricontrollare
+        //doNothing
     }
 
     @Override
@@ -38,7 +38,7 @@ public class TextualView implements WhereIAmView {
         this.startView();
     }
 
-    public void startView() {   //da ricontrollare
+    public void startView() {
         System.out.println("\n\n\nType W to move forward, A to move left, D to move right, E to interact and ESC to exit");
         while (true) {
             try {

@@ -5,6 +5,7 @@ import javax.swing.*;
 import controller.WhereIAmController;
 import model.cell.builder.Cell;
 import model.cell.builder.CellFactory;
+import model.cell.element.Wall;
 import model.map.*;
 
 import java.awt.*;
@@ -14,7 +15,7 @@ public class GUIView extends JFrame implements WhereIAmView {
     private class ColouredLabel extends JLabel {
         //private final Color Vuoto = Color.WHITE;
         
-        private final ImageIcon ROBOT = new ImageIcon(new ImageIcon("src/img/Wall-E.jpg").getImage().getScaledInstance(1024/10, 1024/10, Image.SCALE_DEFAULT));
+        private final ImageIcon ROBOT = new ImageIcon(new ImageIcon("src/img/Wall-E.png").getImage().getScaledInstance(1024/12, 1024/12, Image.SCALE_DEFAULT));
         
         CellFactory factory;
 
@@ -25,16 +26,14 @@ public class GUIView extends JFrame implements WhereIAmView {
         }
 
         public void setByType(Cell tipo) {
-            
-            if(tipo == null)
-            {
-                this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));            }
-            else{
-                this.setBorder(null);
-            }
-            this.setIcon(factory.getIcon(tipo));
+            this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
-            
+            if (tipo instanceof Wall) {
+                this.setIcon(factory.getIcon(tipo));
+                this.setBorder(null);
+            } else {
+                this.setIcon(factory.getIcon(tipo));
+            }
                 /*
                 this.setBackground(Vuoto);
                 */   
@@ -50,8 +49,6 @@ public class GUIView extends JFrame implements WhereIAmView {
             this.setBorder(null);
             this.setIcon(ROBOT);
         }
-        
-
     }
 
     class ImagePanel extends JPanel {
@@ -60,7 +57,7 @@ public class GUIView extends JFrame implements WhereIAmView {
       
         public ImagePanel() {
             super();
-            this.img = new ImageIcon("src/img/Floor.jpg").getImage();
+            this.img = new ImageIcon("src/img/Floor.png").getImage();
         }
       
       

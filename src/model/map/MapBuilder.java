@@ -7,6 +7,7 @@ import java.util.Scanner;
 import model.cell.builder.Cell;
 import model.cell.element.Sink;
 import model.cell.element.Wall;
+import model.cell.element.Water;
 
 public class MapBuilder {
 
@@ -24,15 +25,14 @@ public class MapBuilder {
         Azzera();
     }
 
-    public MapBuilder(String nome) throws FileNotFoundException, FileStrurctureWrongException{
+    public MapBuilder(String nome) throws FileNotFoundException, FileStructureWrongException{
         File file = new File(nome);
         Scanner myReader = new Scanner(file);
         int i;
         if(!myReader.hasNextLine())
         {
             myReader.close();
-
-            throw new FileStrurctureWrongException("Il file risulta vuoto");
+            throw new FileStructureWrongException("Il file risulta vuoto");
         }
         try {
             int MapSize = Integer.parseInt(myReader.nextLine());
@@ -44,11 +44,14 @@ public class MapBuilder {
                 for(int j = 0; j < data.length(); j+=2)
                 {
                     switch (data.charAt(j)) {
-                        case 'W':
+                        case 'W'://wall
                             this.mappa[i][j/2] = new Wall(i, j/2);
                             break;
-                        case 'S':
+                        case 'S'://sink
                             this.mappa[i][j/2] = new Sink(i, j/2);
+                            break;
+                        case 'w'://water
+                            this.mappa[i][j/2] = new Water(i, j/2);
                             break;
                         default:
                             this.mappa[i][j/2] = null;
@@ -59,12 +62,12 @@ public class MapBuilder {
 
             if(i != MapSize)
             {   myReader.close();
-                throw new FileStrurctureWrongException("La mappa è stata disegnata male");
+                throw new FileStructureWrongException("La mappa è stata disegnata male");
             }
         } catch (NumberFormatException e) {
             myReader.close();
 
-            throw new FileStrurctureWrongException(e.getMessage());
+            throw new FileStructureWrongException(e.getMessage());
         }
         myReader.close();
     }

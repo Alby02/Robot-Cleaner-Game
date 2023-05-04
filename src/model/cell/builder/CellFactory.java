@@ -27,7 +27,7 @@ public class CellFactory {
                 NomeClasse += "-" + ((CellState)cella).getState();
             }
             if(!this.Icone.containsKey(NomeClasse))
-                this.Icone.put(NomeClasse, new ImageIcon(new ImageIcon("src/img/" + NomeClasse + ".jpg").getImage().getScaledInstance(1024/scale, 1024/scale, Image.SCALE_DEFAULT)));
+                this.Icone.put(NomeClasse, new ImageIcon(new ImageIcon("src/img/" + NomeClasse + ".png").getImage().getScaledInstance(1024/scale, 1024/scale, Image.SCALE_DEFAULT)));
             return this.Icone.get(NomeClasse);
         }
         else

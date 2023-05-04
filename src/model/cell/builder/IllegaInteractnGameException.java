@@ -3,8 +3,8 @@ package model.cell.builder;
 
 public class IllegaInteractnGameException extends Exception {
 
-    IllegaInteractnGameException()
+    IllegaInteractnGameException(String m)
     {
-        super("Illegal Interaction");
+        super(m);//usato negli element
     }
 }

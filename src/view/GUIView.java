@@ -9,23 +9,18 @@ import model.map.*;
 
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
-/*
-
-    
-
-*/
 public class GUIView extends JFrame implements WhereIAmView {
 
     private class ColouredLabel extends JLabel {
         //private final Color Vuoto = Color.WHITE;
         
-        private  final ImageIcon ROBOT = new ImageIcon(new ImageIcon("src/img/Wall-E.jpg").getImage().getScaledInstance(1024/10, 1024/10, Image.SCALE_DEFAULT));
+        private final ImageIcon ROBOT = new ImageIcon(new ImageIcon("src/img/Wall-E.jpg").getImage().getScaledInstance(1024/10, 1024/10, Image.SCALE_DEFAULT));
         
         CellFactory factory;
 
         public ColouredLabel(CellFactory factory, Cell tipo) {
             this.factory = factory;
-            this.setOpaque(true);
+            this.setOpaque(false);
             this.setByType(tipo);            
         }
 
@@ -33,12 +28,13 @@ public class GUIView extends JFrame implements WhereIAmView {
             
             if(tipo == null)
             {
-                this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-            }
+                this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));            }
             else{
                 this.setBorder(null);
             }
             this.setIcon(factory.getIcon(tipo));
+
+            
                 /*
                 this.setBackground(Vuoto);
                 */   
@@ -56,7 +52,24 @@ public class GUIView extends JFrame implements WhereIAmView {
         }
         
 
-    } 
+    }
+
+    class ImagePanel extends JPanel {
+
+        private Image img;
+      
+        public ImagePanel() {
+            super();
+            this.img = new ImageIcon("src/img/Floor.jpg").getImage();
+        }
+      
+      
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.drawImage(img, 0, 0, null);
+        }
+      
+      }
 
     private final JPanel main;
     private final JButton buttons[];
@@ -75,10 +88,10 @@ public class GUIView extends JFrame implements WhereIAmView {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
 
-        CellFactory fact = new CellFactory();
+        CellFactory fact = new CellFactory(mappa.length);
 
-        main = new JPanel();
-        main.setLayout(new GridLayout(10,10));
+        main = new ImagePanel();
+        main.setLayout(new GridLayout(mappa.length,mappa.length));
         main.setPreferredSize(new Dimension(1000, 1000));
         this.labels= new ColouredLabel[mappa.length][mappa[0].length];
         for(int i=0;i<this.labels.length;i++) {

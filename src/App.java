@@ -1,3 +1,4 @@
+
 import controller.WhereIAmController;
 import model.map.MapBuilder;
 import model.map.Mappa;
@@ -10,7 +11,14 @@ import view.TextualView;
 public class App {
 
     public static void main(String[] args) {
-        Mappa map = new Mappa(new MapBuilder().getMap());
+        
+        Mappa map;
+        try {
+            map = new Mappa(new MapBuilder("mappa.txt").getMap());
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            map = new Mappa(new MapBuilder().getMap());
+        }
         GUIView view = new GUIView(map);
         TextualView view2 = new TextualView();
         WhereIAmController contro = new WhereIAmController(map, view, view2);

@@ -4,14 +4,17 @@ package model.cell.builder;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
+import java.awt.Image;
 
 public class CellFactory {
 
     private HashMap<String,ImageIcon> Icone;
+    private int scale;
 
-    public CellFactory()
+    public CellFactory(int scale)
     {
         this.Icone = new HashMap<String,ImageIcon>(); 
+        this.scale = scale;
     }
 
     public ImageIcon getIcon(Cell cella){
@@ -23,11 +26,11 @@ public class CellFactory {
             {
                 NomeClasse += "-" + ((CellState)cella).getState();
             }
+            if(!this.Icone.containsKey(NomeClasse))
+                this.Icone.put(NomeClasse, new ImageIcon(new ImageIcon("src/img/" + NomeClasse + ".jpg").getImage().getScaledInstance(1024/scale, 1024/scale, Image.SCALE_DEFAULT)));
+            return this.Icone.get(NomeClasse);
         }
         else
-            NomeClasse = "Floor";
-        if(!this.Icone.containsKey(NomeClasse))
-            this.Icone.put(NomeClasse, new ImageIcon("src/img/" + NomeClasse + ".jpg")) ;
-        return this.Icone.get(NomeClasse);
+            return null;
     }
 }

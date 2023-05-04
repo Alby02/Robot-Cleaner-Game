@@ -1,6 +1,11 @@
 package model.map;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import model.cell.builder.Cell;
+import model.cell.element.Sink;
 import model.cell.element.Wall;
 
 public class MapBuilder {
@@ -17,6 +22,51 @@ public class MapBuilder {
             throw new MapToSmallException("Dimensioni non consone");
         this.mappa = new Cell[x][x];
         Azzera();
+    }
+
+    public MapBuilder(String nome) throws FileNotFoundException, FileStrurctureWrongException{
+        File file = new File(nome);
+        Scanner myReader = new Scanner(file);
+        int i;
+        if(!myReader.hasNextLine())
+        {
+            myReader.close();
+
+            throw new FileStrurctureWrongException("Il file risulta vuoto");
+        }
+        try {
+            int MapSize = Integer.parseInt(myReader.nextLine());
+            this.mappa = new Cell[MapSize][MapSize];
+            for(i = 0; i < MapSize && myReader.hasNextLine(); i++)
+            {
+                //per ora va bene, ma non ci sono tutti gli elementi 
+                String data = myReader.nextLine();
+                for(int j = 0; j < data.length(); j+=2)
+                {
+                    switch (data.charAt(j)) {
+                        case 'W':
+                            this.mappa[i][j/2] = new Wall(i, j/2);
+                            break;
+                        case 'S':
+                            this.mappa[i][j/2] = new Sink(i, j/2);
+                            break;
+                        default:
+                            this.mappa[i][j/2] = null;
+                            break;
+                    }
+                }
+            }
+
+            if(i != MapSize)
+            {   myReader.close();
+                throw new FileStrurctureWrongException("La mappa è stata disegnata male");
+            }
+        } catch (NumberFormatException e) {
+            myReader.close();
+
+            throw new FileStrurctureWrongException(e.getMessage());
+        }
+        myReader.close();
     }
 
     public void Azzera() {

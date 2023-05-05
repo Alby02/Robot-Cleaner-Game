@@ -111,10 +111,10 @@ public class GUIView extends JFrame implements WhereIAmView {
         this.buttons[0].setActionCommand("A");
         this.buttons[1] = new JButton("FORWARD(W)");
         this.buttons[1].setActionCommand("W");
-        this.buttons[2] = new JButton("INTERACT(E)");
-        this.buttons[2].setActionCommand("E");
-        this.buttons[3] = new JButton("RIGHT(D)");
-        this.buttons[3].setActionCommand("D");
+        this.buttons[2] = new JButton("RIGHT(D)");
+        this.buttons[2].setActionCommand("D");
+        this.buttons[3] = new JButton("INTERACT(E)");
+        this.buttons[3].setActionCommand("E");
 
         for (JButton but : this.buttons) {
             button.add(but);

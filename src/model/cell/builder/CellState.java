@@ -2,11 +2,11 @@ package model.cell.builder;
 
 import model.map.Map;
 
-public abstract class CellState extends Cell implements Interactable {    
-
+public abstract class CellState extends Cell implements Interactable
+{
     public CellState(int i, int j) {
         super(i, j);
-        //TODO Auto-generated constructor stub
+        //TODO Auto-generated constructor
         state = "base";
     }
 
@@ -18,5 +18,4 @@ public abstract class CellState extends Cell implements Interactable {
     }
 
     abstract public Cell Event(Map mappa) throws CantGenerateStateEventException;
-    
 }

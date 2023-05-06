@@ -3,21 +3,30 @@ package model.cell.element;
 import model.cell.builder.*;
 import model.map.Map;
 
-public class Sink extends CellState  {
-
-    public Sink(int i, int j) {
+public class Sink extends CellState
+{
+    public Sink(int i, int j)
+    {
         super(i, j);
         //TODO Auto-generated constructor stub
     }
 
     @Override
-    public void interact() throws IllegaInteractnGameException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'interact'");
+    public void interact() throws IllegaInteractnGameException
+    {
+        if(this.state == "broken")
+        {
+            this.state = "base";
+        }
+        else
+        {
+            throw new IllegaInteractnGameException("Invalid interaction Oven is not broken");
+        }
     }
 
     @Override
-    public Cell Event(Map mappa) throws CantGenerateStateEventException{
+    public Cell Event(Map mappa) throws CantGenerateStateEventException
+    {
         Cell c = null;
         if(this.state == "base")
         {
@@ -48,8 +57,4 @@ public class Sink extends CellState  {
         }
         return c;
     }
-
-
-
-    
 }

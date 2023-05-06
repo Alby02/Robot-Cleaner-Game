@@ -2,8 +2,8 @@ package model.cell.builder;
 
 public abstract class Cell{
    
-    private int i;
-    private int j;
+    protected int i;
+    protected int j;
 
     public Cell(int i, int j) {
         this.i = i;

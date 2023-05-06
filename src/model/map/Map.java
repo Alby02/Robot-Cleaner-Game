@@ -27,6 +27,14 @@ public class Map{
         return this.robot;
     }
 
+    public int getISize(){
+        return this.mappa.length;
+    }
+
+    public int getJSize(){
+        return this.mappa[0].length;
+    }
+
     public void setNewRobotPosition(int oldI, int oldJ, int newI, int newJ)
     {
         //TODO Need fixing

@@ -6,16 +6,16 @@ import java.beans.PropertyChangeSupport;
 import java.util.Collection;
 import java.util.HashSet;
 
-import model.map.Mappa;
+import model.map.Map;
 import model.map.Move;
 import view.WhereIAmView;
 
 public class WhereIAmController implements ActionListener {
-    private Mappa model;
+    private Map model;
     private Collection<WhereIAmView> views;
     private PropertyChangeSupport property; 
 
-    public WhereIAmController(Mappa model, WhereIAmView... views) {
+    public WhereIAmController(Map model, WhereIAmView... views) {
         this.model = model;
         this.views = new HashSet<>();
         this.property = new PropertyChangeSupport(this);

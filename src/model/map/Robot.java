@@ -6,9 +6,9 @@ public class Robot {
     private int i; //i
     private int j; //j
     private Orientamento dir;
-    private Mappa scacchi;
+    private Map scacchi;
 
-    public Robot(Mappa mappa)
+    public Robot(Map mappa)
     {
         this.i = 1;
         this.j = 1;

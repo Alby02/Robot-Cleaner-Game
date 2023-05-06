@@ -74,9 +74,9 @@ public class GUIView extends JFrame implements WhereIAmView {
     private final JButton right;*/
 
     private ColouredLabel[][] labels;
-    private Mappa scacco;
+    private Map scacco;
 
-    public GUIView(Mappa modello) throws HeadlessException {
+    public GUIView(Map modello) throws HeadlessException {
         super("Gioco");
         this.scacco = modello;
         Cell mappa[][] = this.scacco.getMap();

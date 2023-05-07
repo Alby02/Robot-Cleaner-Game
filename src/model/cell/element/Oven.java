@@ -1,6 +1,8 @@
 package model.cell.element;
 
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 
@@ -10,6 +12,8 @@ import model.map.Map;
 public class Oven extends CellState
 {
     private static HashMap<String,ImageIcon> Icon;
+    private static final int TIME = 10000;
+    private Timer Timer;
 
     static
     {
@@ -25,11 +29,18 @@ public class Oven extends CellState
     }
 
     @Override
-    public void interact() throws IllegaInteractnGameException
+    public void interact() throws IllegaInteractnGameException 
     {
-        if(this.state == "broken")
-        {
+        if (this.state == "broken") {
             this.state = "base";
+            Timer = new Timer();
+            Timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    state = "broken";
+                    Timer.cancel();
+                }
+            }, TIME);
         }
         else
         {
@@ -41,8 +52,16 @@ public class Oven extends CellState
     public Cell Event(Map mappa) throws CantGenerateStateEventException
     {
         Cell c = null;
-        if(this.state == "base")
-        {
+
+        if (this.state == "base") {
+            Timer = new Timer();
+            Timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    state = "broken";
+                    Timer.cancel();
+                }
+            }, TIME);
             state = "broken";
         }
         else
@@ -63,9 +82,9 @@ public class Oven extends CellState
             {
                 c = new Fire(this.i, this.j - 1);
             }
-            else
+                else
             {
-                throw new CantGenerateStateEventException("All surroung cell are full");
+                throw new CantGenerateStateEventException("All surrounding cell are full");
             }
         }
         return c;

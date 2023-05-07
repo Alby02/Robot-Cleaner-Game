@@ -1,7 +1,7 @@
 12
 W W W W W W W W W W W W 
 W N N N N N N N N N N W 
-W N N N N N w S w N N W 
+W N N N N N N S N N N W 
 W N N N N N N N N N N W 
 W N N N N N N N N N N W 
 W W W W W W N N N N N W 

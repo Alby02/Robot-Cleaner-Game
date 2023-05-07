@@ -12,10 +12,5 @@ public abstract class CellState extends Cell implements Interactable
 
     protected String state;
 
-    public String getState()
-    {
-        return state;
-    }
-
     abstract public Cell Event(Map mappa) throws CantGenerateStateEventException;
 }

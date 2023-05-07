@@ -1,10 +1,18 @@
 package model.cell.element;
 
+import javax.swing.ImageIcon;
+
 import model.cell.builder.*;
 
 public class Water extends Cell implements Removable
 {
+    private static ImageIcon Icon;
 
+    static
+    {
+        Icon = new ImageIcon(new ImageIcon("src/img/Water.png").getImage().getScaledInstance(1024/iScale, 1024/jScale, java.awt.Image.SCALE_DEFAULT));
+    }
+    
     public Water(int i, int j)
     {
         super(i, j);
@@ -16,5 +24,10 @@ public class Water extends Cell implements Removable
     {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'interact'");
+    }
+
+    @Override
+    public ImageIcon getIcon() {
+        return Icon;
     }
 }

@@ -21,6 +21,8 @@ public class MapBuilder {
         }
         try {
             int MapSize = Integer.parseInt(myReader.nextLine());
+            Cell.iScale = MapSize;
+            Cell.jScale = MapSize;
             mappa = new Cell[MapSize][MapSize];
             for(i = 0; i < MapSize && myReader.hasNextLine(); i++)
             {

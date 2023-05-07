@@ -1,10 +1,23 @@
 package model.cell.element;
 
+import java.util.HashMap;
+
+import javax.swing.ImageIcon;
+
 import model.cell.builder.*;
 import model.map.Map;
 
 public class Oven extends CellState
 {
+    private static HashMap<String,ImageIcon> Icon;
+
+    static
+    {
+        Icon = new HashMap<String,ImageIcon>();
+        Icon.put("base", new ImageIcon(new ImageIcon("src/img/Oven-base.png").getImage().getScaledInstance(1024/iScale, 1024/jScale, java.awt.Image.SCALE_DEFAULT)));
+        Icon.put("broken", new ImageIcon(new ImageIcon("src/img/Oven-broken.png").getImage().getScaledInstance(1024/iScale, 1024/jScale, java.awt.Image.SCALE_DEFAULT)));
+    }
+
     public Oven(int i, int j)
     {
         super(i, j);
@@ -56,5 +69,10 @@ public class Oven extends CellState
             }
         }
         return c;
+    }
+
+    @Override
+    public ImageIcon getIcon() {
+        return Icon.get(state);
     }
 }

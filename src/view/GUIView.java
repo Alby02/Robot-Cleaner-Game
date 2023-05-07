@@ -4,7 +4,6 @@ import javax.swing.*;
 
 import controller.WhereIAmController;
 import model.cell.builder.Cell;
-import model.cell.builder.CellFactory;
 import model.cell.element.Wall;
 import model.map.*;
 
@@ -16,11 +15,8 @@ public class GUIView extends JFrame implements WhereIAmView {
         //private final Color Vuoto = Color.WHITE;
         
         private final ImageIcon ROBOT = new ImageIcon(new ImageIcon("src/img/Wall-E.png").getImage().getScaledInstance(1024/12, 1024/12, Image.SCALE_DEFAULT));
-        
-        CellFactory factory;
 
-        public ColouredLabel(CellFactory factory, Cell tipo) {
-            this.factory = factory;
+        public ColouredLabel(Cell tipo) {
             this.setOpaque(false);
             this.setByType(tipo);            
         }
@@ -29,11 +25,12 @@ public class GUIView extends JFrame implements WhereIAmView {
             this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
             if (tipo instanceof Wall) {
-                this.setIcon(factory.getIcon(tipo));
                 this.setBorder(null);
-            } else {
-                this.setIcon(factory.getIcon(tipo));
             }
+            if(tipo != null)
+                this.setIcon(tipo.getIcon());
+            else
+                this.setIcon(null);
                 /*
                 this.setBackground(Vuoto);
                 */   
@@ -85,15 +82,13 @@ public class GUIView extends JFrame implements WhereIAmView {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
 
-        CellFactory fact = new CellFactory(mappa.length);
-
         main = new ImagePanel();
         main.setLayout(new GridLayout(mappa.length,mappa.length));
         main.setPreferredSize(new Dimension(1000, 1000));
         this.labels= new ColouredLabel[mappa.length][mappa[0].length];
         for(int i=0;i<this.labels.length;i++) {
             for(int j=0; j<this.labels[i].length; j++){
-                this.labels[i][j] = new ColouredLabel(fact, mappa[i][j]);
+                this.labels[i][j] = new ColouredLabel (mappa[i][j]);
                 main.add(labels[i][j]);
             }
         }

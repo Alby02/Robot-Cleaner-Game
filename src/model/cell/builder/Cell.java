@@ -2,6 +2,9 @@ package model.cell.builder;
 
 public abstract class Cell
 {   
+    public static int iScale = 10;
+    public static int jScale = 10;
+
     protected int i;
     protected int j;
 
@@ -20,4 +23,6 @@ public abstract class Cell
     {
         return j;
     }
+
+    public abstract javax.swing.ImageIcon getIcon();
 } 

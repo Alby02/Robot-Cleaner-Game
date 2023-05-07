@@ -25,7 +25,6 @@ public class Sink extends CellState
     public Sink(int i, int j)
     {
         super(i, j);
-        //TODO Auto-generated constructor stub
     }
 
     @Override

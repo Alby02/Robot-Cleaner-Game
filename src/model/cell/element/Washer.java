@@ -25,7 +25,6 @@ public class Washer extends CellState
     public Washer(int i, int j)
     {
         super(i, j);
-        //TODO Auto-generated constructor stub
     }
 
     @Override

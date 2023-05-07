@@ -25,7 +25,6 @@ public class Oven extends CellState
     public Oven(int i, int j)
     {
         super(i, j);
-        //TODO Auto-generated constructor
     }
 
     @Override

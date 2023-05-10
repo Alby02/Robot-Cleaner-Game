@@ -71,30 +71,29 @@ public class GUIView extends JFrame implements WhereIAmView {
     private final JButton right;*/
 
     private ColouredLabel[][] labels;
-    private Map scacco;
+    final private Map scacco;
 
     public GUIView(Map modello) throws HeadlessException {
         super("Gioco");
         this.scacco = modello;
-        Cell mappa[][] = this.scacco.getMap();
         this.setSize(1000, 1050);
         this.setResizable(false);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
-
+        
         main = new ImagePanel();
-        main.setLayout(new GridLayout(mappa.length,mappa.length));
+        main.setLayout(new GridLayout(modello.getISize(),modello.getJSize()));
         main.setPreferredSize(new Dimension(1000, 1000));
-        this.labels= new ColouredLabel[mappa.length][mappa[0].length];
+        this.labels= new ColouredLabel[modello.getISize()][modello.getJSize()];
         for(int i=0;i<this.labels.length;i++) {
             for(int j=0; j<this.labels[i].length; j++){
-                this.labels[i][j] = new ColouredLabel (mappa[i][j]);
+                this.labels[i][j] = new ColouredLabel (modello.getCasella(i, j));
                 main.add(labels[i][j]);
             }
         }
         
-        this.labels[this.scacco.getRobot().getCellFacingI()][this.scacco.getRobot().getCellFacingJ()].setSelected();
-        this.labels[this.scacco.getRobot().getI()][this.scacco.getRobot().getJ()].setRobot();
+        this.labels[modello.robot.getCellFacingI()][modello.robot.getCellFacingJ()].setSelected();
+        this.labels[modello.robot.getI()][modello.robot.getJ()].setRobot();
         this.add(main, BorderLayout.CENTER);
         
         JPanel button = new JPanel();
@@ -138,14 +137,13 @@ public class GUIView extends JFrame implements WhereIAmView {
 
     @Override
     public void showPosition() {
-        Cell mappa[][] = this.scacco.getMap();
         for(int i=0;i<this.labels.length;i++) {
             for(int j=0; j<this.labels[i].length; j++){
-                this.labels[i][j].setByType(mappa[i][j]);
+                this.labels[i][j].setByType(this.scacco.getCasella(i, j));
             }
         }
-        this.labels[this.scacco.getRobot().getI()][this.scacco.getRobot().getJ()].setRobot();
-        this.labels[this.scacco.getRobot().getCellFacingI()][this.scacco.getRobot().getCellFacingJ()].setSelected();
+        this.labels[this.scacco.robot.getI()][this.scacco.robot.getJ()].setRobot();
+        this.labels[this.scacco.robot.getCellFacingI()][this.scacco.robot.getCellFacingJ()].setSelected();
     }
 
     @Override

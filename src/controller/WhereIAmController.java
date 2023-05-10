@@ -6,8 +6,8 @@ import java.beans.PropertyChangeSupport;
 import java.util.Collection;
 import java.util.HashSet;
 
+import model.map.IllegalPositionGameException;
 import model.map.Map;
-import model.map.Move;
 import view.WhereIAmView;
 
 public class WhereIAmController implements ActionListener {
@@ -27,39 +27,33 @@ public class WhereIAmController implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        Move M = null;
-        switch(e.getActionCommand()){
-            case "A":
-            case "a":
-                M = Move.SX;
-                break;
-            case "W":
-            case "w":
-                M = Move.FOR;
-                break;
-            case "D":
-            case "d":
-                M = Move.DX;
-                break;
-            case "E":
-            case "e":
-                M = Move.ACT;
-                break;
-        }
-        this.move(M);
-    }
-
-
-    private void move(Move M) {
-        try {
-            model.getRobot().muovi(M);
+    public void actionPerformed(ActionEvent event) {
+        try
+        {
+            switch(event.getActionCommand()){
+                case "A":
+                case "a":
+                    this.model.robot.dir.rotateSX();
+                    break;
+                case "W":
+                case "w":
+                    this.model.robot.foreward();
+                    break;
+                case "D":
+                case "d":
+                    this.model.robot.dir.rotateDX();
+                    break;
+                case "E":
+                case "e":
+                    this.model.enent();
+                    break;
+            }
             this.property.firePropertyChange("position", null, null);
         }
-        catch (Exception e) {
+        catch (IllegalPositionGameException e) {
             for (WhereIAmView v : this.views) {
                 v.communicateError(e.getMessage());
             }
         }
-    }
+    }            
 }

@@ -2,6 +2,13 @@ package model.map;
 
 public class Orientamento {
 
+    public enum Direction{
+        Alto,
+        Basso,
+        Destra,
+        Sinistra
+    }
+
     private Direction dir;
 
     public Orientamento()
@@ -13,42 +20,38 @@ public class Orientamento {
         return this.dir;
     }
 
-    public void aggiorna(Move M)
+    public void rotateSX()
     {
-        if(M == Move.SX)
-        {
-            switch (this.dir) {
-                case Alto:
-                    this.dir = Direction.Sinistra;
-                    break;
-                case Sinistra:
-                    this.dir = Direction.Basso;
-                    break;
-                case Basso:
-                    this.dir = Direction.Destra;
-                    break;
-                case Destra:
-                    this.dir = Direction.Alto;
-                    break;
-            }
-        }
-        else if (M == Move.DX)
-        {
-            switch (this.dir) {
-                case Alto:
-                    this.dir = Direction.Destra;
-                    break;
-                case Destra:
-                    this.dir = Direction.Basso;
-                    break;
-                case Basso:
-                    this.dir = Direction.Sinistra;
-                    break;
-                case Sinistra:
-                    this.dir = Direction.Alto;
-                    break;
-            }
+        switch (this.dir) {
+            case Alto:
+                this.dir = Direction.Sinistra;
+                break;
+            case Sinistra:
+                this.dir = Direction.Basso;
+                break;
+            case Basso:
+                this.dir = Direction.Destra;
+                break;
+            case Destra:
+                this.dir = Direction.Alto;
+                break;
         }
     }
-
+    public void rotateDX()
+    {
+        switch (this.dir) {
+            case Alto:
+                this.dir = Direction.Destra;
+                break;
+            case Destra:
+                this.dir = Direction.Basso;
+                break;
+            case Basso:
+                this.dir = Direction.Sinistra;
+                break;
+            case Sinistra:
+                this.dir = Direction.Alto;
+                break;
+        }
+    }
 }

@@ -38,6 +38,7 @@ public class TextualView implements WhereIAmView {
         this.startView();
     }
 
+    @Override
     public void startView() {
         System.out.println("\n\n\nType W to move forward, A to move left, D to move right, E to interact and ESC to exit");
         while (true) {

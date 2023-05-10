@@ -1,6 +1,7 @@
-package model.map;
+package model;
 
-import model.cell.builder.Removable;
+import model.Orientamento.Direction;
+import model.exception.IllegalPositionGameException;
 
 public class Robot {
     private int i; //i
@@ -12,7 +13,7 @@ public class Robot {
     {
         this.i = 1;
         this.j = 1;
-        this.dir = new Orientamento();
+        this.dir = new Orientamento(Direction.Destra);
         this.scacchi = mappa;
     }
 

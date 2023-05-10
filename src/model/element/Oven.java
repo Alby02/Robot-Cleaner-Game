@@ -1,4 +1,4 @@
-package model.cell.element;
+package model.element;
 
 import java.util.HashMap;
 import java.util.Timer;
@@ -6,8 +6,11 @@ import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 
-import model.cell.builder.*;
-import model.map.Map;
+import model.Cell;
+import model.CellState;
+import model.Map;
+import model.exception.CantGenerateStateEventException;
+import model.exception.IllegaInteractnGameException;
 
 public class Oven extends CellState
 {
@@ -24,7 +27,7 @@ public class Oven extends CellState
 
     public Oven(int i, int j)
     {
-        super(i, j);
+        super(i, j, "base");
     }
 
     @Override

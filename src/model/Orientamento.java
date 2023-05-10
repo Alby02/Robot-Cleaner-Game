@@ -1,4 +1,4 @@
-package model.map;
+package model;
 
 public class Orientamento {
 
@@ -11,9 +11,9 @@ public class Orientamento {
 
     private Direction dir;
 
-    public Orientamento()
+    public Orientamento(Direction face)
     {
-        this.dir = Direction.Destra;
+        this.dir = face;
     }
 
     public Direction get() {

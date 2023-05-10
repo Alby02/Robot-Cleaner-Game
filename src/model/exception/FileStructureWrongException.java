@@ -1,7 +1,8 @@
-package model.map;
+package model.exception;
 
 public class FileStructureWrongException extends Exception{
-    FileStructureWrongException(String m){
+    public FileStructureWrongException(String m)
+    {
         super(m);//usato in mapBuilder
     }
 }

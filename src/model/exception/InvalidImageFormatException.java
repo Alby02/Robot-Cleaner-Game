@@ -1,8 +1,9 @@
-package model.cell.builder;
+package model.exception;
 
 public class InvalidImageFormatException extends Exception
 {    
-    InvalidImageFormatException(String m){
+    public InvalidImageFormatException(String m)
+    {
         super(m);
     }
 }

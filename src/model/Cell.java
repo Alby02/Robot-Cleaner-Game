@@ -1,9 +1,9 @@
-package model.cell.builder;
+package model;
 
 public abstract class Cell
 {   
-    public static int iScale = 10;
-    public static int jScale = 10;
+    protected static int iScale = 10;
+    protected static int jScale = 10;
 
     protected int i;
     protected int j;

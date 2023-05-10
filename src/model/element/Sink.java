@@ -1,15 +1,18 @@
-package model.cell.element;
+package model.element;
 
 import java.util.HashMap;
-import java.util.TimerTask;
 import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 
-import model.cell.builder.*;
-import model.map.Map;
+import model.Cell;
+import model.CellState;
+import model.Map;
+import model.exception.CantGenerateStateEventException;
+import model.exception.IllegaInteractnGameException;
 
-public class Washer extends CellState
+public class Sink extends CellState
 {
     private static HashMap<String,ImageIcon> Icon;
     private static final int TIME = 10000;
@@ -18,13 +21,13 @@ public class Washer extends CellState
     static
     {
         Icon = new HashMap<String,ImageIcon>();
-        Icon.put("base", new ImageIcon(new ImageIcon("src/img/Washer-base.png").getImage().getScaledInstance(1024/iScale, 1024/jScale, java.awt.Image.SCALE_DEFAULT)));
-        Icon.put("broken", new ImageIcon(new ImageIcon("src/img/Washer-broken.png").getImage().getScaledInstance(1024/iScale, 1024/jScale, java.awt.Image.SCALE_DEFAULT)));
+        Icon.put("base", new ImageIcon(new ImageIcon("src/img/Sink-base.png").getImage().getScaledInstance(1024/iScale, 1024/jScale, java.awt.Image.SCALE_DEFAULT)));
+        Icon.put("broken", new ImageIcon(new ImageIcon("src/img/Sink-broken.png").getImage().getScaledInstance(1024/iScale, 1024/jScale, java.awt.Image.SCALE_DEFAULT)));
     }
 
-    public Washer(int i, int j)
+    public Sink(int i, int j)
     {
-        super(i, j);
+        super(i, j, "base");
     }
 
     @Override
@@ -43,7 +46,7 @@ public class Washer extends CellState
         }
         else
         {
-            throw new IllegaInteractnGameException("Invalid interaction Washer is not broken");
+            throw new IllegaInteractnGameException("Invalid interaction Sink is not broken");
         }
     }
 
@@ -92,5 +95,5 @@ public class Washer extends CellState
     @Override
     public ImageIcon getIcon() {
         return Icon.get(state);
-    }    
+    }
 }

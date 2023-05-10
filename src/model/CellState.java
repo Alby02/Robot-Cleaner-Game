@@ -1,16 +1,16 @@
-package model.cell.builder;
+package model;
 
-import model.map.Map;
+import model.exception.CantGenerateStateEventException;
 
 public abstract class CellState extends Cell implements Interactable
 {
-    public CellState(int i, int j) {
-        super(i, j);
-        //TODO Auto-generated constructor
-        state = "base";
-    }
-
     protected String state;
+
+    public CellState(int i, int j, String state)
+    {
+        super(i, j);
+        this.state = state;
+    }
 
     abstract public Cell Event(Map mappa) throws CantGenerateStateEventException;
 }

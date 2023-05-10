@@ -1,4 +1,6 @@
-package model.cell.builder;
+package model;
+
+import model.exception.IllegaInteractnGameException;
 
 public interface Interactable
 {

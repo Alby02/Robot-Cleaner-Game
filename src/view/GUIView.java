@@ -1,14 +1,14 @@
 package view;
 
 import javax.swing.*;
-
-import controller.WhereIAmController;
-import model.cell.builder.Cell;
-import model.cell.element.Wall;
-import model.map.*;
-
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
+
+import controller.WhereIAmController;
+import model.Cell;
+import model.Map;
+import model.element.Wall;
+
 public class GUIView extends JFrame implements WhereIAmView {
 
     private class ColouredLabel extends JLabel {

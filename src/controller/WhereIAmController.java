@@ -1,13 +1,14 @@
 package controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.beans.PropertyChangeSupport;
 import java.util.Collection;
 import java.util.HashSet;
 
-import model.map.IllegalPositionGameException;
-import model.map.Map;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeSupport;
+
+import model.Map;
+import model.exception.IllegalPositionGameException;
 import view.WhereIAmView;
 
 public class WhereIAmController implements ActionListener {

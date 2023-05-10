@@ -1,3 +1,3 @@
-package model.cell.builder;
+package model;
 
 public interface Removable extends Interactable {}

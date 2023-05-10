@@ -1,4 +1,4 @@
-package model.map;
+package model.exception;
 
 public class MapToSmallException extends Exception  {
     public MapToSmallException(String m)

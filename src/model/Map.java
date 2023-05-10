@@ -1,7 +1,4 @@
-
-package model.map;
-
-import model.cell.builder.Cell;
+package model;
 
 public class Map{
     private Cell mappa[][];

@@ -1,7 +1,7 @@
 
 import controller.WhereIAmController;
-import model.map.MapBuilder;
-import model.map.Map;
+import model.Map;
+import model.MapBuilder;
 import view.GUIView;
 import view.TextualView;
 

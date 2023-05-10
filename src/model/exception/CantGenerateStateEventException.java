@@ -1,4 +1,4 @@
-package model.cell.builder;
+package model.exception;
 
 public class CantGenerateStateEventException extends Exception
 {

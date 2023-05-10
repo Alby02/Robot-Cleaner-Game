@@ -1,5 +1,4 @@
-
-package model.cell.builder;
+package model.exception;
 
 public class IllegaInteractnGameException extends Exception
 {

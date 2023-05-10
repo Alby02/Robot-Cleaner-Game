@@ -1,8 +1,8 @@
-package model.cell.element;
+package model.element;
 
 import javax.swing.ImageIcon;
 
-import model.cell.builder.Cell;
+import model.Cell;
 
 public class Wall extends Cell
 {

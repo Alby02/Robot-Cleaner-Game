@@ -1,11 +1,12 @@
-package model.map;
+package model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import model.cell.builder.Cell;
-import model.cell.element.*;
+import model.element.*;
+import model.exception.FileStructureWrongException;
+import model.exception.MapToSmallException;
 
 public class MapBuilder {
 

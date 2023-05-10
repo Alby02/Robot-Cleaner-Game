@@ -38,7 +38,7 @@ public class WhereIAmController implements ActionListener {
                     break;
                 case "W":
                 case "w":
-                    this.model.robot.foreward();
+                    this.model.robot.forward();
                     break;
                 case "D":
                 case "d":
@@ -46,7 +46,7 @@ public class WhereIAmController implements ActionListener {
                     break;
                 case "E":
                 case "e":
-                    this.model.enent();
+                    this.model.event();
                     break;
             }
             this.property.firePropertyChange("position", null, null);

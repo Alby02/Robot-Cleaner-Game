@@ -17,7 +17,7 @@ public class Robot {
         this.scacchi = mappa;
     }
 
-    public void foreward() throws IllegalPositionGameException
+    public void forward() throws IllegalPositionGameException
     {
         int i = this.i, j = this.j;
         switch(this.dir.get())

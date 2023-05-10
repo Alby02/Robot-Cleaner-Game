@@ -64,7 +64,6 @@ public class Oven extends CellState
                     Timer.cancel();
                 }
             }, TIME);
-            state = "broken";
         }
         else
         {

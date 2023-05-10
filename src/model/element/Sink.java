@@ -64,7 +64,6 @@ public class Sink extends CellState
                     Timer.cancel();
                 }
             }, TIME);
-            state = "broken";
         }
         else
         {

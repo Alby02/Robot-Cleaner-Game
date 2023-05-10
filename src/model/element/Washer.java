@@ -64,7 +64,6 @@ public class Washer extends CellState
                     Timer.cancel();
                 }
             }, TIME);
-            state = "broken";
         }
         else
         {

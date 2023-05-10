@@ -28,6 +28,6 @@ public class Map{
         this.mappa[oldI][oldJ] = null;//new Vuoto(oldI, oldJ);
     }
 
-    public void enent()
+    public void event()
     {}
 }

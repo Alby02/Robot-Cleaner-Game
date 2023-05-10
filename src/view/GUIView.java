@@ -2,6 +2,9 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
 import java.beans.PropertyChangeEvent;
 
 import controller.WhereIAmController;
@@ -115,6 +118,20 @@ public class GUIView extends JFrame implements WhereIAmView {
         }
 
         this.add(button, BorderLayout.SOUTH);
+
+        KeyEventDispatcher keyEventFocus = new KeyEventDispatcher() {
+            public boolean dispatchKeyEvent(KeyEvent key) {
+                if (key.getKeyCode() == KeyEvent.VK_ESCAPE && key.getID() == KeyEvent.KEY_PRESSED) {
+                    dispose();
+                    System.exit(0);
+                }
+                return false;
+            }
+        };
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keyEventFocus);
+
+        this.setFocusable(true);
+        this.requestFocus();
          
         /*left = new JButton("LEFT");
         this.add(left,BorderLayout.WEST);

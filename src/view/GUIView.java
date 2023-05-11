@@ -102,7 +102,6 @@ public class GUIView extends JFrame implements WhereIAmView {
         JPanel button = new JPanel();
         button.setLayout(new GridLayout(1, 4));
         button.setPreferredSize(new Dimension(1000, 50));
-
         this.buttons = new JButton[4];
         this.buttons[0] = new JButton("LEFT(A)");
         this.buttons[0].setActionCommand("A");
@@ -119,20 +118,9 @@ public class GUIView extends JFrame implements WhereIAmView {
 
         this.add(button, BorderLayout.SOUTH);
 
-        KeyEventDispatcher keyEventFocus = new KeyEventDispatcher() {
-            public boolean dispatchKeyEvent(KeyEvent key) {
-                if (key.getKeyCode() == KeyEvent.VK_ESCAPE && key.getID() == KeyEvent.KEY_PRESSED) {
-                    dispose();
-                    System.exit(0);
-                }
-                return false;
-            }
-        };
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keyEventFocus);
-
         this.setFocusable(true);
         this.requestFocus();
-         
+
         /*left = new JButton("LEFT");
         this.add(left,BorderLayout.WEST);
         right = new JButton("RIGHT");
@@ -161,6 +149,7 @@ public class GUIView extends JFrame implements WhereIAmView {
         }
         this.labels[this.scacco.robot.getI()][this.scacco.robot.getJ()].setRobot();
         this.labels[this.scacco.robot.getCellFacingI()][this.scacco.robot.getCellFacingJ()].setSelected();
+        this.requestFocus();
     }
 
     @Override
@@ -177,6 +166,7 @@ public class GUIView extends JFrame implements WhereIAmView {
         for (JButton but : this.buttons) {
             but.addActionListener(controller);
         }
+        this.addKeyListener(controller);
     }
 
     @Override

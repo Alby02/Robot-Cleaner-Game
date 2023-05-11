@@ -12,6 +12,5 @@ public abstract class CellState extends Cell implements Interactable
         this.state = state;
     }
 
-    abstract public void Event(Map mappa) throws CantGenerateStateEventException;
-    //abstract public Cell Event(Map mappa) throws CantGenerateStateEventException;
+    abstract public Cell Event(Map mappa) throws CantGenerateStateEventException;
 }

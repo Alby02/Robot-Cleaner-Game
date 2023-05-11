@@ -1,8 +1,6 @@
 package model.element;
 
 import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 
@@ -15,8 +13,6 @@ import model.exception.IllegaInteractnGameException;
 public class Oven extends CellState
 {
     private static HashMap<String,ImageIcon> Icon;
-    private static final int TIME = 10000;
-    private Timer Timer;
 
     static
     {
@@ -35,14 +31,6 @@ public class Oven extends CellState
     {
         if (this.state == "broken") {
             this.state = "base";
-            Timer = new Timer();
-            Timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    state = "broken";
-                    Timer.cancel();
-                }
-            }, TIME);
         }
         else
         {
@@ -56,14 +44,7 @@ public class Oven extends CellState
         Cell c = null;
 
         if (this.state == "base") {
-            Timer = new Timer();
-            Timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    state = "broken";
-                    Timer.cancel();
-                }
-            }, TIME);
+            this.state = "broken";
         }
         else
         {

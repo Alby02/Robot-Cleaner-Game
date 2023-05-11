@@ -2,9 +2,6 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.KeyEventDispatcher;
-import java.awt.KeyboardFocusManager;
 import java.beans.PropertyChangeEvent;
 
 import controller.WhereIAmController;
@@ -158,6 +155,7 @@ public class GUIView extends JFrame implements WhereIAmView {
         JLabel content = new JLabel(message);
         dialog.add(content);
         dialog.setSize(300,100);
+        dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
     }
     

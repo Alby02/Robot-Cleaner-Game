@@ -1,16 +1,16 @@
 package view;
 
+import java.beans.PropertyChangeEvent;
+
 import javax.swing.*;
 import java.awt.*;
-import java.beans.PropertyChangeEvent;
 
 import controller.WhereIAmController;
 import model.Cell;
 import model.Map;
 import model.element.Wall;
 
-public class GUIView extends JFrame implements WhereIAmView {
-
+public class GUIPartialView extends JFrame implements WhereIAmView {
     private class ColouredLabel extends JLabel {
         
         private final ImageIcon ROBOT = new ImageIcon(new ImageIcon("src/img/Wall-E.png").getImage().getScaledInstance(1024/12, 1024/12, Image.SCALE_DEFAULT));
@@ -72,8 +72,8 @@ public class GUIView extends JFrame implements WhereIAmView {
     private ColouredLabel[][] labels;
     final private Map scacco;
 
-    public GUIView(Map modello) throws HeadlessException {
-        super("Robot Cleaner 9000");
+    public GUIPartialView(Map modello) throws HeadlessException {
+        super("Robot Cleaner 9000") ;
         this.scacco = modello;
         this.setSize(1000, 1050);
         this.setResizable(false);

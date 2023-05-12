@@ -2,6 +2,7 @@
 import controller.WhereIAmController;
 import model.Map;
 import model.MapBuilder;
+import view.GUIPartialView;
 import view.GUIView;
 import view.TextualView;
 
@@ -16,8 +17,9 @@ public class App {
         try {
             map = MapBuilder.generateFromFile("mappa.txt"); // generazione della mappa
             GUIView view = new GUIView(map); // generazione della Gui grafica in base alla struttura del modello
-            TextualView view2 = new TextualView(); 
-            WhereIAmController contro = new WhereIAmController(map, view, view2);
+            TextualView view2 = new TextualView();
+            GUIPartialView view3 = new GUIPartialView(map);
+            WhereIAmController contro = new WhereIAmController(map, view, view3, view2);
             //TODO add thred for random event (passare mappa)
         } catch (Exception e) {
             System.err.println(e.getMessage());

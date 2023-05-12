@@ -12,7 +12,6 @@ import model.element.Wall;
 public class GUIView extends JFrame implements WhereIAmView {
 
     private class ColouredLabel extends JLabel {
-        //private final Color Vuoto = Color.WHITE;
         
         private final ImageIcon ROBOT = new ImageIcon(new ImageIcon("src/img/Wall-E.png").getImage().getScaledInstance(1024/12, 1024/12, Image.SCALE_DEFAULT));
 
@@ -65,7 +64,7 @@ public class GUIView extends JFrame implements WhereIAmView {
       
       }
 
-    private final JPanel main;
+    private JPanel main;
     private final JButton buttons[];
     /*private final JButton left;
     private final JButton right;*/
@@ -74,7 +73,7 @@ public class GUIView extends JFrame implements WhereIAmView {
     final private Map scacco;
 
     public GUIView(Map modello) throws HeadlessException {
-        super("Gioco");
+        super("Robot Cleaner 9000");
         this.scacco = modello;
         this.setSize(1000, 1050);
         this.setResizable(false);
@@ -115,6 +114,8 @@ public class GUIView extends JFrame implements WhereIAmView {
 
         this.add(button, BorderLayout.SOUTH);
 
+        
+
         this.setFocusable(true);
         this.requestFocus();
 
@@ -130,12 +131,37 @@ public class GUIView extends JFrame implements WhereIAmView {
 
     }
 
+    private JTextArea logArea;
+    private JFrame logFrame;
+
+    public void logWindow(){
+        logArea = new JTextArea();
+        logArea.setEditable(false);
+
+        JScrollPane scrollPane = new JScrollPane(logArea);
+        logFrame = new JFrame("Log");
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        logFrame.add(scrollPane);
+        logFrame.setSize(300, 300);
+        this.setResizable(false);
+
+        this.startView();
+    }
+
     @Override
     public void propertyChange(PropertyChangeEvent event) {
         if (event.getPropertyName().equals("position")) {
             this.showPosition();
+
+            log("New event: " + event.getNewValue());
         }
     }
+
+    private void log(String message) {
+        logArea.append(message + "\n");
+    }
+
+
 
     @Override
     public void showPosition() {
@@ -157,6 +183,8 @@ public class GUIView extends JFrame implements WhereIAmView {
         dialog.setSize(300,100);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
+        log("Errore: " + message);
+        logFrame.setVisible(true);
     }
     
     @Override

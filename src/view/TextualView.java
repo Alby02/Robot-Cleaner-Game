@@ -40,12 +40,17 @@ public class TextualView implements WhereIAmView {
 
     @Override
     public void startView() {
-        System.out.println("\n\n\nType W to move forward, A to move left, D to move right, E to interact and ESC to exit");
         while (true) {
+            System.out.println("\n\n\nType W to move forward, A to move left, D to move right, E to interact and ESC to exit");
             try {
                 char action = (char) System.in.read();
                 tastiera.nextLine();
-                this.controller.actionPerformed(new ActionEvent(controller, 0, String.valueOf(action)));
+                javax.swing.SwingUtilities.invokeLater(new Runnable() {
+                    public void run()
+                    {
+                        controller.actionPerformed(new ActionEvent(controller, 0, String.valueOf(action)));
+                    }
+                });
             } catch (IOException e) {
                 this.communicateError("An IO Error occurred");
             }

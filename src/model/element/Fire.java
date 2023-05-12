@@ -12,7 +12,7 @@ public class Fire extends Cell implements Removable
 
     static
     {
-        Icon = new ImageIcon(new ImageIcon("src/img/Fire.png").getImage().getScaledInstance(1024/iScale, 1024/jScale, java.awt.Image.SCALE_DEFAULT));
+        Icon = new ImageIcon(new ImageIcon("src/img/Fire.png").getImage().getScaledInstance(1024/Scale, 1024/Scale, java.awt.Image.SCALE_DEFAULT));
     }
 
     public Fire(int i, int j)

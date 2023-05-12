@@ -17,8 +17,8 @@ public class Washer extends CellState
     static
     {
         Icon = new HashMap<String,ImageIcon>();
-        Icon.put("base", new ImageIcon(new ImageIcon("src/img/Washer-base.png").getImage().getScaledInstance(1024/iScale, 1024/jScale, java.awt.Image.SCALE_DEFAULT)));
-        Icon.put("broken", new ImageIcon(new ImageIcon("src/img/Washer-broken.png").getImage().getScaledInstance(1024/iScale, 1024/jScale, java.awt.Image.SCALE_DEFAULT)));
+        Icon.put("base", new ImageIcon(new ImageIcon("src/img/Washer-base.png").getImage().getScaledInstance(1024/Scale, 1024/Scale, java.awt.Image.SCALE_DEFAULT)));
+        Icon.put("broken", new ImageIcon(new ImageIcon("src/img/Washer-broken.png").getImage().getScaledInstance(1024/Scale, 1024/Scale, java.awt.Image.SCALE_DEFAULT)));
     }
 
     public Washer(int i, int j)

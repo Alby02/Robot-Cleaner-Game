@@ -6,6 +6,7 @@ import model.Cell;
 
 public class Wall extends Cell
 {
+    public static int sas = 1;
     private static ImageIcon Icon;
 
     static

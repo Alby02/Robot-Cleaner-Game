@@ -12,7 +12,7 @@ public class Water extends Cell implements Removable
 
     static
     {
-        Icon = new ImageIcon(new ImageIcon("src/img/Water.png").getImage().getScaledInstance(1024/iScale, 1024/jScale, java.awt.Image.SCALE_DEFAULT));
+        Icon = new ImageIcon(new ImageIcon("src/img/Water.png").getImage().getScaledInstance(1024/Scale, 1024/Scale, java.awt.Image.SCALE_DEFAULT));
     }
     
     public Water(int i, int j)

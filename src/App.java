@@ -12,7 +12,7 @@ import view.TextualView;
 public class App {
 
     public static void main(String[] args) {
-        
+        String element[] = {"Fire", "Oven", "Sink", "Wall", "Washer", "Water"};
         Map map;
         try {
             map = MapBuilder.generateFromFile("mappa.txt"); // generazione della mappa

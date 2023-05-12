@@ -17,8 +17,8 @@ public class Sink extends CellState
     static
     {
         Icon = new HashMap<String,ImageIcon>();
-        Icon.put("base", new ImageIcon(new ImageIcon("src/img/Sink-base.png").getImage().getScaledInstance(1024/iScale, 1024/jScale, java.awt.Image.SCALE_DEFAULT)));
-        Icon.put("broken", new ImageIcon(new ImageIcon("src/img/Sink-broken.png").getImage().getScaledInstance(1024/iScale, 1024/jScale, java.awt.Image.SCALE_DEFAULT)));
+        Icon.put("base", new ImageIcon(new ImageIcon("src/img/Sink-base.png").getImage().getScaledInstance(1024/Scale, 1024/Scale, java.awt.Image.SCALE_DEFAULT)));
+        Icon.put("broken", new ImageIcon(new ImageIcon("src/img/Sink-broken.png").getImage().getScaledInstance(1024/Scale, 1024/Scale, java.awt.Image.SCALE_DEFAULT)));
     }
 
     public Sink(int i, int j)

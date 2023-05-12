@@ -2,8 +2,7 @@ package model;
 
 public abstract class Cell
 {   
-    protected static int iScale = 10;
-    protected static int jScale = 10;
+    public static int Scale = 10;
 
     protected int i;
     protected int j;

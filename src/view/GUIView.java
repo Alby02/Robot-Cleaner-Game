@@ -5,64 +5,9 @@ import java.awt.*;
 import java.beans.PropertyChangeEvent;
 
 import controller.WhereIAmController;
-import model.Cell;
 import model.Map;
-import model.element.Wall;
 
 public class GUIView extends JFrame implements WhereIAmView {
-
-    private class ColouredLabel extends JLabel {
-        
-        private final ImageIcon ROBOT = new ImageIcon(new ImageIcon("src/img/Wall-E.png").getImage().getScaledInstance(1024/12, 1024/12, Image.SCALE_DEFAULT));
-
-        public ColouredLabel(Cell tipo) {
-            this.setOpaque(false);
-            this.setByType(tipo);            
-        }
-
-        public void setByType(Cell tipo) {
-            this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-
-            if (tipo instanceof Wall) {
-                this.setBorder(null);
-            }
-            if(tipo != null)
-                this.setIcon(tipo.getIcon());
-            else
-                this.setIcon(null);
-                /*
-                this.setBackground(Vuoto);
-                */   
-        }
-
-        public void setSelected()
-        {
-            this.setBorder(BorderFactory.createLineBorder(Color.BLUE, 3));
-        }
-
-        public void setRobot()
-        {
-            this.setBorder(null);
-            this.setIcon(ROBOT);
-        }
-    }
-
-    class ImagePanel extends JPanel {
-
-        private Image img;
-      
-        public ImagePanel() {
-            super();
-            this.img = new ImageIcon("src/img/Floor.png").getImage();
-        }
-      
-      
-        public void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            g.drawImage(img, 0, 0, null);
-        }
-      
-      }
 
     private JPanel main;
     private final JButton buttons[];
@@ -99,14 +44,10 @@ public class GUIView extends JFrame implements WhereIAmView {
         button.setLayout(new GridLayout(1, 4));
         button.setPreferredSize(new Dimension(1000, 50));
         this.buttons = new JButton[4];
-        this.buttons[0] = new JButton("LEFT(A)");
-        this.buttons[0].setActionCommand("A");
-        this.buttons[1] = new JButton("FORWARD(W)");
-        this.buttons[1].setActionCommand("W");
-        this.buttons[2] = new JButton("RIGHT(D)");
-        this.buttons[2].setActionCommand("D");
-        this.buttons[3] = new JButton("INTERACT(E)");
-        this.buttons[3].setActionCommand("E");
+        buttons[0] = createButton("LEFT(A)", "A"); //this.buttons[0] = new JButton("LEFT(A)"); this.buttons[0].setActionCommand("A");
+        buttons[1] = createButton("FORWARD(W)", "W");
+        buttons[2] = createButton("RIGHT(D)", "D");
+        buttons[3] = createButton("INTERACT(E)", "E");
 
         for (JButton but : this.buttons) {
             button.add(but);
@@ -127,6 +68,12 @@ public class GUIView extends JFrame implements WhereIAmView {
 
         this.startView();
 
+    }
+
+    private JButton createButton(String label, String actionCommand) {
+        JButton button = new JButton(label);
+        button.setActionCommand(actionCommand);
+        return button;
     }
 
     @Override

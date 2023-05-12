@@ -8,55 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import controller.WhereIAmController;
-import model.Cell;
 import model.Map;
-import model.element.Wall;
 
 public class GUIPartialView extends JFrame implements WhereIAmView {
-    private class ColouredLabel extends JLabel {
-        
-        private final ImageIcon ROBOT = new ImageIcon(new ImageIcon("src/img/Wall-E.png").getImage().getScaledInstance(1024/12, 1024/12, Image.SCALE_DEFAULT));
-
-        public ColouredLabel() {}
-
-        public void setByType(Cell tipo) {
-            this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-            this.setOpaque(false);
-            if (tipo instanceof Wall) {
-                this.setBorder(null);
-            }
-            if(tipo != null)
-                this.setIcon(tipo.getIcon());
-            else
-                this.setIcon(null);
-        }
-
-        public void setSelected()
-        {
-            this.setBorder(BorderFactory.createLineBorder(Color.BLUE, 3));
-        }
-
-        public void setRobot()
-        {
-            this.setBorder(null);
-            this.setIcon(ROBOT);
-        }
-    }
-
-    class ImagePanel extends JPanel {
-
-        private Image img;
-      
-        public ImagePanel() {
-            super();
-            this.img = new ImageIcon("src/img/Floor.png").getImage();
-        }
-      
-        public void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            g.drawImage(img, 0, 0, null);
-        }
-      }
 
     private JPanel main;
     private final JButton buttons[];
@@ -78,7 +32,7 @@ public class GUIPartialView extends JFrame implements WhereIAmView {
         this.labels= new ColouredLabel[modello.getISize()][modello.getJSize()];
         for(int i=0;i<this.labels.length;i++) {
             for(int j=0; j<this.labels[i].length; j++){
-                this.labels[i][j] = new ColouredLabel ();
+                this.labels[i][j] = new ColouredLabel (null);
                 main.add(labels[i][j]);
             }
         }
@@ -90,38 +44,41 @@ public class GUIPartialView extends JFrame implements WhereIAmView {
         JPanel button = new JPanel();
         button.setLayout(new GridLayout(1, 4));
         button.setPreferredSize(new Dimension(1000, 50));
-        this.buttons = new JButton[4];
-        this.buttons[0] = new JButton("LEFT(A)");
-        this.buttons[0].setActionCommand("A");
-        this.buttons[1] = new JButton("FORWARD(W)");
-        this.buttons[1].setActionCommand("W");
-        this.buttons[2] = new JButton("RIGHT(D)");
-        this.buttons[2].setActionCommand("D");
-        this.buttons[3] = new JButton("INTERACT(E)");
-        this.buttons[3].setActionCommand("E");
-        JButton GUIable = new JButton("CONTROL GUI");
+        buttons = new JButton[4];
+        buttons[0] = createButton("LEFT(A)", "A"); //this.buttons[0] = new JButton("LEFT(A)"); this.buttons[0].setActionCommand("A");
+        buttons[1] = createButton("FORWARD(W)", "W");
+        buttons[2] = createButton("RIGHT(D)", "D");
+        buttons[3] = createButton("INTERACT(E)", "E");
 
         for (JButton but : this.buttons) {
             button.add(but);
         }
-        button.add(GUIable);
 
-        GUIable.addActionListener(new ActionListener() {
-            private boolean gui = false;
+        JButton guiButton = createButton("CONTROL GUI", null);
+        guiButton.addActionListener(new ActionListener() {
+            private boolean guiVisible = false;
+
             @Override
             public void actionPerformed(ActionEvent e) {
-                gui = !gui;
-                g.setVisible(gui);
+                guiVisible = !guiVisible;
+                g.setVisible(guiVisible);
                 requestFocus();
             }
         });
-
+        
+        button.add(guiButton);
         this.add(button, BorderLayout.SOUTH);
 
         this.setFocusable(true);
         this.requestFocus();
 
         this.startView();
+    }
+
+    private JButton createButton(String label, String actionCommand) {
+        JButton button = new JButton(label);
+        button.setActionCommand(actionCommand);
+        return button;
     }
 
     @Override
@@ -157,7 +114,7 @@ public class GUIPartialView extends JFrame implements WhereIAmView {
     @Override
     public void communicateError(String message) {
         JDialog dialog = new JDialog(this);
-        JLabel content = new JLabel(message);
+        JLabel content = new JLabel("You can't move in that cell");
         dialog.add(content);
         dialog.setSize(300,100);
         dialog.setLocationRelativeTo(this);

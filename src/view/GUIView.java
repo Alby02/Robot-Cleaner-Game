@@ -150,12 +150,7 @@ public class GUIView extends JFrame implements WhereIAmView {
 
     @Override
     public void communicateError(String message) {
-        JDialog dialog = new JDialog(this);
-        JLabel content = new JLabel(message);
-        dialog.add(content);
-        dialog.setSize(300,100);
-        dialog.setLocationRelativeTo(this);
-        dialog.setVisible(true);
+        
     }
     
     @Override
@@ -168,6 +163,6 @@ public class GUIView extends JFrame implements WhereIAmView {
 
     @Override
     public void startView() {
-        this.setVisible(true);
+        this.setVisible(false);
     }
 }

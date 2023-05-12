@@ -4,6 +4,8 @@ import java.beans.PropertyChangeEvent;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import controller.WhereIAmController;
 import model.Cell;
@@ -15,14 +17,11 @@ public class GUIPartialView extends JFrame implements WhereIAmView {
         
         private final ImageIcon ROBOT = new ImageIcon(new ImageIcon("src/img/Wall-E.png").getImage().getScaledInstance(1024/12, 1024/12, Image.SCALE_DEFAULT));
 
-        public ColouredLabel(Cell tipo) {
-            this.setOpaque(false);
-            this.setByType(tipo);            
-        }
+        public ColouredLabel() {}
 
         public void setByType(Cell tipo) {
             this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-
+            this.setOpaque(false);
             if (tipo instanceof Wall) {
                 this.setBorder(null);
             }
@@ -30,9 +29,6 @@ public class GUIPartialView extends JFrame implements WhereIAmView {
                 this.setIcon(tipo.getIcon());
             else
                 this.setIcon(null);
-                /*
-                this.setBackground(Vuoto);
-                */   
         }
 
         public void setSelected()
@@ -56,23 +52,19 @@ public class GUIPartialView extends JFrame implements WhereIAmView {
             this.img = new ImageIcon("src/img/Floor.png").getImage();
         }
       
-      
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
             g.drawImage(img, 0, 0, null);
         }
-      
       }
 
     private JPanel main;
     private final JButton buttons[];
-    /*private final JButton left;
-    private final JButton right;*/
 
     private ColouredLabel[][] labels;
     final private Map scacco;
 
-    public GUIPartialView(Map modello) throws HeadlessException {
+    public GUIPartialView(Map modello, GUIView g) throws HeadlessException {
         super("Robot Cleaner 9000") ;
         this.scacco = modello;
         this.setSize(1000, 1050);
@@ -86,13 +78,13 @@ public class GUIPartialView extends JFrame implements WhereIAmView {
         this.labels= new ColouredLabel[modello.getISize()][modello.getJSize()];
         for(int i=0;i<this.labels.length;i++) {
             for(int j=0; j<this.labels[i].length; j++){
-                this.labels[i][j] = new ColouredLabel (modello.getCasella(i, j));
+                this.labels[i][j] = new ColouredLabel ();
                 main.add(labels[i][j]);
             }
         }
-        
-        this.labels[modello.robot.getCellFacingI()][modello.robot.getCellFacingJ()].setSelected();
-        this.labels[modello.robot.getI()][modello.robot.getJ()].setRobot();
+
+        this.showPosition();
+
         this.add(main, BorderLayout.CENTER);
         
         JPanel button = new JPanel();
@@ -107,26 +99,29 @@ public class GUIPartialView extends JFrame implements WhereIAmView {
         this.buttons[2].setActionCommand("D");
         this.buttons[3] = new JButton("INTERACT(E)");
         this.buttons[3].setActionCommand("E");
+        JButton GUIable = new JButton("CONTROL GUI");
 
         for (JButton but : this.buttons) {
             button.add(but);
         }
+        button.add(GUIable);
+
+        GUIable.addActionListener(new ActionListener() {
+            private boolean gui = false;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gui = !gui;
+                g.setVisible(gui);
+                requestFocus();
+            }
+        });
 
         this.add(button, BorderLayout.SOUTH);
 
         this.setFocusable(true);
         this.requestFocus();
 
-        /*left = new JButton("LEFT");
-        this.add(left,BorderLayout.WEST);
-        right = new JButton("RIGHT");
-        this.add(right,BorderLayout.EAST);*/
-
-        /*SwingUtilities.updateComponentTreeUI(this);
-        this.pack();*/
-
         this.startView();
-
     }
 
     @Override
@@ -138,9 +133,20 @@ public class GUIPartialView extends JFrame implements WhereIAmView {
 
     @Override
     public void showPosition() {
+        int startRow = Math.max(scacco.robot.getI() -1, 0);
+        int endRow = Math.min(scacco.robot.getI() +1, scacco.getISize() -1);
+        int startCol = Math.max(scacco.robot.getJ() -1, 0);
+        int endCol = Math.min(scacco.robot.getJ() +1, scacco.getJSize() -1);
+
         for(int i=0;i<this.labels.length;i++) {
             for(int j=0; j<this.labels[i].length; j++){
-                this.labels[i][j].setByType(this.scacco.getCasella(i, j));
+                if(i >= startRow && i <= endRow && j >= startCol && j <= endCol){
+                    this.labels[i][j].setVisible(true);
+                    this.labels[i][j].setByType(this.scacco.getCasella(i, j));
+                }
+                else{
+                    this.labels[i][j].setVisible(false);
+                }
             }
         }
         this.labels[this.scacco.robot.getI()][this.scacco.robot.getJ()].setRobot();

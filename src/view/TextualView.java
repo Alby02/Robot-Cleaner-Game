@@ -40,8 +40,9 @@ public class TextualView implements WhereIAmView {
 
     @Override
     public void startView() {
+        System.out.println("\n\n\n");
         while (true) {
-            System.out.println("\n\n\nType W to move forward, A to move left, D to move right, E to interact and ESC to exit");
+            System.out.println("Type W to move forward, A to move left, D to move right, E to interact and ESC to exit");
             try {
                 char action = (char) System.in.read();
                 tastiera.nextLine();

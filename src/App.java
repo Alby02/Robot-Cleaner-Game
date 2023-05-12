@@ -18,7 +18,7 @@ public class App {
             map = MapBuilder.generateFromFile("mappa.txt"); // generazione della mappa
             GUIView view = new GUIView(map); // generazione della Gui grafica in base alla struttura del modello
             TextualView view2 = new TextualView();
-            GUIPartialView view3 = new GUIPartialView(map);
+            GUIPartialView view3 = new GUIPartialView(map, view);
             WhereIAmController contro = new WhereIAmController(map, view, view3, view2);
             //TODO add thred for random event (passare mappa)
         } catch (Exception e) {

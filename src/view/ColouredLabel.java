@@ -9,6 +9,7 @@ import model.element.Wall;
 public class ColouredLabel extends JLabel {
         
     private final ImageIcon ROBOT = new ImageIcon(new ImageIcon("src/img/Wall-E.png").getImage().getScaledInstance(1024/12, 1024/12, Image.SCALE_DEFAULT));
+    private boolean isBlack;
 
     public ColouredLabel(Cell cell) {}
 
@@ -22,6 +23,20 @@ public class ColouredLabel extends JLabel {
             this.setIcon(tipo.getIcon());
         else
             this.setIcon(null);
+    }
+
+    public void setBlack(boolean isBlack) {
+        this.isBlack = isBlack;
+        repaint();
+    }
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        if (isBlack) {
+            g.setColor(Color.BLACK);
+            g.fillRect(0, 0, getWidth(), getHeight());
+        }
     }
 
     public void setSelected()

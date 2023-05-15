@@ -100,9 +100,11 @@ public class GUIPartialView extends JFrame implements WhereIAmView {
                 if(i >= startRow && i <= endRow && j >= startCol && j <= endCol){
                     this.labels[i][j].setVisible(true);
                     this.labels[i][j].setByType(this.scacco.getCasella(i, j));
+                    this.labels[i][j].setBlack(false);
                 }
                 else{
-                    this.labels[i][j].setVisible(false);
+                    this.labels[i][j].setVisible(true);
+                    this.labels[i][j].setBlack(true);
                 }
             }
         }

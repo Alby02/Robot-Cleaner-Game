@@ -1,5 +1,9 @@
 package model;
 
+import java.lang.reflect.Constructor;
+
+import javax.swing.SpringLayout.Constraints;
+
 import model.element.*;;
 
 public class CellBuilder {
@@ -18,9 +22,9 @@ Object result = method.invoke(instance);aaaaaaaaaaaaaaaa */
         CellBuilder.e = e;
     }
 
-    public static Cell createElementFromLetter(char l)
+    public static Constructor<Cell> create(char l)
     {
-        Cell c = null;
+        Constructor<Cell> c = null;
         if(!(l == 'N' || l == 'n'))
         {
             try {
@@ -43,11 +47,30 @@ Object result = method.invoke(instance);aaaaaaaaaaaaaaaa */
                 e.printStackTrace();
             }
         }
-        return c;
+        return c.getClass().getDeclaredConstructor(Integer.class, Integer.class );
     }
 
 
     public static void main(String[] args) {
         Cell sas = createElementFromLetter('a');
+    }
+
+
+    private static Cell randCasella(int i, int j) {
+        double randomNum = Math.random();
+        randomNum = Math.round(randomNum * 100) / 1000;
+
+        if(randomNum < 0.1) {
+            return new Sink(i, j);
+        }
+        else if(randomNum < 0.2) {
+            return new Washer(i, j);
+        }
+        else if(randomNum < 0.3) {
+            return new Oven(i, j);
+        }
+        else{
+            return null;
+        }
     }
 }

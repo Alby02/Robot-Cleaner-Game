@@ -2,18 +2,14 @@ package model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Constructor;
 import java.util.Scanner;
 
-import javax.lang.model.util.ElementScanner6;
-
-import model.element.*;
 import model.exception.FileStructureWrongException;
 import model.exception.MapToSmallException;
 
 public class MapBuilder {
 
-    public static Map generateFromFile(String fileName, String el) throws FileNotFoundException, FileStructureWrongException{
+    public static Map generateFromFile(String fileName, String[] el) throws FileNotFoundException, FileStructureWrongException{
         File file = new File(fileName);
         Scanner myReader = new Scanner(file);
         int i;
@@ -31,8 +27,8 @@ public class MapBuilder {
                 String data = myReader.nextLine();
                 for(int j = 0, k = 0; j < xMapSize; j++, k+=2)
                 {
-                    final Constructor<Cell> c = CellBuilder.create(data.charAt(k), el);
-                    mappa[i][j] = c.newInstance(i, j);
+                    Cell c = CellBuilder.create(el, data.charAt(k), i, j);
+                    mappa[i][j] = c;
                 
                     if(c instanceof CellState)
                     {

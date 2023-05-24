@@ -23,7 +23,5 @@ public abstract class Cell
         return j;
     }
 
-    public abstract char getC();
-
     public abstract javax.swing.ImageIcon getIcon();
 } 

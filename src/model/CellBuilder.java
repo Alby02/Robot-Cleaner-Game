@@ -7,14 +7,14 @@ import javax.swing.SpringLayout.Constraints;
 import model.element.*;;
 
 public class CellBuilder {
-/*URLClassLoader child = new URLClassLoader(
-        new URL[] {myJar.toURI().toURL()},
-        this.getClass().getClassLoader()
-);
-Class classToLoad = Class.forName("com.MyClass", true, child);
-Method method = classToLoad.getDeclaredMethod("myMethod");
-Object instance = classToLoad.newInstance();
-Object result = method.invoke(instance);aaaaaaaaaaaaaaaa */
+    /*URLClassLoader child = new URLClassLoader(
+            new URL[] {myJar.toURI().toURL()},
+            this.getClass().getClassLoader()
+    );
+    Class classToLoad = Class.forName("com.MyClass", true, child);
+    Method method = classToLoad.getDeclaredMethod("myMethod");
+    Object instance = classToLoad.newInstance();
+    Object result = method.invoke(instance);aaaaaaaaaaaaaaaa */
 
     private static String e[] = null;
     public static void setClassElementsNames(String e[])
@@ -22,7 +22,7 @@ Object result = method.invoke(instance);aaaaaaaaaaaaaaaa */
         CellBuilder.e = e;
     }
 
-    public static Constructor<Cell> create(char l)
+    public static Cell create(String[] el, char l,int  i, int j)
     {
         Constructor<Cell> c = null;
         if(!(l == 'N' || l == 'n'))
@@ -47,7 +47,7 @@ Object result = method.invoke(instance);aaaaaaaaaaaaaaaa */
                 e.printStackTrace();
             }
         }
-        return c.getClass().getDeclaredConstructor(Integer.class, Integer.class );
+        return c.getClass().getDeclaredConstructor(Integer.class, Integer.class ).newInstance(i, j);
     }
 
 

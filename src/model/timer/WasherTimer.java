@@ -1,22 +1,17 @@
 package model.timer;
 
-import model.element.Washer;
-import model.exception.CantGenerateStateEventException;
+import model.Map;
 
 public class WasherTimer extends EventTimer {
-    private Washer washer;
+    private Map washer;
 
-    public WasherTimer(long delay, long period){
+    public WasherTimer(long delay, long period, Map washer){
         super(delay, period);
         this.washer = washer;
     }
 
     @Override
     public void startEvent() {
-        try {
-            washer.Event(null);
-        } catch (CantGenerateStateEventException e) {
-            e.printStackTrace();
-        }
+        washer.event(null);
     }
 }

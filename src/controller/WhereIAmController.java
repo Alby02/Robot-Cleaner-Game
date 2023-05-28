@@ -48,7 +48,7 @@ public class WhereIAmController implements ActionListener, KeyListener {
                     break;
                 case "E":
                 case "e":
-                    this.model.event();
+                    this.model.event(null);
                     break;
             }
             this.property.firePropertyChange("position", null, null);

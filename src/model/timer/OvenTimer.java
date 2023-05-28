@@ -1,22 +1,17 @@
 package model.timer;
 
-import model.element.Oven;
-import model.exception.CantGenerateStateEventException;
+import model.Map;
 
 public class OvenTimer extends EventTimer {
-    private Oven oven;
+    private Map oven;
 
-    public OvenTimer(long delay, long period){
+    public OvenTimer(long delay, long period, Map oven){
         super(delay, period);
         this.oven = oven;
     }
 
     @Override
     public void startEvent() {
-        try {
-            oven.Event(null);
-        } catch (CantGenerateStateEventException e) {
-            e.printStackTrace();
-        }
+        oven.event(null);
     }
 }

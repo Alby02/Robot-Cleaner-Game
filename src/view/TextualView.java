@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.io.IOException;
 import java.util.Scanner;
@@ -14,6 +15,7 @@ public class TextualView implements WhereIAmView {
         //doNothing
     }
 
+    @Override
     public void propertyChange(PropertyChangeEvent event) {
         if (event.getPropertyName().equals("position")) {
             this.showPosition();
@@ -22,8 +24,7 @@ public class TextualView implements WhereIAmView {
 
     @Override
     public void showPosition() {
-        System.out.println("Agent has moved");
-
+        //doNothing
     }
 
     @Override
@@ -37,17 +38,28 @@ public class TextualView implements WhereIAmView {
         this.startView();
     }
 
+    @Override
     public void startView() {
+        System.out.println("\n\n\n");
+        new Thread(new Runnable() {
+            public void run() {
+                while (true) {
+                    System.out.println("Type W to move forward, A to move left, D to move right, E to interact and ESC to exit");
+                    try {
+                        char action = (char) System.in.read();
+                        tastiera.nextLine();
+                        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+                            public void run()
+                            {
+                                controller.actionPerformed(new ActionEvent(controller, 0, String.valueOf(action)));
+                            }
+                        });
+                    } catch (IOException e) {
+                        communicateError("An IO Error occurred");
 
-        while (true) {
-            System.out.println("Type a to move left, d to move right, e to exit");
-            try {
-                char action = (char) System.in.read();
-                tastiera.nextLine();
-                this.controller.doAction(action);
-            } catch (IOException e) {
-                this.communicateError("An IO Error occurred");
+                    }
+                }
             }
-        }
+        }).start();
     }
 }

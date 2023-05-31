@@ -1,78 +1,80 @@
 package controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Collection;
 import java.util.HashSet;
 
-import model.map.IllegalPositionGameException;
-import model.map.Mappa;
-import model.map.Move;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.beans.PropertyChangeSupport;
+
+import model.Map;
+import model.exception.IllegalPositionGameException;
 import view.WhereIAmView;
 
-public class WhereIAmController implements ActionListener {
-    private Mappa model;
+public class WhereIAmController implements ActionListener, KeyListener {
+    private Map model;
     private Collection<WhereIAmView> views;
+    private PropertyChangeSupport property; 
 
-    public WhereIAmController(Mappa model, WhereIAmView... views) {
+    public WhereIAmController(Map model, WhereIAmView... views) {
         this.model = model;
         this.views = new HashSet<>();
+        this.property = new PropertyChangeSupport(this);
         for(WhereIAmView v : views) {
-            System.out.println("Passo");
             this.views.add(v);
-            model.addObserver(v);
+            this.property.addPropertyChangeListener(v);
             v.addController(this);
         }
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        Move M = null;
-        switch(e.getActionCommand()){
-            case "LEFT":
-                M = Move.SX;
-                break;
-            case "FORWARD":
-                M = Move.FOR;
-                break;
-            case "RIGHT":
-                M = Move.DX;
-                break;
-            case "INTERACT":
-                M = Move.ACT;
-                break;
+    public void actionPerformed(ActionEvent event) {
+        try
+        {
+            switch(event.getActionCommand()){
+                case "A":
+                case "a":
+                    this.model.robot.dir.rotateSX();
+                    break;
+                case "W":
+                case "w":
+                    this.model.robot.forward();
+                    break;
+                case "D":
+                case "d":
+                    this.model.robot.dir.rotateDX();
+                    break;
+                case "E":
+                case "e":
+                    this.model.event(null);
+                    break;
+            }
+            this.property.firePropertyChange("position", null, null);
         }
-        this.move(M);
-    }
-
-    public void doAction (char action) {
-        Move M = null;
-        switch (action) {
-            case 'L':
-                M = Move.SX;
-                break;
-            case 'F':
-                M = Move.FOR;
-                break;
-            case 'D':
-                M = Move.DX;
-                break;
-            case 'I':
-                M = Move.ACT;
-                break;
-        }
-        this.move(M);
-    }
-
-    private void move(Move M) {
-        try {
-            model.getRobot().muovi(M);
-            model.support.firePropertyChange("position", null, null);
-        }
-        catch (Exception e) {
+        catch (IllegalPositionGameException e) {
             for (WhereIAmView v : this.views) {
                 v.communicateError(e.getMessage());
             }
         }
     }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        actionPerformed(new ActionEvent(this, 0, String.valueOf(e.getKeyChar())));
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
+        {
+            System.exit(0);
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // do nothething
+    }            
 }

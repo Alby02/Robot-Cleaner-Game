@@ -30,6 +30,7 @@ public class Map{
         this.mappa[oldI][oldJ] = null;//new Vuoto(oldI, oldJ);
     }
 
+
     public void event(Map mappa){
         
     }
@@ -47,4 +48,3 @@ public class Map{
         timer.cancel();
     }
 }
-

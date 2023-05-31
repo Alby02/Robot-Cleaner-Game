@@ -18,7 +18,8 @@ public class GUIPartialView extends JFrame implements WhereIAmView {
     private ColouredLabel[][] labels;
     final private Map scacco;
 
-    public GUIPartialView(Map modello, GUIView g) throws HeadlessException {
+    public GUIPartialView(Map modello, GUIView g,final ImageIcon imgMatrix[][]) throws HeadlessException {
+
         super("Robot Cleaner 9000") ;
         this.scacco = modello;
         this.setSize(1000, 1050);
@@ -32,7 +33,7 @@ public class GUIPartialView extends JFrame implements WhereIAmView {
         this.labels= new ColouredLabel[modello.getISize()][modello.getJSize()];
         for(int i=0;i<this.labels.length;i++) {
             for(int j=0; j<this.labels[i].length; j++){
-                this.labels[i][j] = new ColouredLabel (null);
+                this.labels[i][j] = new ColouredLabel (imgMatrix);
                 main.add(labels[i][j]);
             }
         }

@@ -2,12 +2,10 @@ package model;
 
 public abstract class Cell
 {   
-    public static int Scale = 10;
-
     protected int i;
     protected int j;
 
-    public Cell(int i, int j)
+    public Cell(Integer i, Integer j)
     {
         this.i = i;
         this.j = j;
@@ -22,6 +20,4 @@ public abstract class Cell
     {
         return j;
     }
-
-    public abstract javax.swing.ImageIcon getIcon();
 } 

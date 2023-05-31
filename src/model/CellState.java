@@ -4,17 +4,17 @@ import model.exception.CantGenerateStateEventException;
 
 public abstract class CellState extends Cell implements Interactable
 {
-    protected String state;
+    protected int state;
 
-    public CellState(int i, int j, String state)
+    public CellState(int i, int j, int state)
     {
         super(i, j);
         this.state = state;
     }
 
-    protected void setState(char s)
+    protected void setState(int s)
     {
-        this.state = String.valueOf(s);
+        this.state = s;
     }
 
     abstract public Cell Event(Map mappa) throws CantGenerateStateEventException;

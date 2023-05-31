@@ -1,21 +1,12 @@
 package model.element;
 
-import javax.swing.ImageIcon;
-
 import model.Cell;
 import model.Removable;
 import model.exception.IllegaInteractnGameException;
 
 public class Fire extends Cell implements Removable
 {
-    private static ImageIcon Icon;
-
-    static
-    {
-        Icon = new ImageIcon(new ImageIcon("src/img/Fire.png").getImage().getScaledInstance(1024/Scale, 1024/Scale, java.awt.Image.SCALE_DEFAULT));
-    }
-
-    public Fire(int i, int j)
+    public Fire(Integer i, Integer j)
     {
         super(i, j);
         //TODO Auto-generated constructor stub
@@ -26,10 +17,5 @@ public class Fire extends Cell implements Removable
     {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'interact'");
-    }
-
-    @Override
-    public ImageIcon getIcon() {
-        return Icon;
     }
 }

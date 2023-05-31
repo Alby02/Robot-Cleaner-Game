@@ -27,7 +27,7 @@ public class GUIPartialView extends JFrame implements WhereIAmView {
                 this.setBorder(null);
             }
             if(tipo != null)
-                this.setIcon(tipo.getIcon());
+                this.setIcon(ImgBuilder.getIcon(tipo));
             else
                 this.setIcon(null);
                 /*

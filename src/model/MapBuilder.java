@@ -20,20 +20,21 @@ public class MapBuilder {
             throw new FileStructureWrongException("Il file risulta vuoto");
         }
         try {
-            int xMapSize = myReader.nextInt(), yMapSize = Integer.parseInt(myReader.nextLine());
+            int xMapSize = Integer.parseInt(myReader.nextLine());
+            int yMapSize = Integer.parseInt(myReader.nextLine());
             mappa = new Cell[yMapSize][xMapSize];
             for(i = 0; i < yMapSize && myReader.hasNextLine(); i++)
             {
                 String data = myReader.nextLine();
                 for(int j = 0, k = 0; j < xMapSize; j++, k+=2)
                 {
-                    Cell c = CellBuilder.create(el, data.charAt(k), i, j);
+                    Cell c = CellBuilder.create(el, Integer.parseInt(String.valueOf(data.charAt(k))), i, j);
                     mappa[i][j] = c;
                 
                     if(c instanceof CellState)
                     {
                         k++;
-                        ((CellState)c).setState(data.charAt(k));
+                        ((CellState)c).setState(Integer.parseInt(String.valueOf(data.charAt(k))));
                     }
                 }
             }

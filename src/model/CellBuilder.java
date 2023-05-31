@@ -1,10 +1,6 @@
 package model;
 
-import java.lang.reflect.Constructor;
-
-import javax.swing.SpringLayout.Constraints;
-
-import model.element.*;;
+import java.lang.reflect.InvocationTargetException;
 
 public class CellBuilder {
     /*URLClassLoader child = new URLClassLoader(
@@ -16,47 +12,44 @@ public class CellBuilder {
     Object instance = classToLoad.newInstance();
     Object result = method.invoke(instance);aaaaaaaaaaaaaaaa */
 
-    private static String e[] = null;
-    public static void setClassElementsNames(String e[])
+    public static Cell create(String[] el, int l,int  i, int j)
     {
-        CellBuilder.e = e;
-    }
-
-    public static Cell create(String[] el, char l,int  i, int j)
-    {
-        Constructor<Cell> c = null;
-        if(!(l == 'N' || l == 'n'))
+        Cell c = null;
+        if(!(l == 0 || l == 0))
         {
             try {
-                int sas = (int) Class.forName("model.element.Wall").getField("Scale").get(Cell.class);
-                System.out.println(sas);
-            } catch (IllegalArgumentException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (NoSuchFieldException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (SecurityException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                c  = (Cell) Class.forName("model.element."+el[l]).getConstructor(Integer.class, Integer.class).newInstance(i,j);
             }
+            catch (InstantiationException e) {
+                e.printStackTrace();
+                System.exit(-100);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+                System.exit(-100);
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+                System.exit(-100);
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+                System.exit(-100);
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+                System.exit(-100);
+            } catch (SecurityException e) {
+                e.printStackTrace();
+                System.exit(-100);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                System.exit(-100);
+            } catch(Exception e){
+                e.printStackTrace();
+                System.exit(-100);
+            } //TODO Sistemare i catch
         }
-        return c.getClass().getDeclaredConstructor(Integer.class, Integer.class ).newInstance(i, j);
+        return c;
     }
 
-
-    public static void main(String[] args) {
-        Cell sas = createElementFromLetter('a');
-    }
-
-
-    private static Cell randCasella(int i, int j) {
+    /*private static Cell randCasella(int i, int j) {
         double randomNum = Math.random();
         randomNum = Math.round(randomNum * 100) / 1000;
 
@@ -72,5 +65,5 @@ public class CellBuilder {
         else{
             return null;
         }
-    }
+    }*/
 }

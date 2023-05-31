@@ -12,7 +12,8 @@ import view.TextualView;
 public class App {
 
     public static void main(String[] args) {
-        String element[] = {"Fire", "Oven", "Sink", "Wall", "Washer", "Water"};
+        String element[] = {"Vuoto", "Wall", "Fire", "Oven", "Sink", "Washer", "Water"};
+        boolean scale[] = {false, false, true, true, true, true, true};
         Map map;
         try {
             map = MapBuilder.generateFromFile("mappa.txt", element); // generazione della mappa

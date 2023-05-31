@@ -1,13 +1,14 @@
 12
-W W W W W W W W W W W W 
-W N N N N N N N N N N W 
-W N N N N N N S N N N W 
-W N N N N N N N N N N W 
-W N N N N N N N N N N W 
-W W W W W W N N N N N W 
-W N N N N N N N N N N W 
-W N N N N N N N N w N W 
-W N N N N N N N N N N W 
-W N N N N N N N N N N W 
-W N N N N N N N N N N W 
-W W W W W W W W W W W W 
+12
+1 1 1 1 1 1 1 1 1 1 1 1 
+1 0 0 0 0 0 0 0 0 0 0 1 
+1 0 0 0 0 0 0 40 0 0 0 1 
+1 0 0 0 0 0 0 0 0 0 0 1 
+1 0 0 0 0 0 0 0 0 0 0 1 
+1 1 1 1 1 1 0 0 0 0 0 1 
+1 0 0 0 0 0 0 0 0 0 0 1 
+1 0 0 0 0 0 0 0 0 1 0 1 
+1 0 0 0 0 0 0 0 0 0 0 1 
+1 0 0 0 0 0 0 0 0 0 0 1 
+1 0 0 0 0 0 0 0 0 0 0 1 
+1 1 1 1 1 1 1 1 1 1 1 1 

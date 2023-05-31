@@ -30,6 +30,7 @@ public class Map{
         this.mappa[oldI][oldJ] = null;//new Vuoto(oldI, oldJ);
     }
 
+<<<<<<< HEAD
     public void event(Map mappa){
         
     }
@@ -47,3 +48,9 @@ public class Map{
         timer.cancel();
     }
 }
+=======
+    public void event(Map Mappa){
+
+    }
+}
+>>>>>>> 7fa1971ce99bdd7c6a2a2a7b0316745a5fc430aa

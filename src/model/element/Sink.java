@@ -18,7 +18,6 @@ public class Sink extends CellState
     {
         Icon = new HashMap<String,ImageIcon>();
         Icon.put("base", new ImageIcon(new ImageIcon("src/img/Sink-base.png").getImage().getScaledInstance(1024/iScale, 1024/jScale, java.awt.Image.SCALE_DEFAULT)));
-        Icon.put("broken", new ImageIcon(new ImageIcon("src/img/Sink-broken.png").getImage().getScaledInstance(1024/iScale, 1024/jScale, java.awt.Image.SCALE_DEFAULT)));
     }
 
     public Sink(int i, int j)
@@ -31,6 +30,7 @@ public class Sink extends CellState
     {
         if (this.state == "broken") {
             this.state = "base";
+            updateIcon();
         }
         else
         {
@@ -45,6 +45,7 @@ public class Sink extends CellState
 
         if (this.state == "base") {
             this.state = "broken";
+            updateIcon();
         }
         else
         {
@@ -76,5 +77,15 @@ public class Sink extends CellState
     @Override
     public ImageIcon getIcon() {
         return Icon.get(state);
+    }
+
+    private void updateIcon() {
+        if(this.state == "broken") {
+            Icon.put("broken", new ImageIcon(new ImageIcon("src/img/Sink-broken.png").getImage().getScaledInstance(1024/iScale, 1024/jScale, java.awt.Image.SCALE_DEFAULT)));
+        }
+        else {
+            Icon.put("base", new ImageIcon(new ImageIcon("src/img/Sink-base.png").getImage().getScaledInstance(1024/iScale, 1024/jScale, java.awt.Image.SCALE_DEFAULT)));
+        }
+
     }
 }

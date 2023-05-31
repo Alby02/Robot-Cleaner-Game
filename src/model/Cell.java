@@ -2,11 +2,9 @@ package model;
 
 public abstract class Cell
 {   
-    protected static int iScale = 10;
-    protected static int jScale = 10;
-
     protected int i;
     protected int j;
+    protected int ID = 0; //nel caso va finta di avere id di vuoto
 
     public Cell(int i, int j)
     {
@@ -24,5 +22,8 @@ public abstract class Cell
         return j;
     }
 
-    public abstract javax.swing.ImageIcon getIcon();
+    public int getID()
+    {
+        return ID;
+    }
 } 

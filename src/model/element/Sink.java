@@ -1,9 +1,5 @@
 package model.element;
 
-import java.util.HashMap;
-
-import javax.swing.ImageIcon;
-
 import model.Cell;
 import model.CellState;
 import model.Map;
@@ -12,25 +8,18 @@ import model.exception.IllegaInteractnGameException;
 
 public class Sink extends CellState
 {
-    private static HashMap<String,ImageIcon> Icon;
-
-    static
-    {
-        Icon = new HashMap<String,ImageIcon>();
-        Icon.put("base", new ImageIcon(new ImageIcon("src/img/Sink-base.png").getImage().getScaledInstance(1024/iScale, 1024/jScale, java.awt.Image.SCALE_DEFAULT)));
-        Icon.put("broken", new ImageIcon(new ImageIcon("src/img/Sink-broken.png").getImage().getScaledInstance(1024/iScale, 1024/jScale, java.awt.Image.SCALE_DEFAULT)));
-    }
-
+    public static final String states[] = {"base", "broken"}; 
+    
     public Sink(int i, int j)
     {
-        super(i, j, "base");
+        super(i, j, 0);
     }
 
     @Override
     public void interact() throws IllegaInteractnGameException 
     {
-        if (this.state == "broken") {
-            this.state = "base";
+        if (this.state == 1) {
+            this.state = 0;
         }
         else
         {
@@ -43,8 +32,8 @@ public class Sink extends CellState
     {
         Cell c = null;
 
-        if (this.state == "base") {
-            this.state = "broken";
+        if (this.state == 0) {
+            this.state = 1;
         }
         else
         {
@@ -71,10 +60,5 @@ public class Sink extends CellState
         }
 
         return c;
-    }
-
-    @Override
-    public ImageIcon getIcon() {
-        return Icon.get(state);
     }
 }

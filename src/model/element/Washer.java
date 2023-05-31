@@ -8,9 +8,9 @@ import model.exception.IllegaInteractnGameException;
 
 public class Washer extends CellState
 {
-    private final String states[] = {"base", "broken"}; 
+    public static final String states[] = {"base", "broken"}; 
 
-    public Washer(Integer i, Integer j)
+    public Washer(int i, int j)
     {
         super(i, j, 0);
     }

@@ -6,7 +6,7 @@ import model.exception.IllegaInteractnGameException;
 
 public class Fire extends Cell implements Removable
 {
-    public Fire(Integer i, Integer j)
+    public Fire(int i, int j)
     {
         super(i, j);
         //TODO Auto-generated constructor stub

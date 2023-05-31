@@ -18,7 +18,8 @@ public class CellBuilder {
         if(!(l == 0 || l == 0))
         {
             try {
-                c  = (Cell) Class.forName("model.element."+el[l]).getConstructor(Integer.class, Integer.class).newInstance(i,j);
+                c  = (Cell) Class.forName("model.element."+el[l]).getConstructor(int.class, int.class).newInstance(i,j);
+                c.ID = l;
             }
             catch (InstantiationException e) {
                 e.printStackTrace();

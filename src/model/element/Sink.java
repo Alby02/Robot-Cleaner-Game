@@ -8,9 +8,9 @@ import model.exception.IllegaInteractnGameException;
 
 public class Sink extends CellState
 {
-    private final String states[] = {"base", "broken"}; 
+    public static final String states[] = {"base", "broken"}; 
     
-    public Sink(Integer i, Integer j)
+    public Sink(int i, int j)
     {
         super(i, j, 0);
     }

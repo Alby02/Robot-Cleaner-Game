@@ -4,7 +4,7 @@ import model.Cell;
 
 public class Wall extends Cell
 {
-    public Wall(Integer i, Integer j) {
+    public Wall(int i, int j) {
         super(i, j);
         //TODO Auto-generated constructor stub
     }

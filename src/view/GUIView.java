@@ -13,9 +13,11 @@ public class GUIView extends JFrame implements WhereIAmView {
 
     private class ColouredLabel extends JLabel {
         
-        private final ImageIcon ROBOT = new ImageIcon(new ImageIcon("src/img/Wall-E.png").getImage().getScaledInstance(1024/12, 1024/12, Image.SCALE_DEFAULT));
+        private static final ImageIcon ROBOT = new ImageIcon(new ImageIcon("img/Wall-E.png").getImage().getScaledInstance(1024/12, 1024/12, Image.SCALE_DEFAULT));
+        private final ImageIcon imgMatrix[][]; 
 
-        public ColouredLabel(Cell tipo) {
+        public ColouredLabel(Cell tipo, ImageIcon imgMatrix[][]) {
+            this.imgMatrix = imgMatrix;
             this.setOpaque(false);
             this.setByType(tipo);            
         }
@@ -23,13 +25,10 @@ public class GUIView extends JFrame implements WhereIAmView {
         public void setByType(Cell tipo) {
             this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
-            if (tipo instanceof Wall) {
+            /*if (tipo instanceof Wall) {
                 this.setBorder(null);
-            }
-            if(tipo != null)
-                this.setIcon(ImgBuilder.getIcon(tipo));
-            else
-                this.setIcon(null);
+            }*/
+            this.setIcon(ImgBuilder.getIcon(imgMatrix, tipo));
                 /*
                 this.setBackground(Vuoto);
                 */   
@@ -53,7 +52,7 @@ public class GUIView extends JFrame implements WhereIAmView {
       
         public ImagePanel() {
             super();
-            this.img = new ImageIcon("src/img/Floor.png").getImage();
+            this.img = new ImageIcon("img/Floor.png").getImage();
         }
       
       
@@ -72,7 +71,7 @@ public class GUIView extends JFrame implements WhereIAmView {
     private ColouredLabel[][] labels;
     final private Map scacco;
 
-    public GUIView(Map modello) throws HeadlessException {
+    public GUIView(Map modello, final ImageIcon[][] imgMatrix) throws HeadlessException {
         super("Robot Cleaner 9000");
         this.scacco = modello;
         this.setSize(1000, 1050);
@@ -86,7 +85,7 @@ public class GUIView extends JFrame implements WhereIAmView {
         this.labels= new ColouredLabel[modello.getISize()][modello.getJSize()];
         for(int i=0;i<this.labels.length;i++) {
             for(int j=0; j<this.labels[i].length; j++){
-                this.labels[i][j] = new ColouredLabel (modello.getCasella(i, j));
+                this.labels[i][j] = new ColouredLabel (modello.getCasella(i, j), imgMatrix);
                 main.add(labels[i][j]);
             }
         }

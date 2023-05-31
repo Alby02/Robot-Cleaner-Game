@@ -8,9 +8,9 @@ import model.exception.IllegaInteractnGameException;
 
 public class Oven extends CellState
 {
-    private final String states[] = {"base", "broken"}; 
+    public static final String states[] = {"base", "broken"}; 
 
-    public Oven(Integer i, Integer j)
+    public Oven(int i, int j)
     {
         super(i, j,0);
     }

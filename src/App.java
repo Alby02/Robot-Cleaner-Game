@@ -1,9 +1,12 @@
 
+import javax.swing.ImageIcon;
+
 import controller.WhereIAmController;
 import model.Map;
 import model.MapBuilder;
 import view.GUIPartialView;
 import view.GUIView;
+import view.ImgBuilder;
 import view.TextualView;
 
 /**
@@ -17,13 +20,15 @@ public class App {
         Map map;
         try {
             map = MapBuilder.generateFromFile("mappa.txt", element); // generazione della mappa
-            GUIView view = new GUIView(map); // generazione della Gui grafica in base alla struttura del modello
+            final ImageIcon imgMatrix[][] = ImgBuilder.createImgMatrix(element, scale, map.getISize(), map.getJSize());
+            GUIView view = new GUIView(map, imgMatrix); // generazione della Gui grafica in base alla struttura del modello
             TextualView view2 = new TextualView();
-            GUIPartialView view3 = new GUIPartialView(map);
+            GUIPartialView view3 = new GUIPartialView(map, imgMatrix);
             WhereIAmController contro = new WhereIAmController(map, view, view3, view2);
             //TODO add thred for random event (passare mappa)
         } catch (Exception e) {
             System.err.println(e.getMessage());
+            e.printStackTrace();
         }    
     }
 }

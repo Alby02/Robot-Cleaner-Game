@@ -31,7 +31,7 @@ public class GUIView extends JFrame implements WhereIAmView {
         this.labels= new ColouredLabel[modello.getISize()][modello.getJSize()];
         for(int i=0;i<this.labels.length;i++) {
             for(int j=0; j<this.labels[i].length; j++){
-                this.labels[i][j] = new ColouredLabel (modello.getCasella(i, j), imgMatrix);
+                this.labels[i][j] = new ColouredLabel (imgMatrix);
                 main.add(labels[i][j]);
             }
         }

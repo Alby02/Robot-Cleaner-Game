@@ -8,10 +8,13 @@ import model.element.Wall;
 
 public class ColouredLabel extends JLabel {
         
-    private final ImageIcon ROBOT = new ImageIcon(new ImageIcon("src/img/Wall-E.png").getImage().getScaledInstance(1024/12, 1024/12, Image.SCALE_DEFAULT));
+    private static final ImageIcon ROBOT = new ImageIcon(new ImageIcon("img/Wall-E.png").getImage().getScaledInstance(1024/12, 1024/12, Image.SCALE_DEFAULT));
     private boolean isBlack;
+    private final ImageIcon imgMatrix[][];
 
-    public ColouredLabel(Cell cell) {}
+    public ColouredLabel(ImageIcon imgMatrix[][]) {
+        this.imgMatrix = imgMatrix;
+    }
 
     public void setByType(Cell tipo) {
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
@@ -19,10 +22,7 @@ public class ColouredLabel extends JLabel {
         if (tipo instanceof Wall) {
             this.setBorder(null);
         }
-        if(tipo != null)
-            this.setIcon(tipo.getIcon());
-        else
-            this.setIcon(null);
+        this.setIcon(ImgBuilder.getIcon(imgMatrix, tipo));
     }
 
     public void setBlack(boolean isBlack) {

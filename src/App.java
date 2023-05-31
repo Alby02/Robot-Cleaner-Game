@@ -20,6 +20,7 @@ public class App {
             TextualView view2 = new TextualView();
             GUIPartialView view3 = new GUIPartialView(map, view);
             WhereIAmController contro = new WhereIAmController(map, view, view3, view2);
+            //TODO add thread for random event (passare mappa)
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

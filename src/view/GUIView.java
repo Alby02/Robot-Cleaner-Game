@@ -65,9 +65,6 @@ public class GUIView extends JFrame implements WhereIAmView {
 
         /*SwingUtilities.updateComponentTreeUI(this);
         this.pack();*/
-
-        this.startView();
-
     }
 
     private JButton createButton(String label, String actionCommand) {
@@ -97,7 +94,7 @@ public class GUIView extends JFrame implements WhereIAmView {
 
     @Override
     public void communicateError(String message) {
-        
+        //do nothing
     }
     
     @Override
@@ -110,6 +107,6 @@ public class GUIView extends JFrame implements WhereIAmView {
 
     @Override
     public void startView() {
-        this.setVisible(false);
+        //do nothing
     }
 }

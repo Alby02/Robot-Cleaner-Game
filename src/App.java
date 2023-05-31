@@ -23,12 +23,13 @@ public class App {
             final ImageIcon imgMatrix[][] = ImgBuilder.createImgMatrix(element, scale, map.getISize(), map.getJSize());
             GUIView view = new GUIView(map, imgMatrix); // generazione della Gui grafica in base alla struttura del modello
             TextualView view2 = new TextualView();
-            GUIPartialView view3 = new GUIPartialView(map, imgMatrix);
+            GUIPartialView view3 = new GUIPartialView(map, view, imgMatrix);
             WhereIAmController contro = new WhereIAmController(map, view, view3, view2);
-            //TODO add thred for random event (passare mappa)
+            //TODO add thread for random event (passare mappa)
         } catch (Exception e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
         }    
+
     }
 }

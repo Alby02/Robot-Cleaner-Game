@@ -8,8 +8,9 @@ import model.exception.IllegaInteractnGameException;
 
 public class Sink extends CellState
 {
+
     public static final String states[] = {"base", "broken"}; 
-    
+
     public Sink(int i, int j)
     {
         super(i, j, 0);
@@ -18,6 +19,7 @@ public class Sink extends CellState
     @Override
     public void interact() throws IllegaInteractnGameException 
     {
+
         if (this.state == 1) {
             this.state = 0;
         }
@@ -31,7 +33,6 @@ public class Sink extends CellState
     public Cell Event(Map mappa) throws CantGenerateStateEventException 
     {
         Cell c = null;
-
         if (this.state == 0) {
             this.state = 1;
         }

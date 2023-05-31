@@ -41,9 +41,10 @@ public class TextualView implements WhereIAmView {
     @Override
     public void startView() {
         new Thread(new Runnable() {
+          System.out.println("\n\n\n");
             public void run() {
                 while (true) {
-                    System.out.println("\n\n\nType W to move forward, A to move left, D to move right, E to interact and ESC to exit");
+                    System.out.println("Type W to move forward, A to move left, D to move right, E to interact and ESC to exit");
                     try {
                         char action = (char) System.in.read();
                         tastiera.nextLine();
@@ -55,6 +56,7 @@ public class TextualView implements WhereIAmView {
                         });
                     } catch (IOException e) {
                         communicateError("An IO Error occurred");
+
                     }
                 }
             }

@@ -1,7 +1,8 @@
 package model;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import javax.swing.Timer;
+
+import java.awt.event.*;
 
 public class Map{
     private Cell mappa[][];
@@ -31,20 +32,22 @@ public class Map{
     }
 
 
-    public void event(Map mappa){
+    public void event(){
         
     }
 
-    public void startTimer(long delay, long period){
-        this.timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            public void run() {
-                event(Map.this);
+    public void startTimer(int delay){
+        ActionListener actionListener = new ActionListener() {
+            public void actionPerformed(ActionEvent event){
+                event();
             }
-        }, delay, period);
+        };
+        this.timer = new Timer(delay, actionListener);
+        this.timer.setInitialDelay(delay);
+        this.timer.start();
     }
 
     public void stopTimer(){
-        timer.cancel();
+        this.timer.stop();
     }
 }

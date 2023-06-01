@@ -20,8 +20,8 @@ public class MapBuilder {
             throw new FileStructureWrongException("Il file risulta vuoto");
         }
         try {
-            int xMapSize = Integer.parseInt(myReader.nextLine());
-            int yMapSize = Integer.parseInt(myReader.nextLine());
+            int xMapSize = Integer.parseInt(myReader.nextLine());//colonne
+            int yMapSize = Integer.parseInt(myReader.nextLine());//righe
             mappa = new Cell[yMapSize][xMapSize];
             for(i = 0; i < yMapSize && myReader.hasNextLine(); i++)
             {

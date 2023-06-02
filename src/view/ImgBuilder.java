@@ -39,10 +39,10 @@ public class ImgBuilder {
             {
                 imgMatrix[i] = new ImageIcon[1];
                 ImageIcon II = new ImageIcon("img/" + el[i] + ".png");
-                    if(nScale[i])
-                    {
-                        II = new ImageIcon(II.getImage().getScaledInstance(1024/scale, 1024/scale, java.awt.Image.SCALE_DEFAULT));
-                    }
+                if(nScale[i])
+                {
+                    II = new ImageIcon(II.getImage().getScaledInstance(1024/scale, 1024/scale, java.awt.Image.SCALE_DEFAULT));
+                }
                 imgMatrix[i][0] = II;
             }
         }

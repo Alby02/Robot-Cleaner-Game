@@ -10,6 +10,7 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeSupport;
 
 import model.Map;
+import model.exception.IllegaInteractnGameException;
 import model.exception.IllegalPositionGameException;
 import view.WhereIAmView;
 
@@ -48,12 +49,17 @@ public class WhereIAmController implements ActionListener, KeyListener {
                     break;
                 case "E":
                 case "e":
-                    this.model.event();
+                    this.model.interact();
                     break;
             }
             this.property.firePropertyChange("position", null, null);
         }
         catch (IllegalPositionGameException e) {
+            for (WhereIAmView v : this.views) {
+                v.communicateError(e.getMessage());
+            }
+        }
+        catch (IllegaInteractnGameException e) {
             for (WhereIAmView v : this.views) {
                 v.communicateError(e.getMessage());
             }

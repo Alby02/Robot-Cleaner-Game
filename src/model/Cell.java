@@ -4,12 +4,13 @@ public abstract class Cell
 {   
     protected int i;
     protected int j;
-    protected int ID = 0; //nel caso va finta di avere id di vuoto
+    protected int ID;
 
-    public Cell(int i, int j)
+    public Cell(int i, int j, int ID)
     {
         this.i = i;
         this.j = j;
+        this.ID = ID;
     }
 
     public int posI()

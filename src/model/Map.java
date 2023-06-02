@@ -2,19 +2,27 @@ package model;
 
 import javax.swing.Timer;
 
+import model.exception.CantGenerateStateEventException;
+import model.exception.IllegaInteractnGameException;
+
 import java.awt.event.*;
+import java.util.Random;
 
 public class Map{
     private Cell mappa[][];
+    private CellState eventable[];
+    private Random nRandom;
     public final Robot robot;
     private Timer timer;
 
-    protected Map(Cell[][] mappa){
+    protected Map(Cell[][] mappa, CellState eventable[]) {
         this.mappa = mappa;
+        this.eventable = eventable;
+        this.nRandom = new Random();
         this.robot = new Robot(this);
     }        
 
-    public Cell getCasella(int i, int j){
+    public Cell getCasella(int i, int j){ // block access to casella 
         return this.mappa[i][j];
     }
 
@@ -27,14 +35,38 @@ public class Map{
     }
 
     protected void setNewRobotPosition(int oldI, int oldJ, int newI, int newJ){
-        //TODO Need fixing
+        //TODO Need fixing Robot position
         this.mappa[oldI][oldJ] = null;//new Vuoto(oldI, oldJ);
     }
 
 
-    public void event(){
-        
+    public void event()
+    {
+        int nuber;
+        for (int i = 0; i < 5; i++) {
+            nuber = this.nRandom.nextInt(eventable.length);
+            try {
+                Cell c = this.eventable[nuber].Event(this);
+                System.out.println("new event generated ");
+                if (c != null) {
+                    System.out.println("Generated Water " + c.i + " " + c.j);
+                    this.mappa[c.i][c.j] = c;
+                }
+                break;
+            } catch (CantGenerateStateEventException e) {}
+        }
     }
+
+    public void interact() throws IllegaInteractnGameException
+    {
+        int i = this.robot.getCellFacingI(), j = this.robot.getCellFacingJ();
+        if (this.mappa[i][j] instanceof CellState)
+        {   
+            ((CellState)this.mappa[i][j]).interact();
+        }
+    }
+
+    // TODO va spostata da qui deve strae nell main, potrebbe essere utile usare il controller come action listener
 
     public void startTimer(int delay){
         ActionListener actionListener = new ActionListener() {

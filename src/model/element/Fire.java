@@ -2,20 +2,11 @@ package model.element;
 
 import model.Cell;
 import model.Removable;
-import model.exception.IllegaInteractnGameException;
 
 public class Fire extends Cell implements Removable
 {
-    public Fire(int i, int j)
+    public Fire(int i, int j, int ID)
     {
-        super(i, j);
-        //TODO Auto-generated constructor stub
-    }
-
-    @Override
-    public void interact() throws IllegaInteractnGameException
-    {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'interact'");
+        super(i, j, ID);
     }
 }

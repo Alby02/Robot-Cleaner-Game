@@ -6,9 +6,9 @@ public abstract class CellState extends Cell implements Interactable
 {
     protected int state;
 
-    public CellState(int i, int j, int state)
+    public CellState(int i, int j, int ID, int state)
     {
-        super(i, j);
+        super(i, j, ID);
         this.state = state;
     }
 
@@ -19,8 +19,8 @@ public abstract class CellState extends Cell implements Interactable
 
     public int getState()
     {
-        return state;
+        return this.state;
     }
 
-    abstract public Cell Event(Map mappa) throws CantGenerateStateEventException;
+    abstract protected Cell Event(Map mappa) throws CantGenerateStateEventException;
 }

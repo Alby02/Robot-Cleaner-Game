@@ -12,39 +12,21 @@ public class CellBuilder {
     Object instance = classToLoad.newInstance();
     Object result = method.invoke(instance);aaaaaaaaaaaaaaaa */
 
-    public static Cell create(String[] el, int l,int  i, int j)
-    {
+    public static Cell create(String[] el, int l, int i, int j) {
         Cell c = null;
-        if(!(l == 0 || l == 0))
-        {
+        if (!(l == 0 || l == 0)) {
             try {
-                c  = (Cell) Class.forName("model.element."+el[l]).getConstructor(int.class, int.class, int.class).newInstance(i,j,l);
+                Class<?> cellClass = Class.forName("model.element." + el[l]);
+                c = (Cell) cellClass.getConstructor(int.class, int.class, int.class).newInstance(i, j, l);
+            } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+                    | InvocationTargetException | NoSuchMethodException | SecurityException
+                    | ClassNotFoundException e) {
+                e.printStackTrace();
+                System.exit(-100);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(-100);
             }
-            catch (InstantiationException e) {
-                e.printStackTrace();
-                System.exit(-100);
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-                System.exit(-100);
-            } catch (IllegalArgumentException e) {
-                e.printStackTrace();
-                System.exit(-100);
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-                System.exit(-100);
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
-                System.exit(-100);
-            } catch (SecurityException e) {
-                e.printStackTrace();
-                System.exit(-100);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-                System.exit(-100);
-            } catch(Exception e){
-                e.printStackTrace();
-                System.exit(-100);
-            } //TODO Sistemare i catch
         }
         return c;
     }

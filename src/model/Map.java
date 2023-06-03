@@ -1,11 +1,11 @@
 package model;
 
-import javax.swing.Timer;
+//import javax.swing.Timer;
 
 import model.exception.CantGenerateStateEventException;
 import model.exception.IllegaInteractnGameException;
 
-import java.awt.event.*;
+//import java.awt.event.*;
 import java.util.Random;
 
 public class Map{
@@ -13,7 +13,7 @@ public class Map{
     private CellState eventable[];
     private Random nRandom;
     public final Robot robot;
-    private Timer timer;
+    //private Timer timer;
 
     protected Map(Cell[][] mappa, CellState eventable[]) {
         this.mappa = mappa;
@@ -42,11 +42,11 @@ public class Map{
 
     public void event()
     {
-        int nuber;
+        int number;
         for (int i = 0; i < 5; i++) {
-            nuber = this.nRandom.nextInt(eventable.length);
+            number = this.nRandom.nextInt(eventable.length);
             try {
-                Cell c = this.eventable[nuber].Event(this);
+                Cell c = this.eventable[number].Event(this);
                 System.out.println("new event generated ");
                 if (c != null) {
                     System.out.println("Generated Water " + c.i + " " + c.j);
@@ -68,7 +68,7 @@ public class Map{
 
     // TODO va spostata da qui deve strae nell main, potrebbe essere utile usare il controller come action listener
 
-    public void startTimer(int delay){
+    /*public void startTimer(int delay){
         ActionListener actionListener = new ActionListener() {
             public void actionPerformed(ActionEvent event){
                 event();
@@ -81,5 +81,5 @@ public class Map{
 
     public void stopTimer(){
         this.timer.stop();
-    }
+    }*/
 }

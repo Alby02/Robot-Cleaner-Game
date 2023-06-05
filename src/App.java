@@ -31,7 +31,7 @@ public class App {
             GUIPartialView view3 = new GUIPartialView(map, view, imgMatrix);// TODO rimozione dei pulsanti utilizza la x solo per far sparire la gui non per  chidere
             WhereIAmController controller = new WhereIAmController(map, view, view3, view2);
             //TODO add thread for random event (passare mappa)
-            startTimer(2000, controller);
+            startTimer(5000, controller);
         } catch (Exception e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
@@ -41,6 +41,7 @@ public class App {
 
     public static void startTimer(int delay, ActionListener actionListener){
         timer = new Timer(delay, actionListener);
+        timer.setActionCommand(".");
         timer.setInitialDelay(delay);
         timer.start();
     }

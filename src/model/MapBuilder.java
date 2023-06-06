@@ -28,14 +28,16 @@ public class MapBuilder {
             {
                 String data = myReader.nextLine();
                 for(int j = 0, k = 0; j < xMapSize; j++, k+=2)
-                {// TODO better char to integer for faster execution and more cell options
-                    Cell c = CellBuilder.create(el, Integer.parseInt(String.valueOf(data.charAt(k))), i, j);
+                {
+                    Cell c = CellBuilder.create(el, Character.getNumericValue((data.charAt(k))), i, j);//forse va meglio
+                    //Cell c = CellBuilder.create(el, Integer.parseInt(String.valueOf(data.charAt(k))), i, j);
                     mappa[i][j] = c;
                 
                     if(c instanceof CellState)
                     {
                         k++;
-                        ((CellState)c).setState(Integer.parseInt(String.valueOf(data.charAt(k)))); //TODO better constructor for CellState
+                        ((CellState)c).setState(Character.getNumericValue(data.charAt(k))); //forse va meglio
+                        //((CellState)c).setState(Integer.parseInt(String.valueOf(data.charAt(k))));
                         cells.add((CellState)c);
                     }
                 }
@@ -84,6 +86,4 @@ public class MapBuilder {
             }
         }
     }
-
-    
 }

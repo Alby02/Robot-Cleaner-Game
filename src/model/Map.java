@@ -1,11 +1,8 @@
 package model;
 
-//import javax.swing.Timer;
-
 import model.exception.CantGenerateStateEventException;
 import model.exception.IllegaInteractnGameException;
 
-//import java.awt.event.*;
 import java.util.Random;
 
 public class Map{
@@ -13,7 +10,6 @@ public class Map{
     private CellState eventable[];
     private Random nRandom;
     public final Robot robot;
-    //private Timer timer;
 
     protected Map(Cell[][] mappa, CellState eventable[]) {
         this.mappa = mappa;
@@ -65,21 +61,4 @@ public class Map{
             ((CellState)this.mappa[i][j]).interact();
         }
     }
-
-    // TODO va spostata da qui deve strae nell main, potrebbe essere utile usare il controller come action listener
-
-    /*public void startTimer(int delay){
-        ActionListener actionListener = new ActionListener() {
-            public void actionPerformed(ActionEvent event){
-                event();
-            }
-        };
-        this.timer = new Timer(delay, actionListener);
-        this.timer.setInitialDelay(delay);
-        this.timer.start();
-    }
-
-    public void stopTimer(){
-        this.timer.stop();
-    }*/
 }

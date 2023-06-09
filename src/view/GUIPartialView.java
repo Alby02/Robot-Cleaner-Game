@@ -46,7 +46,7 @@ public class GUIPartialView extends JFrame implements WhereIAmView {
         button.setLayout(new GridLayout(1, 4));
         button.setPreferredSize(new Dimension(1000, 50));
         buttons = new JButton[4];
-        buttons[0] = createButton("LEFT(A)", "A"); //this.buttons[0] = new JButton("LEFT(A)"); this.buttons[0].setActionCommand("A");
+        buttons[0] = createButton("LEFT(A)", "A");
         buttons[1] = createButton("FORWARD(W)", "W");
         buttons[2] = createButton("RIGHT(D)", "D");
         buttons[3] = createButton("INTERACT(E)", "E");

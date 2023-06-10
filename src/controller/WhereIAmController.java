@@ -34,20 +34,18 @@ public class WhereIAmController implements ActionListener, KeyListener {
     public void actionPerformed(ActionEvent event) {
         try
         {
-            switch(event.getActionCommand()){
-                case "A":
+            String actionCommand = event.getActionCommand().toLowerCase();
+
+            switch(actionCommand){
                 case "a":
                     this.model.robot.dir.rotateSX();
                     break;
-                case "W":
                 case "w":
                     this.model.robot.forward();
                     break;
-                case "D":
                 case "d":
                     this.model.robot.dir.rotateDX();
                     break;
-                case "E":
                 case "e":
                     this.model.interact();
                     break;

@@ -8,8 +8,7 @@ import model.exception.IllegaInteractnGameException;
 
 public class Cat extends CellState 
 {
-
-    public static final String states[] = {"base"};
+    public static final String states[] = {"base"};//TODO orribile da sistemare
 
     public Cat(int i, int j, int ID) 
     {

@@ -19,8 +19,8 @@ public class App {
 
     private static Timer timer;
     public static void main(String[] args) {
-        final String element[] = {"Vuoto", "Wall", "Fire", "Oven", "Sink", "Washer", "Water"};// TODO Aggiungere eo sostituire con Immutable list of class 
-        final boolean scale[] = {false, false, true, true, true, true, true};// TODO Immutable list
+        final String element[] = {"Vuoto", "Wall", "Fire", "Oven", "Sink", "Washer", "Water", "Cat"};// TODO Aggiungere eo sostituire con Immutable list of class 
+        final boolean scale[] = {false, false, true, true, true, true, true, true};// TODO Immutable list
         // TODO Immutable list for persentage of random cell
         Map map;
         try {
@@ -31,7 +31,7 @@ public class App {
             GUIPartialView view3 = new GUIPartialView(map, view, imgMatrix);// TODO rimozione dei pulsanti utilizza la x solo per far sparire la gui non per  chidere
             WhereIAmController controller = new WhereIAmController(map, view, view3, view2);
             //TODO add thread for random event (passare mappa)
-            startTimer(5000, controller);
+            startTimer(2500, controller);
         } catch (Exception e) {
             System.err.println(e.getMessage());
             e.printStackTrace();

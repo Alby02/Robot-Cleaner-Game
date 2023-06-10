@@ -4,8 +4,8 @@ import model.Orientamento.Direction;
 import model.exception.IllegalPositionGameException;
 
 public class Robot {
-    private int i; //i
-    private int j; //j
+    private int i;
+    private int j;
     final public Orientamento dir;
     private Map scacchi;
 

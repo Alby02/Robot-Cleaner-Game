@@ -50,11 +50,11 @@ public class Sink extends CellState
             {
                 c = new Water(this.i - 1, this.j, 6);
             }
-            else if(j > 1 && mappa.getCasella(this.i + 1, this.j - 1) == null)
+            else if(j > 1 && mappa.getCasella(this.i, this.j - 1) == null)
             {
                 c = new Water(this.i, this.j - 1, 6);
             }
-                else
+            else
             {
                 throw new CantGenerateStateEventException("All surrounding cell are full");
             }

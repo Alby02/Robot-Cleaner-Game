@@ -1,5 +1,6 @@
 package model;
 
+import model.element.Cat;
 import model.exception.CantGenerateStateEventException;
 import model.exception.IllegaInteractnGameException;
 
@@ -8,7 +9,7 @@ import java.util.Random;
 public class Map{
     private Cell mappa[][];
     private CellState eventable[];
-    private Random nRandom;
+    public Random nRandom;
     public final Robot robot;
 
     protected Map(Cell[][] mappa, CellState eventable[]) {
@@ -35,6 +36,11 @@ public class Map{
         this.mappa[oldI][oldJ] = null;//new Vuoto(oldI, oldJ);
     }
 
+    public void setNewCatPosition(int oldI, int oldJ, int newI, int newJ){
+        Cat newCat = new Cat(newI, newJ, 7);
+        this.mappa[newI][newJ] = newCat;
+        this.mappa[oldI][oldJ] = null;
+    }
 
     public void event()
     {

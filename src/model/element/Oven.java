@@ -49,7 +49,7 @@ public class Oven extends CellState
             {
                 c = new Fire(this.i - 1, this.j, 2);
             }
-            else if(j > 1 && mappa.getCasella(this.i + 1, this.j - 1) == null)
+            else if(j > 1 && mappa.getCasella(this.i, this.j - 1) == null)
             {
                 c = new Fire(this.i, this.j - 1, 2);
             }

@@ -30,22 +30,4 @@ public class CellBuilder {
         }
         return c;
     }
-
-    /*private static Cell randCasella(int i, int j) {
-        double randomNum = Math.random();
-        randomNum = Math.round(randomNum * 100) / 1000;
-
-        if(randomNum < 0.1) {
-            return new Sink(i, j);
-        }
-        else if(randomNum < 0.2) {
-            return new Washer(i, j);
-        }
-        else if(randomNum < 0.3) {
-            return new Oven(i, j);
-        }
-        else{
-            return null;
-        }
-    }*/
 }

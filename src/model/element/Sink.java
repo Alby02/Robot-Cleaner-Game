@@ -8,7 +8,6 @@ import model.exception.IllegaInteractnGameException;
 
 public class Sink extends CellState
 {
-
     public static final String states[] = {"base", "broken"}; //TODO immutable list or interface metod for getting state
 
     public Sink(int i, int j, int ID)

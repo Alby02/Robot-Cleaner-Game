@@ -1,6 +1,8 @@
 package model;
 
 import model.element.Cat;
+import model.element.Fire;
+import model.element.Water;
 import model.exception.CantGenerateStateEventException;
 import model.exception.IllegaInteractnGameException;
 
@@ -51,7 +53,11 @@ public class Map{
                 Cell c = this.eventable[number].Event(this);
                 System.out.println("new event generated ");
                 if (c != null) {
-                    System.out.println("Generated Water " + c.i + " " + c.j);
+                    if (c instanceof Water) {
+                        System.out.println("Generated Water " + c.i + " " + c.j);
+                    } else if (c instanceof Fire) {
+                        System.out.println("Generated Fire " + c.i + " " + c.j);
+                    }
                     this.mappa[c.i][c.j] = c;
                 }
                 break;

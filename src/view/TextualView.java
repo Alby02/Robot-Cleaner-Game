@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import controller.WhereIAmController;
 
-public class TextualView implements WhereIAmView {
+public class TextualView implements WhereIAmView { // TODO deve essere come la contol view
     static Scanner tastiera = new Scanner(System.in);
     private WhereIAmController controller;
 

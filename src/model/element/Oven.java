@@ -5,7 +5,7 @@ import model.CellState;
 import model.Eventable;
 import model.Interactable;
 import model.Map;
-import model.exception.CantGenerateStateEventException;
+import model.exception.CantGenerateEventException;
 import model.exception.IllegaInteractnGameException;
 
 public class Oven extends CellState implements Interactable, Eventable
@@ -38,7 +38,7 @@ public class Oven extends CellState implements Interactable, Eventable
     }
 
     @Override
-    public Cell Event(Map mappa) throws CantGenerateStateEventException
+    public Cell Event(Map mappa) throws CantGenerateEventException
     {
         Cell c = null;
         if (this.state == 0) {
@@ -64,7 +64,7 @@ public class Oven extends CellState implements Interactable, Eventable
             }
                 else
             {
-                throw new CantGenerateStateEventException("All surrounding cell are full");
+                throw new CantGenerateEventException("All surrounding cell are full");
             }
             System.out.println("Generated Fire " + c.posI() + " " + c.posJ());
         }

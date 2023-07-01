@@ -1,6 +1,6 @@
 package model;
 
-import model.exception.CantGenerateStateEventException;
+import model.exception.CantGenerateEventException;
 import model.exception.IllegaInteractnGameException;
 import model.exception.IllegalPositionGameException;
 
@@ -9,7 +9,7 @@ import java.util.Random;
 public class Map{
     private Cell mappa[][];
     private Eventable eventable[];
-    public Random nRandom;
+    private final Random nRandom;
     public final Robot robot;
 
     protected Map(Cell[][] mappa, Eventable eventable[]) {
@@ -53,24 +53,29 @@ public class Map{
         return this.mappa[0].length;
     }
 
-    protected void setVuotoPosition(int I, int J){
-        this.mappa[I][J] = null;//new Vuoto(I, J);
-    }
-
-    public void event()
+    public void event() // TODO Migliorare
     {
         int number;
         for (int i = 0; i < 5; i++) {
             number = this.nRandom.nextInt(eventable.length);
             try {
-                Cell c = this.eventable[number].Event(this);
-                System.out.println("new event generated ");
-                if (c != null)
+                Eventable Ev = this.eventable[number];
+                if(Ev instanceof CellState){
+                    Cell c = this.eventable[number].Event(this);
+                    if (c != null)
+                    {
+                        this.mappa[c.i][c.j] = c;
+                    }
+                }
+                else if(Ev instanceof Movable)
                 {
+                    int oldI = ((Cell)Ev).i, oldJ = ((Cell)Ev).j;
+                    Cell c = Ev.Event(this);
                     this.mappa[c.i][c.j] = c;
+                    this.mappa[oldI][oldJ] = null;
                 }
                 break;
-            } catch (CantGenerateStateEventException e) {}
+            } catch (CantGenerateEventException e) {}
         }
     }
 

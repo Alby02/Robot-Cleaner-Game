@@ -30,15 +30,6 @@ public class ColouredLabel extends JLabel {
         this.repaint();
     }
 
-    /*public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-        if (isBlack) {
-            g.setColor(Color.BLACK);
-            g.fillRect(0, 0, getWidth(), getHeight());
-        }
-    }*/
-
     public void setSelected()
     {
         this.setBorder(BorderFactory.createLineBorder(Color.BLUE, 3));

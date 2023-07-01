@@ -1,13 +1,8 @@
 package model;
 
-import model.exception.CantGenerateStateEventException;
+import model.exception.CantGenerateEventException;
 
 public interface Eventable
 {
-    public Cell Event(Map mappa) throws CantGenerateStateEventException;
-
-    default public void vuoto(Map map, int i, int j)
-    {
-        map.setVuotoPosition(i,j);
-    }
+    public Cell Event(Map mappa) throws CantGenerateEventException;
 }

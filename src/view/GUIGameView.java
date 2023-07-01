@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import controller.WhereIAmController;
 import model.Map;
 
-public class GUIPartialView extends JFrame implements WhereIAmView {
+public class GUIGameView extends JFrame implements WhereIAmView {
 
     private JPanel main;
     private final JButton buttons[];
@@ -18,7 +18,7 @@ public class GUIPartialView extends JFrame implements WhereIAmView {
     private ColouredLabel[][] labels;
     final private Map scacco;
 
-    public GUIPartialView(Map modello, GUIView g, ImgBuilder imgMatrix) throws HeadlessException {
+    public GUIGameView(Map modello, GUIContolView g, ImgBuilder imgMatrix) throws HeadlessException {
 
         super("Robot Cleaner 9000") ;
         this.scacco = modello;

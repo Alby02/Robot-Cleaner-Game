@@ -29,19 +29,20 @@ public class MapBuilder {
                 String data = myReader.nextLine();
                 for(int j = 0, k = 0; j < xMapSize; j++, k+=2)
                 {
-                    Cell c = CellBuilder.create(el, Character.getNumericValue((data.charAt(k))), i, j);//forse va meglio
+                    Cell c = CellBuilder.create(el, Character.getNumericValue((data.charAt(k))), i, j);//forse va meglio? NO!!! TODO check
                     //Cell c = CellBuilder.create(el, Integer.parseInt(String.valueOf(data.charAt(k))), i, j);
                     mappa[i][j] = c;
                 
                     if(c instanceof Eventable)
                     {
-                        if(c instanceof CellState)
-                        {
-                            k++;
-                            ((CellState)c).setState(Character.getNumericValue(data.charAt(k))); //forse va meglio
-                        //((CellState)c).setState(Integer.parseInt(String.valueOf(data.charAt(k))));
-                        }
                         cells.add((Eventable)c);
+                    }
+
+                    if(c instanceof CellState)
+                    {
+                        k++;
+                        ((CellState)c).setState(Character.getNumericValue(data.charAt(k))); //forse va meglio?  NO!!! TODO check
+                    //((CellState)c).setState(Integer.parseInt(String.valueOf(data.charAt(k))));
                     }
                 }
             }

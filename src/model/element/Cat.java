@@ -1,50 +1,48 @@
 package model.element;
 
+import java.util.Random;
+
 import model.Cell;
 import model.Eventable;
 import model.Map;
-import model.exception.CantGenerateStateEventException;
+import model.Movable;
+import model.exception.CantGenerateEventException;
 
-public class Cat extends Cell implements Eventable
+public class Cat extends Cell implements Eventable, Movable
 {
+    private Random nR;
 
     public Cat(int i, int j, int ID) 
     {
         super(i, j, ID);
+        this.nR = new Random();
     }
 
     @Override
-    public Cell Event(Map mappa) throws CantGenerateStateEventException 
+    public Cell Event(Map mappa) throws CantGenerateEventException 
     {
-        int direction = mappa.nRandom.nextInt(4);
-        int oldI = this.i, oldJ = this.j;
+        int direction = this.nR.nextInt(4);
+        int newI = this.i, newJ = this.j;
         switch (direction) {
             case 0:
-                if (mappa.isCasellaEmpty(this.i - 1, this.j))
-                    this.i--;//Muovi verso l'alto 
-                else
-                    throw new CantGenerateStateEventException("Illegal Position Game Exception");
+                newI--;//Muovi verso l'alto 
                 break;
             case 1:
-                if (mappa.isCasellaEmpty(this.i + 1, this.j))
-                    this.i++;//Muovi verso il basso
-                else
-                    throw new CantGenerateStateEventException("Illegal Position Game Exception");
+                newI++;//Muovi verso il basso
                 break;
             case 2:
-                if (mappa.isCasellaEmpty(this.i, this.j - 1))
-                    this.j--;//Muovi verso sinistra
-                else
-                    throw new CantGenerateStateEventException("Illegal Position Game Exception");
+                newJ--;//Muovi verso sinistra
                 break;
             case 3:
-                if (mappa.isCasellaEmpty(this.i, this.j + 1))
-                    this.j++;//Muovi verso destra
-                else
-                    throw new CantGenerateStateEventException("Illegal Position Game Exception");
+                newJ++;//Muovi verso destra
                 break;
         }
-        this.vuoto(mappa,oldI, oldJ);
+        if(!mappa.isCasellaEmpty(i, j))
+        {
+            throw new CantGenerateEventException("Illegal Position Game Exception");
+        }
+        this.i = newI;
+        this.j = newJ;
         return this;
     }
 }

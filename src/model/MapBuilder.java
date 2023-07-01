@@ -35,10 +35,12 @@ public class MapBuilder {
                 
                     if(c instanceof Eventable)
                     {
-                        k++;
                         if(c instanceof CellState)
+                        {
+                            k++;
                             ((CellState)c).setState(Character.getNumericValue(data.charAt(k))); //forse va meglio
                         //((CellState)c).setState(Integer.parseInt(String.valueOf(data.charAt(k))));
+                        }
                         cells.add((Eventable)c);
                     }
                 }

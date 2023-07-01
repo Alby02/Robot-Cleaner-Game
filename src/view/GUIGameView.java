@@ -56,13 +56,12 @@ public class GUIGameView extends JFrame implements WhereIAmView {
         }
 
         JButton guiButton = createButton("CONTROL GUI", null);
-        guiButton.addActionListener(new ActionListener() {
-            private boolean guiVisible = false;
-
+        guiButton.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                guiVisible = !guiVisible;
-                g.setVisible(guiVisible);
+            public void actionPerformed(ActionEvent e)
+            {
+                g.setVisible(!g.isVisible());
                 requestFocus();
             }
         });

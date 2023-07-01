@@ -27,9 +27,9 @@ public class App {
         {
             map = MapBuilder.generateFromFile("mappa.txt", element); // generazione della mappa // TODO map to file TODO random cell
             ImgBuilder imgMatrix = new ImgBuilder(element, scale, map.getISize(), map.getJSize());
-            GUIContolView view = new GUIContolView(map, imgMatrix); // generazione della Gui grafica in base alla struttura del modello, TODO la x deve esposrtare la mappa su file
+            GUIContolView view = new GUIContolView(map, imgMatrix); // generazione della Gui grafica in base alla struttura del modello
             TextualView view2 = new TextualView();
-            GUIGameView view3 = new GUIGameView(map, view, imgMatrix);// TODO rimozione dei pulsanti utilizza la x solo per far sparire la gui non per  chidere
+            GUIGameView view3 = new GUIGameView(map, view, imgMatrix);//TODO la x deve esposrtare la mappa su file
             WhereIAmController controller = new WhereIAmController(map, view, view3, view2);
             startTimer(5000, controller);
         }

@@ -10,7 +10,7 @@ import model.exception.MapToSmallException;
 
 public class MapBuilder {
 
-    public static Map generateFromFile(String fileName, String[] el) throws FileNotFoundException, FileStructureWrongException{
+    public static Map generateFromFile(String fileName, Class<?> el[]) throws FileNotFoundException, FileStructureWrongException{
         File file = new File(fileName);
         Scanner myReader = new Scanner(file);
         int i;

@@ -33,15 +33,8 @@ public class Map{
         return this.mappa[0].length;
     }
 
-    protected void setNewRobotPosition(int oldI, int oldJ, int newI, int newJ){
-        //TODO Need fixing Robot position
-        this.mappa[oldI][oldJ] = null;//new Vuoto(oldI, oldJ);
-    }
-
-    public void setNewCatPosition(int oldI, int oldJ, int newI, int newJ){
-        Cat newCat = new Cat(newI, newJ, 7);
-        this.mappa[newI][newJ] = newCat;
-        this.mappa[oldI][oldJ] = null;
+    protected void setVuotoPosition(int I, int J){
+        this.mappa[I][J] = null;//new Vuoto(I, J);
     }
 
     public void event()
@@ -52,12 +45,8 @@ public class Map{
             try {
                 Cell c = this.eventable[number].Event(this);
                 System.out.println("new event generated ");
-                if (c != null) {
-                    if (c instanceof Water) {
-                        System.out.println("Generated Water " + c.i + " " + c.j);
-                    } else if (c instanceof Fire) {
-                        System.out.println("Generated Fire " + c.i + " " + c.j);
-                    }
+                if (c != null)
+                {
                     this.mappa[c.i][c.j] = c;
                 }
                 break;
@@ -71,6 +60,10 @@ public class Map{
         if (this.mappa[i][j] instanceof CellState)
         {   
             ((CellState)this.mappa[i][j]).interact();
+        }
+        else if (this.mappa[i][j] instanceof Removable)
+        {
+            this.mappa[i][j] = null;
         }
     }
 }

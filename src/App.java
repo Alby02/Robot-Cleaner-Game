@@ -1,7 +1,6 @@
 
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
 import controller.WhereIAmController;

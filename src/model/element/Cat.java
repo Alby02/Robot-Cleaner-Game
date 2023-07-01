@@ -1,34 +1,23 @@
 package model.element;
 
 import model.Cell;
-import model.CellState;
+import model.Eventable;
 import model.Map;
 import model.exception.CantGenerateStateEventException;
-import model.exception.IllegaInteractnGameException;
 
-public class Cat extends CellState 
+public class Cat extends Cell implements Eventable
 {
-    public static final String states[] = {"base"};//TODO orribile da sistemare
 
     public Cat(int i, int j, int ID) 
     {
-        super(i, j, ID, 0);
+        super(i, j, ID);
     }
 
     @Override
-    public void interact() throws IllegaInteractnGameException {
-        //doNothing
-    }
-
-    @Override
-    protected Cell Event(Map mappa) throws CantGenerateStateEventException 
+    public Cell Event(Map mappa) throws CantGenerateStateEventException 
     {
-        Cell c = null;
-        int oldI = i;
-        int oldJ = j;
-
         int direction = mappa.nRandom.nextInt(4);
-
+        int oldI = this.i, oldJ = this.j;
         switch (direction) {
             case 0:
                 if (mappa.getCasella(this.i - 1, this.j) == null)
@@ -55,9 +44,7 @@ public class Cat extends CellState
                     throw new CantGenerateStateEventException("Illegal Position Game Exception");
                 break;
         }
-
-        mappa.setNewCatPosition(oldI, oldJ, this.i, this.j);
-
-        return c;
+        this.vuoto(mappa,oldI, oldJ);
+        return this;
     }
 }

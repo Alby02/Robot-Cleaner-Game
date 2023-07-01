@@ -1,8 +1,6 @@
 package model;
 
-import model.exception.CantGenerateStateEventException;
-
-public abstract class CellState extends Cell implements Interactable
+public abstract class CellState extends Cell implements Interactable, Eventable
 {
     protected int state;
 
@@ -21,6 +19,4 @@ public abstract class CellState extends Cell implements Interactable
     {
         return this.state;
     }
-
-    abstract protected Cell Event(Map mappa) throws CantGenerateStateEventException;
 }

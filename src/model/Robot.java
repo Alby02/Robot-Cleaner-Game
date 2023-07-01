@@ -47,7 +47,7 @@ public class Robot {
                     throw new IllegalPositionGameException("Illegal Position Game Exception");
                 break;
         }
-        this.scacchi.setNewRobotPosition(i, j, this.i, this.j);
+        this.scacchi.setVuotoPosition(i, j);
     }
 
     public int getCellFacingI()

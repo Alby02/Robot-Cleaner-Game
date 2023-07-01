@@ -29,7 +29,7 @@ public class Sink extends CellState
     }
 
     @Override
-    protected Cell Event(Map mappa) throws CantGenerateStateEventException 
+    public Cell Event(Map mappa) throws CantGenerateStateEventException 
     {
         Cell c = null;
         if (this.state == 0) {
@@ -57,6 +57,7 @@ public class Sink extends CellState
             {
                 throw new CantGenerateStateEventException("All surrounding cell are full");
             }
+            System.out.println("Generated Water " + c.posI() + " " + c.posJ());
         }
 
         return c;

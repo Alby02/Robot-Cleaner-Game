@@ -29,7 +29,7 @@ public class Washer extends CellState
     }
 
     @Override
-    protected Cell Event(Map mappa) throws CantGenerateStateEventException
+    public Cell Event(Map mappa) throws CantGenerateStateEventException
     {
         Cell c = null;
 
@@ -59,6 +59,7 @@ public class Washer extends CellState
             {
                 throw new CantGenerateStateEventException("All surrounding cell are full");
             }
+            System.out.println("Generated Water " + c.posI() + " " + c.posJ());
         }
         return c;
 

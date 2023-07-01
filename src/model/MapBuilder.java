@@ -39,7 +39,7 @@ public class MapBuilder {
                         if(c instanceof CellState)
                             ((CellState)c).setState(Character.getNumericValue(data.charAt(k))); //forse va meglio
                         //((CellState)c).setState(Integer.parseInt(String.valueOf(data.charAt(k))));
-                        cells.add((CellState)c);
+                        cells.add((Eventable)c);
                     }
                 }
             }

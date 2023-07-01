@@ -19,35 +19,25 @@ public class Robot {
 
     public void forward() throws IllegalPositionGameException
     {
-        int i = this.i, j = this.j;
         switch(this.dir.get())
         {
             case Destra:
-                if(this.scacchi.getCasella(this.i+1, this.j) == null || this.scacchi.getCasella(this.i+1, this.j) instanceof Removable)
-                    this.i++;
-                else 
-                    throw new IllegalPositionGameException("Illegal Position Game Exception");
+                this.scacchi.BotMove(this.i, this.j,this.i+1, this.j);
+                this.i++;
                 break;
             case Alto:
-                if(this.scacchi.getCasella(this.i,this.j + 1) == null || this.scacchi.getCasella(this.i, this.j+1)instanceof Removable)
-                    this.j++;
-                else
-                    throw new IllegalPositionGameException("Illegal Position Game Exception");
+                this.scacchi.BotMove(this.i, this.j,this.i,this.j + 1);
+                this.j++;
                 break;
             case Sinistra:
-                if(this.scacchi.getCasella(this.i-1, this.j) == null || this.scacchi.getCasella(this.i-1, this.j) instanceof Removable)
-                    this.i--;
-                else 
-                    throw new IllegalPositionGameException("Illegal Position Game Exception");
+                this.scacchi.BotMove(this.i, this.j,this.i-1, this.j);
+                this.i--;
                 break;
             case Basso:
-                if(this.scacchi.getCasella(this.i, this.j-1) == null || this.scacchi.getCasella(this.i, this.j-1) instanceof Removable)
-                    this.j--;
-                else 
-                    throw new IllegalPositionGameException("Illegal Position Game Exception");
+                this.scacchi.BotMove(this.i, this.j,this.i, this.j-1);
+                this.j--;   
                 break;
         }
-        this.scacchi.setVuotoPosition(i, j);
     }
 
     public int getCellFacingI()

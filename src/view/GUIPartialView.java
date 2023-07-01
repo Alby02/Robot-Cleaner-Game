@@ -33,7 +33,7 @@ public class GUIPartialView extends JFrame implements WhereIAmView {
         this.labels= new ColouredLabel[modello.getISize()][modello.getJSize()];
         for(int i=0;i<this.labels.length;i++) {
             for(int j=0; j<this.labels[i].length; j++){
-                this.labels[i][j] = new ColouredLabel (imgMatrix);
+                this.labels[i][j] = new ColouredLabel (this.scacco, imgMatrix);
                 main.add(labels[i][j]);
             }
         }
@@ -99,7 +99,7 @@ public class GUIPartialView extends JFrame implements WhereIAmView {
         for(int i=0;i<this.labels.length;i++) {
             for(int j=0; j<this.labels[i].length; j++){
                 if(i >= startRow && i <= endRow && j >= startCol && j <= endCol){
-                    this.labels[i][j].setByType(this.scacco.getCasella(i, j));
+                    this.labels[i][j].setByType(i, j);
                 }
                 else{
                     this.labels[i][j].setBlack();

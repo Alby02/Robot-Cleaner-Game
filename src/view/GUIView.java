@@ -31,7 +31,7 @@ public class GUIView extends JFrame implements WhereIAmView {
         this.labels= new ColouredLabel[modello.getISize()][modello.getJSize()];
         for(int i=0;i<this.labels.length;i++) {
             for(int j=0; j<this.labels[i].length; j++){
-                this.labels[i][j] = new ColouredLabel (imgMatrix);
+                this.labels[i][j] = new ColouredLabel (scacco, imgMatrix);
                 main.add(labels[i][j]);
             }
         }
@@ -84,7 +84,7 @@ public class GUIView extends JFrame implements WhereIAmView {
     public void showPosition() {
         for(int i=0;i<this.labels.length;i++) {
             for(int j=0; j<this.labels[i].length; j++){
-                this.labels[i][j].setByType(this.scacco.getCasella(i, j));
+                this.labels[i][j].setByType(i, j);
             }
         }
         this.labels[this.scacco.robot.getI()][this.scacco.robot.getJ()].setRobot();

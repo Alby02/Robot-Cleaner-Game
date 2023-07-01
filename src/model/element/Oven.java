@@ -2,17 +2,26 @@ package model.element;
 
 import model.Cell;
 import model.CellState;
+import model.Eventable;
+import model.Interactable;
 import model.Map;
 import model.exception.CantGenerateStateEventException;
 import model.exception.IllegaInteractnGameException;
 
-public class Oven extends CellState
+public class Oven extends CellState implements Interactable, Eventable
 {
-    public static final String states[] = {"base", "broken"}; //TODO immutable list or interface metod for getting state
+    private static String states[] = {"base", "broken"};
 
     public Oven(int i, int j, int ID)
     {
         super(i, j, ID, 0);
+        getStates();
+    }
+
+    //@Override
+    public static String[] getStates()
+    {
+        return states.clone(); //immutable list by cloning
     }
 
     @Override
@@ -37,19 +46,19 @@ public class Oven extends CellState
         }
         else
         {
-            if(i < mappa.getISize() - 1 && mappa.getCasella(this.i + 1, this.j) == null)
+            if(i < mappa.getISize() - 1 && mappa.isCasellaEmpty(this.i + 1, this.j))
             {
                 c = new Fire(this.i + 1, this.j, 2);
             }
-            else if(j < mappa.getJSize() -1 && mappa.getCasella(this.i, this.j + 1) == null)
+            else if(j < mappa.getJSize() -1 && mappa.isCasellaEmpty(this.i, this.j + 1))
             {
                 c = new Fire(this.i, this.j + 1, 2);
             }
-            else if(i > 1 && mappa.getCasella(this.i - 1, this.j) == null)
+            else if(i > 1 && mappa.isCasellaEmpty(this.i - 1, this.j))
             {
                 c = new Fire(this.i - 1, this.j, 2);
             }
-            else if(j > 1 && mappa.getCasella(this.i, this.j - 1) == null)
+            else if(j > 1 && mappa.isCasellaEmpty(this.i, this.j - 1))
             {
                 c = new Fire(this.i, this.j - 1, 2);
             }

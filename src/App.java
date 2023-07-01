@@ -25,7 +25,7 @@ public class App {
         Map map;
         try
         {
-            map = MapBuilder.generateFromFile("mappa.txt", element); // generazione della mappa // TODO map to file //TODO random cell
+            map = MapBuilder.generateFromFile("mappa.txt", element); // generazione della mappa // TODO map to file TODO random cell
             ImgBuilder imgMatrix = new ImgBuilder(element, scale, map.getISize(), map.getJSize());
             GUIView view = new GUIView(map, imgMatrix); // generazione della Gui grafica in base alla struttura del modello, TODO la x deve esposrtare la mappa su file
             TextualView view2 = new TextualView();

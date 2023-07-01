@@ -2,8 +2,8 @@ package view;
 
 import javax.swing.ImageIcon;
 
-import model.Cell;
 import model.CellState;
+import model.Map;
 
 public class ImgBuilder {
 
@@ -25,7 +25,7 @@ public class ImgBuilder {
             Class<?> c = el[i];
             if(CellState.class.isAssignableFrom(c))
             {
-                String states[] = (String[])c.getDeclaredField("states").get(null);
+                String states[] = (String[])c.getDeclaredMethod("getStates").invoke(null);
                 this.imgMatrix[i] = new ImageIcon[states.length];
                 for(int j = 0; j < states.length; j++)
                 {
@@ -50,16 +50,13 @@ public class ImgBuilder {
         }
     }
 
-    public ImageIcon getIcon(final Cell tipo)
+    public ImageIcon getIcon(Map mappa, int i, int j)
     {
         int a = 0, b = 0;
-        if(tipo != null)
+        if(!mappa.isCasellaEmpty(i, j))
         {
-            a = tipo.getID();
-            if (tipo instanceof CellState)
-            {
-                b = ((CellState)tipo).getState();
-            }
+            a = mappa.getIDCasella(i, j);
+            b = mappa.getStateCasella(i, j);
         }     
         return this.imgMatrix[a][b];
     }   

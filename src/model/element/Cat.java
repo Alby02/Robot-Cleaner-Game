@@ -20,25 +20,25 @@ public class Cat extends Cell implements Eventable
         int oldI = this.i, oldJ = this.j;
         switch (direction) {
             case 0:
-                if (mappa.getCasella(this.i - 1, this.j) == null)
+                if (mappa.isCasellaEmpty(this.i - 1, this.j))
                     this.i--;//Muovi verso l'alto 
                 else
                     throw new CantGenerateStateEventException("Illegal Position Game Exception");
                 break;
             case 1:
-                if (mappa.getCasella(this.i + 1, this.j) == null)
+                if (mappa.isCasellaEmpty(this.i + 1, this.j))
                     this.i++;//Muovi verso il basso
                 else
                     throw new CantGenerateStateEventException("Illegal Position Game Exception");
                 break;
             case 2:
-                if (mappa.getCasella(this.i, this.j - 1) == null)
+                if (mappa.isCasellaEmpty(this.i, this.j - 1))
                     this.j--;//Muovi verso sinistra
                 else
                     throw new CantGenerateStateEventException("Illegal Position Game Exception");
                 break;
             case 3:
-                if (mappa.getCasella(this.i, this.j + 1) == null )
+                if (mappa.isCasellaEmpty(this.i, this.j + 1))
                     this.j++;//Muovi verso destra
                 else
                     throw new CantGenerateStateEventException("Illegal Position Game Exception");

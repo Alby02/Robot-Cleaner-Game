@@ -1,10 +1,8 @@
 package model;
 
-import model.element.Cat;
-import model.element.Fire;
-import model.element.Water;
 import model.exception.CantGenerateStateEventException;
 import model.exception.IllegaInteractnGameException;
+import model.exception.IllegalPositionGameException;
 
 import java.util.Random;
 
@@ -21,8 +19,30 @@ public class Map{
         this.robot = new Robot(this);
     }        
 
-    public Cell getCasella(int i, int j){ // block access to casella 
-        return this.mappa[i][j];
+    public boolean isCasellaEmpty(int i, int j) 
+    {
+        return this.mappa[i][j] == null;
+    }
+
+    public void BotMove(int oldI, int oldJ, int i, int j) throws IllegalPositionGameException{
+        if(this.mappa[i][j] == null || this.mappa[i][j] instanceof Removable)
+        {
+            this.mappa[oldI][oldJ] = null;
+        }
+        else
+        {
+            throw new IllegalPositionGameException("Illegal Position Game Exception");
+        }
+    }
+
+    public int getIDCasella(int i, int j){
+        return this.mappa[i][j].getID();
+    }
+
+    public int getStateCasella(int i, int j){
+        if(this.mappa[i][j] instanceof CellState)
+            return ((CellState)this.mappa[i][j]).getState();
+        return 0;
     }
 
     public int getISize(){
@@ -57,9 +77,9 @@ public class Map{
     public void interact() throws IllegaInteractnGameException
     {
         int i = this.robot.getCellFacingI(), j = this.robot.getCellFacingJ();
-        if (this.mappa[i][j] instanceof CellState)
+        if (this.mappa[i][j] instanceof Interactable)
         {   
-            ((CellState)this.mappa[i][j]).interact();
+            ((Interactable)this.mappa[i][j]).interact();
         }
         else if (this.mappa[i][j] instanceof Removable)
         {

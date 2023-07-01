@@ -7,7 +7,7 @@ public class Robot {
     private int i;
     private int j;
     final public Orientamento dir;
-    private Map scacchi;
+    private final Map scacchi;
 
     protected Robot(Map mappa)
     {
@@ -19,25 +19,26 @@ public class Robot {
 
     public void forward() throws IllegalPositionGameException
     {
+        int newI = this.i, newJ = this.j;
         switch(this.dir.get())
         {
             case Destra:
-                this.scacchi.BotMove(this.i, this.j,this.i+1, this.j);
-                this.i++;
+                newI++;
                 break;
             case Alto:
-                this.scacchi.BotMove(this.i, this.j,this.i,this.j + 1);
-                this.j++;
+                newJ++;
                 break;
             case Sinistra:
-                this.scacchi.BotMove(this.i, this.j,this.i-1, this.j);
-                this.i--;
+                newI--;
                 break;
             case Basso:
-                this.scacchi.BotMove(this.i, this.j,this.i, this.j-1);
-                this.j--;   
+                newJ--;   
                 break;
         }
+
+        this.scacchi.BotMove(this.i, this.j,newI, newJ);
+        this.i = newI;
+        this.j = newJ;
     }
 
     public int getCellFacingI()
@@ -48,14 +49,12 @@ public class Robot {
         {
             case Destra:
                 x++;            
-                break;
-            case Alto:
                 break;   
             case Sinistra:        
                 x--;
-                break;    
-            case Basso:        
                 break;
+            default: 
+                break;    
         }
 
         return x;
@@ -67,16 +66,14 @@ public class Robot {
 
         switch(this.dir.get())
         {
-            case Destra:            
-                break;
             case Alto:
                 y++;
                 break;   
-            case Sinistra:        
-                break;    
             case Basso:        
                 y--;
                 break;
+            default:
+                break; 
         }
 
         return y;

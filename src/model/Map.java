@@ -35,11 +35,13 @@ public class Map{
         }
     }
 
-    public int getIDCasella(int i, int j){
+    public int getIDCasella(int i, int j)
+    {
         return this.mappa[i][j].getID();
     }
 
-    public int getStateCasella(int i, int j){
+    public int getStateCasella(int i, int j)
+    {
         if(this.mappa[i][j] instanceof CellState)
             return ((CellState)this.mappa[i][j]).getState();
         return 0;

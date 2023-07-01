@@ -37,7 +37,7 @@ public class Cat extends Cell implements Eventable, Movable
                 newJ++;//Muovi verso destra
                 break;
         }
-        if(!mappa.isCasellaEmpty(i, j))
+        if(!mappa.isCasellaEmpty(newI, newJ))
         {
             throw new CantGenerateEventException("Illegal Position Game Exception");
         }

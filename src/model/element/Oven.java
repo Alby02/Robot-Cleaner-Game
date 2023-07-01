@@ -1,5 +1,7 @@
 package model.element;
 
+import java.util.Random;
+
 import model.Cell;
 import model.CellState;
 import model.Eventable;
@@ -12,10 +14,12 @@ public class Oven extends CellState implements Interactable, Eventable
 {
     private static String states[] = {"base", "broken"};
 
+    private Random nR;
+
     public Oven(int i, int j, int ID)
     {
         super(i, j, ID, 0);
-        getStates();
+        this.nR = new Random();
     }
 
     //@Override
@@ -46,25 +50,31 @@ public class Oven extends CellState implements Interactable, Eventable
         }
         else
         {
-            if(i < mappa.getISize() - 1 && mappa.isCasellaEmpty(this.i + 1, this.j))
-            {
-                c = new Fire(this.i + 1, this.j, 2);
+            int direction = this.nR.nextInt(4);
+            int newI = this.i, newJ = this.j;
+            switch (direction) {
+                case 0:
+                    newI--;//Muovi verso l'alto 
+                    break;
+                case 1:
+                    newI++;//Muovi verso il basso
+                    break;
+                case 2:
+                    newJ--;//Muovi verso sinistra
+                    break;
+                case 3:
+                    newJ++;//Muovi verso destra
+                    break;
             }
-            else if(j < mappa.getJSize() -1 && mappa.isCasellaEmpty(this.i, this.j + 1))
-            {
-                c = new Fire(this.i, this.j + 1, 2);
-            }
-            else if(i > 1 && mappa.isCasellaEmpty(this.i - 1, this.j))
-            {
-                c = new Fire(this.i - 1, this.j, 2);
-            }
-            else if(j > 1 && mappa.isCasellaEmpty(this.i, this.j - 1))
-            {
-                c = new Fire(this.i, this.j - 1, 2);
-            }
+
+            try{
+                if(mappa.isCasellaEmpty(newI, newJ))
+                    c = new Fire(newI, newJ, 2);
                 else
+                    throw new CantGenerateEventException("The random chosen cell is not empty");
+            }catch(IndexOutOfBoundsException e)
             {
-                throw new CantGenerateEventException("All surrounding cell are full");
+                throw new CantGenerateEventException("The random chosen cell does not exist");
             }
             System.out.println("Generated Fire " + c.posI() + " " + c.posJ());
         }

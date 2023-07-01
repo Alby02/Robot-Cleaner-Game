@@ -1,5 +1,7 @@
 package model.element;
 
+import java.util.Random;
+
 import model.Cell;
 import model.CellState;
 import model.Eventable;
@@ -12,9 +14,12 @@ public class Sink extends CellState implements Interactable, Eventable
 {
     private static final String states[] = {"base", "broken"};
 
+    private Random nR;
+
     public Sink(int i, int j, int ID)
     {
         super(i, j, ID, 0);
+        this.nR = new Random();
     }
 
     //@Override
@@ -45,25 +50,31 @@ public class Sink extends CellState implements Interactable, Eventable
         }
         else
         {
-            if(i < mappa.getISize() - 1 && mappa.isCasellaEmpty(this.i + 1, this.j))
-            {
-                c = new Water(this.i + 1, this.j, 6);
+            int direction = this.nR.nextInt(4);
+            int newI = this.i, newJ = this.j;
+            switch (direction) {
+                case 0:
+                    newI--;//Muovi verso l'alto 
+                    break;
+                case 1:
+                    newI++;//Muovi verso il basso
+                    break;
+                case 2:
+                    newJ--;//Muovi verso sinistra
+                    break;
+                case 3:
+                    newJ++;//Muovi verso destra
+                    break;
             }
-            else if(j < mappa.getJSize() -1 && mappa.isCasellaEmpty(this.i, this.j + 1))
+
+            try{
+                if(mappa.isCasellaEmpty(newI, newJ))
+                    c = new Water(newI, newJ, 6);
+                else
+                    throw new CantGenerateEventException("The random chosen cell is not empty");
+            }catch(IndexOutOfBoundsException e)
             {
-                c = new Water(this.i, this.j + 1, 6);
-            }
-            else if(i > 1 && mappa.isCasellaEmpty(this.i - 1, this.j))
-            {
-                c = new Water(this.i - 1, this.j, 6);
-            }
-            else if(j > 1 && mappa.isCasellaEmpty(this.i, this.j - 1))
-            {
-                c = new Water(this.i, this.j - 1, 6);
-            }
-            else
-            {
-                throw new CantGenerateEventException("All surrounding cell are full");
+                throw new CantGenerateEventException("The random chosen cell does not exist");
             }
             System.out.println("Generated Water " + c.posI() + " " + c.posJ());
         }

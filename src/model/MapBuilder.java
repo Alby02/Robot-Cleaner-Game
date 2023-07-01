@@ -15,7 +15,7 @@ public class MapBuilder {
         Scanner myReader = new Scanner(file);
         int i;
         Cell mappa[][];
-        ArrayList<CellState> cells = new ArrayList<CellState>();
+        ArrayList<Eventable> cells = new ArrayList<Eventable>();
         try {
             if(!myReader.hasNextLine())
             {
@@ -33,10 +33,11 @@ public class MapBuilder {
                     //Cell c = CellBuilder.create(el, Integer.parseInt(String.valueOf(data.charAt(k))), i, j);
                     mappa[i][j] = c;
                 
-                    if(c instanceof CellState)
+                    if(c instanceof Eventable)
                     {
                         k++;
-                        ((CellState)c).setState(Character.getNumericValue(data.charAt(k))); //forse va meglio
+                        if(c instanceof CellState)
+                            ((CellState)c).setState(Character.getNumericValue(data.charAt(k))); //forse va meglio
                         //((CellState)c).setState(Integer.parseInt(String.valueOf(data.charAt(k))));
                         cells.add((CellState)c);
                     }
@@ -56,14 +57,14 @@ public class MapBuilder {
         {
             myReader.close();
         }
-        return new Map(mappa, cells.toArray(new CellState[0]));
+        return new Map(mappa, cells.toArray(new Eventable[0]));
     }
 
     public static Map generateRandomMap()
     {
         Cell mappa[][] = new Cell[10][10];
         Azzera(mappa);
-        return new Map(mappa, new CellState[0]);
+        return new Map(mappa, new Eventable[0]);
     }
 
     public static Map generateRandomMap(int xSize, int ySize) throws MapToSmallException {
@@ -71,7 +72,7 @@ public class MapBuilder {
             throw new MapToSmallException("Dimension must greater than 10");
         Cell mappa[][] = new Cell[ySize][xSize];
         Azzera(mappa);
-        return new Map(mappa, new CellState[0]);
+        return new Map(mappa, new Eventable[0]);
     }
 
     private static void Azzera(Cell[][] mappa) {

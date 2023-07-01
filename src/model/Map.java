@@ -10,11 +10,11 @@ import java.util.Random;
 
 public class Map{
     private Cell mappa[][];
-    private CellState eventable[];
+    private Eventable eventable[];
     public Random nRandom;
     public final Robot robot;
 
-    protected Map(Cell[][] mappa, CellState eventable[]) {
+    protected Map(Cell[][] mappa, Eventable eventable[]) {
         this.mappa = mappa;
         this.eventable = eventable;
         this.nRandom = new Random();

@@ -18,7 +18,7 @@ public class GUIPartialView extends JFrame implements WhereIAmView {
     private ColouredLabel[][] labels;
     final private Map scacco;
 
-    public GUIPartialView(Map modello, GUIView g,final ImageIcon imgMatrix[][]) throws HeadlessException {
+    public GUIPartialView(Map modello, GUIView g, ImgBuilder imgMatrix) throws HeadlessException {
 
         super("Robot Cleaner 9000") ;
         this.scacco = modello;

@@ -8,16 +8,16 @@ import model.Cell;
 public class ColouredLabel extends JLabel {
         
     private static final ImageIcon ROBOT = new ImageIcon(new ImageIcon("img/Wall-E.png").getImage().getScaledInstance(1024/12, 1024/12, Image.SCALE_DEFAULT));
-    private final ImageIcon imgMatrix[][];
+    private final ImgBuilder imgMatrix;
 
-    public ColouredLabel(ImageIcon imgMatrix[][]) {
+    public ColouredLabel(ImgBuilder imgMatrix) {
         this.imgMatrix = imgMatrix;
     }
 
     public void setByType(Cell tipo) {
         this.setOpaque(false);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-        ImageIcon icon = ImgBuilder.getIcon(imgMatrix, tipo);
+        ImageIcon icon = imgMatrix.getIcon(tipo);
         this.setIcon(icon);        
     }
 

@@ -17,7 +17,7 @@ public class GUIView extends JFrame implements WhereIAmView {
     private ColouredLabel[][] labels;
     final private Map scacco;
 
-    public GUIView(Map modello, final ImageIcon[][] imgMatrix) throws HeadlessException {
+    public GUIView(Map modello, ImgBuilder imgMatrix) throws HeadlessException {
         super("Robot Cleaner 9000");
         this.scacco = modello;
         this.setSize(1000, 1050);

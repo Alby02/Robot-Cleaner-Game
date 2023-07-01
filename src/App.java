@@ -23,16 +23,19 @@ public class App {
         final boolean scale[] = {false, false, true, true, true, true, true, true};// TODO Immutable list
         // TODO Immutable list for persentage of random cell
         Map map;
-        try {
+        try
+        {
             map = MapBuilder.generateFromFile("mappa.txt", element); // generazione della mappa // TODO Class immutable list e mapp to file random cell
-            final ImageIcon imgMatrix[][] = ImgBuilder.createImgMatrix(element, scale, map.getISize(), map.getJSize()); //TODO non è un oggetto immutabile solo il riferim ento lo è
+            ImgBuilder imgMatrix = new ImgBuilder(element, scale, map.getISize(), map.getJSize());
             GUIView view = new GUIView(map, imgMatrix); // generazione della Gui grafica in base alla struttura del modello, TODO la x deve esposrtare la mappa su file
             TextualView view2 = new TextualView();
             GUIPartialView view3 = new GUIPartialView(map, view, imgMatrix);// TODO rimozione dei pulsanti utilizza la x solo per far sparire la gui non per  chidere
             WhereIAmController controller = new WhereIAmController(map, view, view3, view2);
             //TODO add thread for random event (passare mappa)
-            startTimer(2500, controller);
-        } catch (Exception e) {
+            startTimer(5000, controller);
+        }
+        catch (Exception e)
+        {
             System.err.println(e.getMessage());
             e.printStackTrace();
         }    

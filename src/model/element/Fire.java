@@ -5,8 +5,16 @@ import model.Removable;
 
 public class Fire extends Cell implements Removable
 {
-    public Fire(int i, int j, int ID)
+    public static final char ID = 'f';
+
+    @Override
+    public char getID()
     {
-        super(i, j, ID);
+        return ID;
+    }
+
+    public Fire(int i, int j)
+    {
+        super(i, j);
     }
 }

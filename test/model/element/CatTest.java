@@ -1,14 +1,10 @@
-package test;
+package model.element;
 
-import org.junit.jupiter.api.Test;
+import model.*;
+import model.exception.*;
 
-import model.Eventable;
-import model.Cell;
-import model.Map;
-import model.element.Cat;
-import model.exception.CantGenerateEventException;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class CatTest {
 

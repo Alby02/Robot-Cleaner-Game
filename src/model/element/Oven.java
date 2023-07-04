@@ -14,18 +14,26 @@ public class Oven extends CellState implements Interactable, Eventable
 {
     private static String states[] = {"base", "broken"};
 
-    private Random nR;
-
-    public Oven(int i, int j, int ID)
-    {
-        super(i, j, ID, 0);
-        this.nR = new Random();
-    }
-
     //@Override
     public static String[] getStates()
     {
         return states.clone(); //immutable list by cloning
+    }
+
+    public static final char ID = 'o';
+
+    @Override
+    public char getID()
+    {
+        return ID;
+    }
+
+    private Random nR;
+
+    public Oven(int i, int j, int state)
+    {
+        super(i, j, state);
+        this.nR = new Random();
     }
 
     @Override
@@ -69,7 +77,7 @@ public class Oven extends CellState implements Interactable, Eventable
 
             try{
                 if(mappa.isCasellaEmpty(newI, newJ))
-                    c = new Fire(newI, newJ, 2);
+                    c = new Fire(newI, newJ);
                 else
                     throw new CantGenerateEventException("The random chosen cell is not empty");
             }catch(IndexOutOfBoundsException e)

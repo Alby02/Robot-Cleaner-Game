@@ -1,18 +1,10 @@
-package test;
+package model.element;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import model.*;
+import model.exception.*;
 
-import model.Cell;
-import model.Map;
-import model.Eventable;
-import model.element.Fire;
-import model.element.Oven;
-import model.element.Sink;
-import model.element.Washer;
-import model.element.Water;
-import model.exception.CantGenerateEventException;
-import model.exception.IllegaInteractnGameException;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class OvenSinkWasherTest {
 

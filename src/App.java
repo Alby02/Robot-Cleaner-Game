@@ -19,9 +19,9 @@ public class App {
 
     private static Timer timer;
     public static void main(String[] args) {
-        final Class<?> element[] = {null, Wall.class, Fire.class, Oven.class, Sink.class, Washer.class, Water.class, Cat.class};// TODO Immutable HashTable, parserser 
-        final boolean scale[] = {false, false, true, true, true, true, true, true};// TODO Immutable HashTable
-        // // TODO Immutable HashTable for persentage of random cell
+        final Class<?> element[] = {null, Wall.class, Fire.class, Oven.class, Sink.class, Washer.class, Water.class, Cat.class};// Esistono queste classi
+        final boolean scale[] = {false, false, true, true, true, true, true, true};// valore di scala in base alle classi
+        // TODO persentage of random cell
         Map map;
         try
         {

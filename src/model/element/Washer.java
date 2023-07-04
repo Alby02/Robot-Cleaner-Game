@@ -14,18 +14,26 @@ public class Washer extends CellState implements Interactable, Eventable
 {
     private static final String states[] = {"base", "broken"};
 
-    private Random nR;
-
-    public Washer(int i, int j, int ID)
-    {
-        super(i, j, ID, 0);
-        this.nR = new Random();
-    }
-
     //@Override
     public static String[] getStates()
     {
         return states.clone(); //immutable list by cloning
+    }
+
+    public static final char ID = 'l';
+
+    @Override
+    public char getID()
+    {
+        return ID;
+    }
+
+    private Random nR;
+
+    public Washer(int i, int j, int state)
+    {
+        super(i, j, state);
+        this.nR = new Random();
     }
 
     @Override
@@ -71,7 +79,7 @@ public class Washer extends CellState implements Interactable, Eventable
 
             try{
                 if(mappa.isCasellaEmpty(newI, newJ))
-                    c = new Water(newI, newJ, 6);
+                    c = new Water(newI, newJ);
                 else
                     throw new CantGenerateEventException("The random chosen cell is not empty");
             }catch(IndexOutOfBoundsException e)

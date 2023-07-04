@@ -10,11 +10,19 @@ import model.exception.CantGenerateEventException;
 
 public class Cat extends Cell implements Eventable, Movable
 {
+    public static final char ID = 'c';
+
+    @Override
+    public char getID()
+    {
+        return ID;
+    }
+
     private Random nR;
 
-    public Cat(int i, int j, int ID) 
+    public Cat(int i, int j) 
     {
-        super(i, j, ID);
+        super(i, j);
         this.nR = new Random();
     }
 

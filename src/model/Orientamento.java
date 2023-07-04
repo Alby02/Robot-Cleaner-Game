@@ -2,6 +2,9 @@ package model;
 
 public class Orientamento {
 
+    /**
+     * Enumerazione delle direzioni possibili.
+     */
     public enum Direction{
         Alto,
         Basso,
@@ -11,15 +14,28 @@ public class Orientamento {
 
     private Direction dir;
 
+    /**
+     * Costruttore della classe Orientamento.
+     *
+     * @param face la direzione iniziale
+     */
     public Orientamento(Direction face)
     {
         this.dir = face;
     }
 
+    /**
+     * Restituisce la direzione corrente.
+     *
+     * @return la direzione corrente
+     */
     public Direction get() {
         return this.dir;
     }
 
+    /**
+     * Ruota l'orientamento verso sinistra.
+     */
     public void rotateSX()
     {
         switch (this.dir) {
@@ -37,6 +53,10 @@ public class Orientamento {
                 break;
         }
     }
+
+    /**
+     * Ruota l'orientamento verso destra.
+     */
     public void rotateDX()
     {
         switch (this.dir) {

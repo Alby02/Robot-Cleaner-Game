@@ -1,6 +1,8 @@
 package model;
 
+import java.io.CharConversionException;
 import java.lang.reflect.InvocationTargetException;
+
 
 public class CellBuilder {
     /*URLClassLoader child = new URLClassLoader(
@@ -10,21 +12,70 @@ public class CellBuilder {
     Class classToLoad = Class.forName("com.MyClass", true, child);
     Method method = classToLoad.getDeclaredMethod("myMethod");
     Object instance = classToLoad.newInstance();
-    Object result = method.invoke(instance);aaaaaaaaaaaaaaaa */
+    Object result = method.invoke(instance); Ma chi me lo fa fare*/
 
-    public static Cell create(Class<?> el[], int l, int i, int j) {
-        Cell c = null;
-        Class<?> cellClass = el[l];
-        if (cellClass != null) {
-            try {
-                c = (Cell) cellClass.getConstructor(int.class, int.class, int.class).newInstance(i, j, l);
-            }
-            catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) 
-            {
-                e.printStackTrace();
-                System.exit(-100);
-            }
-        }
-        return c;
+    /**
+     * Crea un'istanza di una sottoclasse di Cell specificata dalla classe passata come parametro.
+     *
+     * @param el un array di classi che rappresentano le possibili sottoclassi di Cell
+     * @param l  l'indice corrispondente alla sottoclasse desiderata nell'array el
+     * @param i  l'indice di colonna della cella da creare
+     * @param j  l'indice di riga della cella da creare
+     * @return di una istanza della sottoclasse di Cell corrispondente all'indice l
+     * @throws SecurityException
+     * @throws NoSuchMethodException
+     * @throws InvocationTargetException
+     * @throws IllegalArgumentException
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     */
+    public static Cell createCell(Class<?> el, int i, int j) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
+    {
+        return (Cell) el.getConstructor(int.class, int.class).newInstance(i, j);
     }
+
+    public static Cell createCellState(Class<?> el, int i, int j, int s) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
+    {
+        return (Cell) el.getConstructor(int.class, int.class, int.class).newInstance(i, j, s);
+    }
+
+    public static int charParser (char c) throws CharConversionException
+    {
+        int x;
+        if(c >= 97 && c < 123) 
+            x = c - 87;
+        else if(c >= 65 && c < 91)
+            x = c - 55;
+        else if(c >= 48 && c < 58)
+            x = c - 48;
+        else
+            throw new CharConversionException("Carattere non ammesso " + (int)c);
+        return x;
+    }
+
+    private Class<?> table[];
+
+    public CellBuilder(Class<?> el[]) throws CharConversionException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException
+    {
+        this.table = new Class[36];
+        java.util.Arrays.fill(this.table, null);
+        for(int i = 1; i < el.length; i++)
+        {
+            int p = charParser(((char)el[i].getDeclaredField("ID").get(null)));
+            this.table[p] = el[i];
+        }
+    }
+
+    public Class<?> getClassByID(char ID) throws CharConversionException
+    {
+        return this.table[charParser(ID)];
+    }
+
+    public Class<?> getClassByID(int ID)
+    {
+        return this.table[ID];
+    }
+
+
+
 }

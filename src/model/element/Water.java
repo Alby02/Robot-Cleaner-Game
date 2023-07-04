@@ -5,8 +5,16 @@ import model.Removable;
 
 public class Water extends Cell implements Removable
 {    
-    public Water(int i, int j, int ID)
+    public static final char ID = 'a';
+
+    @Override
+    public char getID()
     {
-        super(i, j, ID);
+        return ID;
+    }
+
+    public Water(int i, int j)
+    {
+        super(i, j);
     }
 }

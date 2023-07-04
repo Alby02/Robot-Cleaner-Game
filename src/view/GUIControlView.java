@@ -7,14 +7,14 @@ import java.beans.PropertyChangeEvent;
 import controller.WhereIAmController;
 import model.Map;
 
-public class GUIContolView extends JFrame implements WhereIAmView {
+public class GUIControlView extends JFrame implements WhereIAmView {
 
     private JPanel main;
 
     private ColouredLabel[][] labels;
     final private Map scacco;
 
-    public GUIContolView(Map modello, ImgBuilder imgMatrix) throws HeadlessException {
+    public GUIControlView(Map modello, ImgBuilder imgMatrix) throws HeadlessException {
         super("Robot Cleaner 9000");
         this.scacco = modello;
         this.setSize(1000, 1000);

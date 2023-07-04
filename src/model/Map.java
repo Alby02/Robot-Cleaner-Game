@@ -12,7 +12,7 @@ public class Map{
     private final Random nRandom;
     public final Robot robot;
 
-    protected Map(Cell[][] mappa, Eventable eventable[]) {
+    public Map(Cell[][] mappa, Eventable eventable[]) {
         this.mappa = mappa;
         this.eventable = eventable;
         this.nRandom = new Random();

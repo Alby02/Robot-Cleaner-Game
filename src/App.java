@@ -7,7 +7,7 @@ import controller.WhereIAmController;
 import model.Map;
 import model.MapBuilder;
 import view.GUIGameView;
-import view.GUIContolView;
+import view.GUIControlView;
 import view.ImgBuilder;
 import view.TextualView;
 import model.element.*;
@@ -27,7 +27,7 @@ public class App {
         {
             map = MapBuilder.generateFromFile("mappa.txt", element); // generazione della mappa // TODO map to file TODO random cell
             ImgBuilder imgMatrix = new ImgBuilder(element, scale, map.getISize(), map.getJSize());
-            GUIContolView view = new GUIContolView(map, imgMatrix); // generazione della Gui grafica in base alla struttura del modello
+            GUIControlView view = new GUIControlView(map, imgMatrix); // generazione della Gui grafica in base alla struttura del modello
             TextualView view2 = new TextualView();
             GUIGameView view3 = new GUIGameView(map, view, imgMatrix);//TODO la x deve esposrtare la mappa su file
             WhereIAmController controller = new WhereIAmController(map, view, view3, view2);

@@ -11,7 +11,7 @@ public abstract class CellState extends Cell
         this.state = state;
     }
 
-    protected void setState(int s)
+    public void setState(int s)
     {
         this.state = s;
     }

@@ -30,7 +30,7 @@ public class App {
             GUIControlView view = new GUIControlView(map, imgMatrix); // generazione della Gui grafica in base alla struttura del modello
             TextualView view2 = new TextualView();
             GUIGameView view3 = new GUIGameView(map, view, imgMatrix);//TODO la x deve esposrtare la mappa su file
-            WhereIAmController controller = new WhereIAmController(map, view, view3, view2);
+            WhereIAmController controller = new WhereIAmController(map, element, view, view3, view2);
             startTimer(5000, controller);
         }
         catch (Exception e)

@@ -24,8 +24,10 @@ public class GUIGameView extends JFrame implements WhereIAmView {
         this.scacco = modello;
         this.setSize(1000, 1050);
         this.setResizable(false);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setLayout(new BorderLayout());
+
+
         
         main = new ImagePanel();
         main.setLayout(new GridLayout(modello.getISize(),modello.getJSize()));
@@ -126,6 +128,7 @@ public class GUIGameView extends JFrame implements WhereIAmView {
             but.addActionListener(controller);
         }
         this.addKeyListener(controller);
+        this.addWindowListener(controller);
     }
 
     @Override

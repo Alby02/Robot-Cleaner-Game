@@ -4,6 +4,8 @@ import java.awt.Point;
 import java.io.CharConversionException;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
 
@@ -23,15 +25,10 @@ public class MapBuilder {
      * @throws FileNotFoundException se il file specificato non viene trovato
      * @throws FileStructureWrongException se la struttura del file di testo è errata
      * @throws CharConversionException nel caso in cui c'è un errore di conversione da int a char
-     * @throws SecurityException
-     * @throws NoSuchFieldException
-     * @throws IllegalAccessException
+     * @throws ReflectiveOperationException
      * @throws IllegalArgumentException
-     * @throws NoSuchMethodException
-     * @throws InvocationTargetException
-     * @throws InstantiationException
      */
-    public static Map generateFromFile(String fileName, Class<?> el[]) throws FileNotFoundException, FileStructureWrongException, CharConversionException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException, InstantiationException, InvocationTargetException, NoSuchMethodException
+    public static Map generateFromFile(String fileName, Class<?> el[]) throws FileNotFoundException, FileStructureWrongException, CharConversionException, IllegalArgumentException, ReflectiveOperationException
     {
         File file = new File(fileName);
         Scanner myReader = new Scanner(file);
@@ -98,9 +95,20 @@ public class MapBuilder {
      */
     public static Map generateRandomMap()
     {
-        Cell mappa[][] = new Cell[10][10];
-        Azzera(mappa);
-        return new Map(mappa, null);
+        Map m = null;
+        try {
+            m =  generateRandomMap(10, 10);
+        } catch (MapToSmallException e) {
+            System.err.println("Sei un cretino");
+            e.printStackTrace();
+            System.exit(-1);
+        }
+        return m;
+    }
+
+    public static Map generateRandomMap(int size) throws MapToSmallException
+    {
+        return generateRandomMap(size, size);
     }
 
     /**
@@ -130,5 +138,39 @@ public class MapBuilder {
                 }*/
             }
         }
+    }
+
+    public static void toFile(String FileName, Map m, Class<?> el[]) throws IOException, ReflectiveOperationException
+    {
+        File dir = new File("saves");
+        if(!dir.exists())
+            dir.mkdir();
+        FileWriter wr = new FileWriter(new File("saves/"+FileName));
+        CellBuilder builder = new CellBuilder(el);
+        wr.write(Integer.toString(m.getISize()) + '\n');
+        wr.write(Integer.toString(m.getJSize()) + '\n');
+        for(int i = 0 ; i < m.getISize(); i++)
+        {
+            String s = "";
+            for(int j = 0; j < m.getJSize(); j++)
+            {
+                char ID = m.getIDCasella(i, j);
+                if(ID == '0' && m.robot.getI() == i && m.robot.getJ() == j)
+                {
+                    ID = 'R';
+                }
+                    
+                if(builder.getClassByID(ID) != null && CellState.class.isAssignableFrom(builder.getClassByID(ID)))
+                {
+                    s += ID + Integer.toString(m.getStateCasella(i, j)) + " ";
+                }
+                else
+                {
+                    s += ID + " ";
+                }
+            }
+            wr.write(s + '\n');
+        } 
+        wr.close();
     }
 }

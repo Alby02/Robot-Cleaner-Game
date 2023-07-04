@@ -7,20 +7,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.beans.PropertyChangeSupport;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import model.Map;
+import model.MapBuilder;
 import model.exception.IllegaInteractnGameException;
 import model.exception.IllegalPositionGameException;
 import view.WhereIAmView;
 
-public class WhereIAmController implements ActionListener, KeyListener {
+public class WhereIAmController implements ActionListener, KeyListener, WindowListener {
     private Map model;
     private Collection<WhereIAmView> views;
     private PropertyChangeSupport property; 
+    private Class<?> el[];
 
-    public WhereIAmController(Map model, WhereIAmView... views) {
+    public WhereIAmController(Map model, Class<?> el[], WhereIAmView... views) {
         this.model = model;
+        this.el = el;
         this.views = new HashSet<>();
         this.property = new PropertyChangeSupport(this);
         for(WhereIAmView v : views) {
@@ -83,5 +92,47 @@ public class WhereIAmController implements ActionListener, KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         // do nothething
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+        //do non
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        try {
+            MapBuilder.toFile(DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss").format(LocalDateTime.now()) + ".txt", model, el);
+            System.exit(0);
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        } catch (ReflectiveOperationException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        //do non
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+        //do non
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+        //do non
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+        //do non
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        //do non
     }            
 }

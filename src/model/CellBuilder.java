@@ -34,48 +34,44 @@ public class CellBuilder {
         return (Cell) el.getConstructor(int.class, int.class).newInstance(i, j);
     }
 
-    public static Cell createCellState(Class<?> el, int i, int j, int s) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
+    public static CellState createCellState(Class<?> el, int i, int j, int s) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
     {
-        return (Cell) el.getConstructor(int.class, int.class, int.class).newInstance(i, j, s);
+        return (CellState) el.getConstructor(int.class, int.class, int.class).newInstance(i, j, s);
     }
 
     public static int charParser (char c) throws CharConversionException
     {
         int x;
-        if(c >= 97 && c < 123) 
+        if(c >= 'a' && c <= 'z') //codice da 10 a 35
             x = c - 87;
-        else if(c >= 65 && c < 91)
+        else if(c >= 'A' && c <= 'Z') //codice da 10 a 35
             x = c - 55;
-        else if(c >= 48 && c < 58)
+        else if(c >= '0' && c <= '9') //codice da 0 a 9
             x = c - 48;
         else
             throw new CharConversionException("Carattere non ammesso " + (int)c);
         return x;
     }
 
-    private Class<?> table[];
-
-    public CellBuilder(Class<?> el[]) throws CharConversionException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException
+    static class IdClassTable
     {
-        this.table = new Class[36];
-        java.util.Arrays.fill(this.table, null);
-        for(int i = 1; i < el.length; i++)
+        private Class<?> table[];
+
+        public IdClassTable(Class<?> el[]) throws CharConversionException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException
         {
-            int p = charParser(((char)el[i].getDeclaredField("ID").get(null)));
-            this.table[p] = el[i];
+            this.table = new Class[36];
+            java.util.Arrays.fill(this.table, null);
+            for(int i = 1; i < el.length; i++)
+            {
+                int p = charParser(((char)el[i].getDeclaredField("ID").get(null)));
+                this.table[p] = el[i];
+            }
         }
+
+        public Class<?> getClassByID(char ID) throws CharConversionException
+        {
+            return this.table[charParser(ID)];
+        }
+
     }
-
-    public Class<?> getClassByID(char ID) throws CharConversionException
-    {
-        return this.table[charParser(ID)];
-    }
-
-    public Class<?> getClassByID(int ID)
-    {
-        return this.table[ID];
-    }
-
-
-
 }

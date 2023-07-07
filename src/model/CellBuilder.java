@@ -1,7 +1,6 @@
 package model;
 
 import java.io.CharConversionException;
-import java.lang.reflect.InvocationTargetException;
 
 
 public class CellBuilder {
@@ -22,19 +21,15 @@ public class CellBuilder {
      * @param i  l'indice di colonna della cella da creare
      * @param j  l'indice di riga della cella da creare
      * @return di una istanza della sottoclasse di Cell corrispondente all'indice l
-     * @throws SecurityException
-     * @throws NoSuchMethodException
-     * @throws InvocationTargetException
-     * @throws IllegalArgumentException
-     * @throws IllegalAccessException
-     * @throws InstantiationException
+     * @throws ReflectiveOperationException
+     * 
      */
-    public static Cell createCell(Class<?> el, int i, int j) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
+    public static Cell createCell(Class<?> el, int i, int j) throws ReflectiveOperationException
     {
         return (Cell) el.getConstructor(int.class, int.class).newInstance(i, j);
     }
 
-    public static CellState createCellState(Class<?> el, int i, int j, int s) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
+    public static CellState createCellState(Class<?> el, int i, int j, int s) throws ReflectiveOperationException
     {
         return (CellState) el.getConstructor(int.class, int.class, int.class).newInstance(i, j, s);
     }

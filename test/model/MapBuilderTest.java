@@ -32,13 +32,21 @@ public class MapBuilderTest {
 
     @Test
     public void testGenerateRandomMap() {
-        Map m = MapBuilder.generateRandomMap();
-        for (int i = 0; i < m.getISize(); i++) {
+        final Class<?> element[] = {null, Wall.class, Fire.class, Oven.class, Sink.class, Washer.class, Water.class, Cat.class};
+        final int[] probability = {100, -25, 10, 5, 5, 5, 25, 5};
+        Map m;
+        try {
+            m = MapBuilder.generateRandomMap(element, probability);
+            for (int i = 0; i < m.getISize(); i++) {
             for (int j = 0; j < m.getJSize(); j++) {
                 if ((i == 0 || j == 0 || i == m.getISize() - 1 || j == m.getJSize() - 1) && m.getIDCasella(i, j) != 'w') {
                     fail("fallito");
                 } 
             }
+        }
+        } catch (ReflectiveOperationException e) {
+            e.printStackTrace();
+            fail("fallito ");
         }
     }
 }

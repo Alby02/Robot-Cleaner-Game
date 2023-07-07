@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Random;
 import java.util.Scanner;
 
 import model.exception.FileStructureWrongException;
@@ -91,12 +92,13 @@ public class MapBuilder {
      * Genera una mappa casuale di dimensioni predefinite (10x10).
      *
      * @return la mappa casuale generata
+     * @throws ReflectiveOperationException
      */
-    public static Map generateRandomMap()
+    public static Map generateRandomMap(Class<?>[] ce, int[] probability) throws ReflectiveOperationException
     {
         Map m = null;
         try {
-            m =  generateRandomMap(10);
+            m =  generateRandomMap(10, ce, probability);
         } catch (MapToSmallException e) {
             System.err.println("Sei un cretino");
             e.printStackTrace();
@@ -105,9 +107,9 @@ public class MapBuilder {
         return m;
     }
 
-    public static Map generateRandomMap(int size) throws MapToSmallException
+    public static Map generateRandomMap(int size, Class<?>[] ce, int[] probability) throws MapToSmallException, ReflectiveOperationException
     {
-        return generateRandomMap(size, size);
+        return generateRandomMap(size, size, ce, probability);
     }
 
     /**
@@ -117,23 +119,63 @@ public class MapBuilder {
      * @param ySize la dimensione in altezza della mappa
      * @return la mappa casuale generata
      * @throws MapToSmallException se le dimensioni della mappa sono inferiori a 10
+     * @throws ReflectiveOperationException
      */
-    public static Map generateRandomMap(int xSize, int ySize) throws MapToSmallException {
+    public static Map generateRandomMap(int xSize, int ySize, Class<?>[] ce, int[] probability) throws MapToSmallException, ReflectiveOperationException {
         if (xSize < 10 || ySize < 10)
             throw new MapToSmallException("Dimension must greater than 10");
         Cell mappa[][] = new Cell[ySize][xSize];
-        Azzera(mappa);
+        Azzera(mappa, ce, probability, inderxOfNegative(probability));
         return new Map(mappa, new Point(1, 1));
     }
 
-    private static void Azzera(Cell[][] mappa) {
+    private static int inderxOfNegative(int[] pro){
+        int i;
+        for(i = 0; i < pro.length && pro[i] >= 0; i++);
+        if(i == pro.length)
+            throw new IllegalArgumentException("non hai messo le 'probabilità corrette");
+        return i;
+    }
+
+    private static int sommaPro(int[] pro)
+    {
+        int soomma, i;
+        for(i = 0, soomma = 0 ; i < pro.length; soomma+=Math.abs(pro[i]), i++);
+        return soomma;
+    }
+
+    private static int getIndexProb(int[] pro, int val)
+    {
+        int so, i;
+        for(i = 0, so = 0; i < pro.length && so + Math.abs(pro[i]) < val ; so+=Math.abs(pro[i]), i++);
+        return i;
+    }
+
+    private static int getNOfStates(Class<?> c) throws ReflectiveOperationException
+    {
+        return ((String[])c.getDeclaredMethod("getStates").invoke(null)).length;
+    }
+
+    private static void Azzera(Cell[][] mappa,Class<?>[] ce, int[] probability, int Border) throws ReflectiveOperationException{
+
+        int ProTot = sommaPro(probability); 
+        Random nR = new Random();
+        int r;
+
         for (int i = 0; i < mappa.length; i++) {
             for (int j = 0; j < mappa[i].length; j++) {
                 if (i == 0 || j == 0 || i == mappa.length - 1 || j == mappa[i].length - 1) {
-                    mappa[i][j] = new model.element.Wall(i, j);// brutto
+                    mappa[i][j] = CellBuilder.createCell(ce[Border], i, j);
                 } else if(!(i== 1 && j==1)){
-                    mappa[i][j] = null;
-                    //TODO sistema Azzera random map Cell
+                    r = getIndexProb(probability, nR.nextInt(ProTot));
+                    if(ce[r] != null)
+                    {
+                        if(CellState.class.isAssignableFrom(ce[r])){
+                            mappa[i][j] = CellBuilder.createCellState(ce[r], i, j, nR.nextInt(getNOfStates(ce[r])));
+                        }else{
+                            mappa[i][j] = CellBuilder.createCell(ce[r], i, j);
+                        }
+                    }                    
                 }
             }
         }

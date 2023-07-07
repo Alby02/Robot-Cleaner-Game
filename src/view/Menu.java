@@ -17,15 +17,20 @@ import javax.swing.*;
 import controller.WhereIAmController;
 import model.Map;
 import model.MapBuilder;
-import model.element.*;
 
 public class Menu{
 
     private JFrame f;
     private JPanel p;
+    private Class<?>[] elements;
+    private boolean[] scale;
+    private int[] probability;
 
-    public Menu()
+    public Menu(Class<?>[] ce, boolean[] sca, int[] pro)
     {
+        this.elements = ce;
+        this.scale = sca;
+        this.probability = pro;
         f = new JFrame();
         f.setLayout(new BorderLayout());
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,8 +51,6 @@ public class Menu{
     }
 
     public void showPosition() {
-        final Class<?> element[] = {null, Wall.class, Fire.class, Oven.class, Sink.class, Washer.class, Water.class, Cat.class};// Esistono queste classi
-        final boolean scale[] = {false, false, true, true, true, true, true, true};// valore di scala in base alle classi
         p.removeAll();
         Set<String> mondi = listFilesUsingJavaIO("./saves/");
         p.setLayout(new GridLayout(mondi.size()+1, 1));
@@ -73,7 +76,6 @@ public class Menu{
                 dialog.setVisible(true);
 
                 b.addActionListener(new ActionListener() {
-                    //TODO persentage of random cell
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         dialog.setVisible(false);
@@ -81,14 +83,14 @@ public class Menu{
                         Map map;
                         try
                         {
-                            map = MapBuilder.generateRandomMap(); // generazione della mappa
-                            ImgBuilder imgMatrix = new ImgBuilder(element, scale, map.getISize(), map.getJSize());
+                            map = MapBuilder.generateRandomMap(elements, probability); // generazione della mappa
+                            ImgBuilder imgMatrix = new ImgBuilder(elements, scale, map.getISize(), map.getJSize());
                             GUIControlView view = new GUIControlView(map, imgMatrix); // generazione della Gui grafica in base alla struttura del modello
                             TextualView view2 = new TextualView(map);
                             GUIGameView view3 = new GUIGameView(map, view, imgMatrix);
                             int delay = 5000;
                             Timer timer = new Timer(delay, null);
-                            WhereIAmController controller = new WhereIAmController(sas, Name, map, element, timer, view, view2, view3);     
+                            WhereIAmController controller = new WhereIAmController(sas, Name, map, elements, timer, view, view2, view3);     
                             f.setVisible(false);
                             controller.start();                                          
                         }
@@ -115,14 +117,14 @@ public class Menu{
                     Map map;
                     try
                     {
-                        map = MapBuilder.generateFromFile("saves/" + e.getActionCommand(), element); // generazione della mappa
-                        ImgBuilder imgMatrix = new ImgBuilder(element, scale, map.getISize(), map.getJSize());
+                        map = MapBuilder.generateFromFile("saves/" + e.getActionCommand(), elements); // generazione della mappa
+                        ImgBuilder imgMatrix = new ImgBuilder(elements, scale, map.getISize(), map.getJSize());
                         GUIControlView view = new GUIControlView(map, imgMatrix); // generazione della Gui grafica in base alla struttura del modello
                         TextualView view2 = new TextualView(map);
                         GUIGameView view3 = new GUIGameView(map, view, imgMatrix);
                         int delay = 5000;
                         Timer timer = new Timer(delay, null);
-                        WhereIAmController controller = new WhereIAmController(sas, e.getActionCommand(), map, element, timer, view, view2, view3);     
+                        WhereIAmController controller = new WhereIAmController(sas, e.getActionCommand(), map, elements, timer, view, view2, view3);     
                         f.setVisible(false);
                         controller.start();                                          
                     }

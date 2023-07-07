@@ -16,7 +16,6 @@ import model.element.Washer;
 import model.element.Water;
 
 import java.io.CharConversionException;
-import java.lang.reflect.InvocationTargetException;
 
 public class CellBuilderTest {
     @Test
@@ -64,8 +63,7 @@ public class CellBuilderTest {
             assertTrue(cell instanceof TestCell);
             assertEquals(1, cell.posI());
             assertEquals(2, cell.posJ());
-        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-                | NoSuchMethodException | SecurityException e) {
+        } catch (ReflectiveOperationException e) {
             e.printStackTrace();
             fail("fallito");
         }
@@ -90,8 +88,7 @@ public class CellBuilderTest {
             assertEquals(1, cell.posI());
             assertEquals(2, cell.posJ());
             assertEquals(0, cell.getState());
-        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-                | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+        } catch (ReflectiveOperationException e) {
             e.printStackTrace();
             fail("fallito");
         }

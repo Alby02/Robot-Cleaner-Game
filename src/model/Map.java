@@ -130,7 +130,7 @@ public class Map{
      * Se non è possibile generare l'evento, viene continuato il ciclo per un massimo di 5 tentativi.
      * @throws CantGenerateEventException se la cella non ha le condizioni per generare l'evento.
      */
-    public void event() // TODO Migliorare
+    public void event()
     {
         int number;
         if(eventable.size()>0){

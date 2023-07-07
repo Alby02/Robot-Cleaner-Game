@@ -13,4 +13,6 @@ public interface WhereIAmView extends PropertyChangeListener {
     public  void addController(WhereIAmController whereIAmController);
 
     public  void startView();
+
+    public void disposami();
 }

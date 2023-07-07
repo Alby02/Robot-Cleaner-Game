@@ -3,6 +3,8 @@ package controller;
 import java.util.Collection;
 import java.util.HashSet;
 
+import javax.swing.Timer;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -12,13 +14,14 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+/*import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;*/
 
 import model.Map;
 import model.MapBuilder;
 import model.exception.IllegaInteractnGameException;
 import model.exception.IllegalPositionGameException;
+import view.Menu;
 import view.WhereIAmView;
 
 public class WhereIAmController implements ActionListener, KeyListener, WindowListener {
@@ -26,8 +29,11 @@ public class WhereIAmController implements ActionListener, KeyListener, WindowLi
     private Collection<WhereIAmView> views;
     private PropertyChangeSupport property; 
     private Class<?> el[];
+    private Menu m;
+    private Timer t;
+    private String Name;
 
-    public WhereIAmController(Map model, Class<?> el[], WhereIAmView... views) {
+    public WhereIAmController(Menu m, String Name, Map model, Class<?> el[], Timer t,  WhereIAmView... views) {
         this.model = model;
         this.el = el;
         this.views = new HashSet<>();
@@ -37,6 +43,24 @@ public class WhereIAmController implements ActionListener, KeyListener, WindowLi
             this.property.addPropertyChangeListener(v);
             v.addController(this);
         }
+        this.m = m;
+
+        this.Name = Name;
+
+        this.t = t;
+        t.addActionListener(this);
+        t.removeActionListener(null);
+        t.setActionCommand(".");
+        
+    }
+
+    public void start()
+    {
+        for(WhereIAmView v : this.views)
+        {
+            v.startView();
+        }
+        t.start();
     }
 
     @Override
@@ -102,8 +126,15 @@ public class WhereIAmController implements ActionListener, KeyListener, WindowLi
     @Override
     public void windowClosing(WindowEvent e) {
         try {
-            MapBuilder.toFile(DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss").format(LocalDateTime.now()) + ".txt", model, el);
-            System.exit(0);
+            t.stop();
+            MapBuilder.toFile(/*DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss").format(LocalDateTime.now()) + ".txt"*/ this.Name, model, el);
+            model = null;
+            for(WhereIAmView v : this.views)
+            {
+                v.disposami();
+            }
+            this.views = null;
+            m.startView();
         } catch (IOException e1) {
             e1.printStackTrace();
         } catch (ReflectiveOperationException e1) {
@@ -134,5 +165,5 @@ public class WhereIAmController implements ActionListener, KeyListener, WindowLi
     @Override
     public void windowDeactivated(WindowEvent e) {
         //do non
-    }            
+    }
 }

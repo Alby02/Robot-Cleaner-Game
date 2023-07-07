@@ -16,7 +16,7 @@ public class GUIGameView extends JFrame implements WhereIAmView {
     private final JButton buttons[];
 
     private ColouredLabel[][] labels;
-    final private Map scacco;
+    private Map scacco;
 
     public GUIGameView(Map modello, GUIControlView g, ImgBuilder imgMatrix) throws HeadlessException {
 
@@ -73,8 +73,6 @@ public class GUIGameView extends JFrame implements WhereIAmView {
 
         this.setFocusable(true);
         this.requestFocus();
-
-        this.startView();
     }
 
     private JButton createButton(String label, String actionCommand) {
@@ -134,5 +132,11 @@ public class GUIGameView extends JFrame implements WhereIAmView {
     @Override
     public void startView() {
         this.setVisible(true);
+    }
+
+    @Override
+    public void disposami() {
+        scacco = null;
+        this.dispose();
     }
 }

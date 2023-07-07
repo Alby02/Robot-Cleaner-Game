@@ -133,26 +133,28 @@ public class Map{
     public void event() // TODO Migliorare
     {
         int number;
-        for (int i = 0; i < 5; i++) {
-            number = this.nRandom.nextInt(eventable.size());
-            try {
-                Eventable Ev = this.eventable.get(number);
-                if(Ev instanceof CellState){
-                    Cell c = Ev.Event(this);
-                    if (c != null)
-                    {
-                        this.mappa[c.i][c.j] = c;
+        if(eventable.size()>0){
+            for (int i = 0; i < 5; i++) {
+                number = this.nRandom.nextInt(eventable.size());
+                try {
+                    Eventable Ev = this.eventable.get(number);
+                    if(Ev instanceof CellState){
+                        Cell c = Ev.Event(this);
+                        if (c != null)
+                        {
+                            this.mappa[c.i][c.j] = c;
+                        }
                     }
-                }
-                else if(Ev instanceof Movable)
-                {
-                    int oldI = ((Cell)Ev).i, oldJ = ((Cell)Ev).j;
-                    Cell c = Ev.Event(this);
-                    this.mappa[c.i][c.j] = c;
-                    this.mappa[oldI][oldJ] = null;
-                }
-                break;
-            } catch (CantGenerateEventException e) {}
+                    else if(Ev instanceof Movable)
+                    {
+                        int oldI = ((Cell)Ev).i, oldJ = ((Cell)Ev).j;
+                        Cell c = Ev.Event(this);
+                        this.mappa[c.i][c.j] = c;
+                        this.mappa[oldI][oldJ] = null;
+                    }
+                    break;
+                } catch (CantGenerateEventException e) {}
+            }
         }
     }
 

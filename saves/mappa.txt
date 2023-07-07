@@ -1,0 +1,14 @@
+12
+12
+w w w w w w w w w w w w 
+w 0 0 0 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 0 s1 a 0 0 w 
+w 0 0 0 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 0 0 0 0 0 w 
+w w w w w w 0 0 a l1 a w 
+w 0 0 0 0 0 0 0 0 0 0 w 
+w 0 o0 0 0 0 0 0 0 0 0 w 
+w 0 f R 0 0 0 0 0 0 0 w 
+w 0 0 0 0 0 0 0 c 0 0 w 
+w 0 0 0 0 0 0 0 0 0 0 w 
+w w w w w w w w w w w w 

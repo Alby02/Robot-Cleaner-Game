@@ -10,6 +10,8 @@ import controller.WhereIAmController;
 public class TextualView implements WhereIAmView { // TODO deve essere come la contol view
     static Scanner tastiera = new Scanner(System.in);
     private WhereIAmController controller;
+    private boolean conti;
+    Thread terminal;
 
     public TextualView() {
         //doNothing
@@ -24,7 +26,7 @@ public class TextualView implements WhereIAmView { // TODO deve essere come la c
 
     @Override
     public void showPosition() {
-        //doNothing
+        System.out.println("Type W to move forward, A to move left, D to move right, E to interact and ESC to exit");
     }
 
     @Override
@@ -35,16 +37,17 @@ public class TextualView implements WhereIAmView { // TODO deve essere come la c
     @Override
     public void addController(WhereIAmController controller) {
         this.controller = controller;
-        this.startView();
     }
 
     @Override
     public void startView() {
         System.out.println("\n\n\n");
-        new Thread(new Runnable() {
+        System.out.println("Type W to move forward, A to move left, D to move right, E to interact and ESC to exit");
+        conti = true;
+        this.terminal = new Thread(new Runnable() {
+
             public void run() {
-                while (true) {
-                    System.out.println("Type W to move forward, A to move left, D to move right, E to interact and ESC to exit");
+                while (conti) {
                     try {
                         char action = (char) System.in.read();
                         tastiera.nextLine();
@@ -58,8 +61,18 @@ public class TextualView implements WhereIAmView { // TODO deve essere come la c
                         communicateError("An IO Error occurred");
 
                     }
+
                 }
             }
-        }).start();
+        });
+        terminal.start();
+    }
+
+    @Override
+    public void disposami() {
+        conti = false;
+        terminal.interrupt();
+        tastiera.close();
+        controller = null;
     }
 }

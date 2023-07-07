@@ -12,7 +12,7 @@ public class GUIControlView extends JFrame implements WhereIAmView {
     private JPanel main;
 
     private ColouredLabel[][] labels;
-    final private Map scacco;
+    private Map scacco;
 
     public GUIControlView(Map modello, ImgBuilder imgMatrix) throws HeadlessException {
         super("Robot Cleaner 9000");
@@ -39,7 +39,7 @@ public class GUIControlView extends JFrame implements WhereIAmView {
         
 
         this.setFocusable(true);
-        this.requestFocus();
+        showPosition();
 
         /*left = new JButton("LEFT");
         this.add(left,BorderLayout.WEST);
@@ -82,5 +82,11 @@ public class GUIControlView extends JFrame implements WhereIAmView {
     @Override
     public void startView() {
         //do nothing
+    }
+
+    @Override
+    public void disposami() {
+        scacco = null;
+        this.dispose();
     }
 }

@@ -20,7 +20,7 @@ public class Oven extends CellState implements Interactable, Eventable
         return states.clone(); //immutable list by cloning
     }
 
-    public static final char ID = 'o';
+    public static final char ID = 'O';
 
     @Override
     public char getID()
@@ -84,7 +84,7 @@ public class Oven extends CellState implements Interactable, Eventable
             {
                 throw new CantGenerateEventException("The random chosen cell does not exist");
             }
-            System.out.println("Generated Fire " + c.posI() + " " + c.posJ());
+            //System.out.println("Generated Fire " + c.posI() + " " + c.posJ());
         }
         return c;
     }

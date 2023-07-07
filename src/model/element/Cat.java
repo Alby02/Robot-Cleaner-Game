@@ -10,7 +10,7 @@ import model.exception.CantGenerateEventException;
 
 public class Cat extends Cell implements Eventable, Movable
 {
-    public static final char ID = 'c';
+    public static final char ID = 'C';
 
     @Override
     public char getID()

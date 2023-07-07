@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import model.element.Sink;
 import model.element.Wall;
+import model.element.Water;
 
 public class MapTest {
     
@@ -21,7 +22,7 @@ public class MapTest {
         Map map = new Map(cells, new Point(1, 1));
 
         assertEquals('w', map.getIDCasella(0, 0));
-        assertEquals('s', map.getIDCasella(2, 2));
+        assertEquals('S', map.getIDCasella(2, 2));
     }
 
     @Test
@@ -59,6 +60,15 @@ public class MapTest {
         Map map = new Map(cells, new Point(1, 1));
 
         assertEquals(0, map.getStateCasella(1, 1));
+
+        java.util.Arrays.fill(cells[0],null);
+        java.util.Arrays.fill(cells[1],null);
+        java.util.Arrays.fill(cells[2],null);
+        cells[1][1] = new Water(1, 1);
+
+        map = new Map(cells, new Point(1, 1));
+
+        assertEquals(-1, map.getStateCasella(1, 1));
     }
 
     @Test

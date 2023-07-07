@@ -5,7 +5,7 @@ import model.Removable;
 
 public class Water extends Cell implements Removable
 {    
-    public static final char ID = 'a';
+    public static final char ID = 'A';
 
     @Override
     public char getID()

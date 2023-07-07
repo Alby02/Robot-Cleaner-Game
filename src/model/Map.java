@@ -101,7 +101,7 @@ public class Map{
     {
         if(this.mappa[i][j] instanceof CellState)
             return ((CellState)this.mappa[i][j]).getState();
-        return 0;
+        return -1;
     }
 
     /**

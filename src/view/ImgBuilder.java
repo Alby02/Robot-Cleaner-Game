@@ -66,6 +66,8 @@ public class ImgBuilder {
                 e.printStackTrace();
             }
             b = mappa.getStateCasella(i, j);
+            if(b == -1)
+                b = 0;
         }     
         return this.imgMatrix[a][b];
     }   

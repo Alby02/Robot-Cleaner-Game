@@ -159,7 +159,7 @@ public class MapBuilder {
                     ID = 'R';
                 }
                     
-                if(builder.getClassByID(ID) != null && CellState.class.isAssignableFrom(builder.getClassByID(ID)))
+                if(builder.getClassByID(ID) != null && m.getStateCasella(i, j)!=-1)
                 {
                     s += ID + Integer.toString(m.getStateCasella(i, j)) + " ";
                 }

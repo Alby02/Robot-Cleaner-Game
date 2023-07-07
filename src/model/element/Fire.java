@@ -5,7 +5,7 @@ import model.Removable;
 
 public class Fire extends Cell implements Removable
 {
-    public static final char ID = 'f';
+    public static final char ID = 'F';
 
     @Override
     public char getID()

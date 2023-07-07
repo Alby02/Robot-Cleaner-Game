@@ -20,7 +20,7 @@ public class Washer extends CellState implements Interactable, Eventable
         return states.clone(); //immutable list by cloning
     }
 
-    public static final char ID = 'l';
+    public static final char ID = 'L';
 
     @Override
     public char getID()
@@ -86,7 +86,7 @@ public class Washer extends CellState implements Interactable, Eventable
             {
                 throw new CantGenerateEventException("The random chosen cell does not exist");
             }
-            System.out.println("Generated Water " + c.posI() + " " + c.posJ());
+            //System.out.println("Generated Water " + c.posI() + " " + c.posJ());
         }
         return c;
 

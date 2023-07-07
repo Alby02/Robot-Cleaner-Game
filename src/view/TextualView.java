@@ -6,15 +6,17 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import controller.WhereIAmController;
+import model.Map;
 
-public class TextualView implements WhereIAmView { // TODO deve essere come la contol view
+public class TextualView implements WhereIAmView {
     static Scanner tastiera = new Scanner(System.in);
     private WhereIAmController controller;
     private boolean conti;
-    Thread terminal;
+    private Thread terminal;
+    private Map m;
 
-    public TextualView() {
-        //doNothing
+    public TextualView(Map m) {
+        this.m = m;
     }
 
     @Override
@@ -26,12 +28,24 @@ public class TextualView implements WhereIAmView { // TODO deve essere come la c
 
     @Override
     public void showPosition() {
+        for(int i = 0; i < m.getISize(); i++)
+        {
+            for(int j = 0; j < m.getJSize(); j++)
+            {
+                String s = m.getIDCasella(i, j) + "";
+                if(m.getStateCasella(i, j) != -1)
+                    s += m.getStateCasella(i, j);
+                System.out.print(s + "\t");
+            }
+            System.out.println("");
+        }
+
         System.out.println("Type W to move forward, A to move left, D to move right, E to interact and ESC to exit");
     }
 
     @Override
     public void communicateError(String message) {
-        System.err.println("An error occurred: "+message);
+        System.out.println("BUMP");
     }
 
     @Override
@@ -42,7 +56,7 @@ public class TextualView implements WhereIAmView { // TODO deve essere come la c
     @Override
     public void startView() {
         System.out.println("\n\n\n");
-        System.out.println("Type W to move forward, A to move left, D to move right, E to interact and ESC to exit");
+        showPosition();
         conti = true;
         this.terminal = new Thread(new Runnable() {
 
@@ -74,5 +88,6 @@ public class TextualView implements WhereIAmView { // TODO deve essere come la c
         terminal.interrupt();
         tastiera.close();
         controller = null;
+        m = null;
     }
 }

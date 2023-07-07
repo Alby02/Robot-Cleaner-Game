@@ -84,7 +84,7 @@ public class Menu{
                             map = MapBuilder.generateRandomMap(); // generazione della mappa
                             ImgBuilder imgMatrix = new ImgBuilder(element, scale, map.getISize(), map.getJSize());
                             GUIControlView view = new GUIControlView(map, imgMatrix); // generazione della Gui grafica in base alla struttura del modello
-                            TextualView view2 = new TextualView();
+                            TextualView view2 = new TextualView(map);
                             GUIGameView view3 = new GUIGameView(map, view, imgMatrix);
                             int delay = 5000;
                             Timer timer = new Timer(delay, null);
@@ -118,7 +118,7 @@ public class Menu{
                         map = MapBuilder.generateFromFile("saves/" + e.getActionCommand(), element); // generazione della mappa
                         ImgBuilder imgMatrix = new ImgBuilder(element, scale, map.getISize(), map.getJSize());
                         GUIControlView view = new GUIControlView(map, imgMatrix); // generazione della Gui grafica in base alla struttura del modello
-                        TextualView view2 = new TextualView();
+                        TextualView view2 = new TextualView(map);
                         GUIGameView view3 = new GUIGameView(map, view, imgMatrix);
                         int delay = 5000;
                         Timer timer = new Timer(delay, null);

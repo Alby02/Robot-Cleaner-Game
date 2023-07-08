@@ -25,6 +25,7 @@ public class Menu{
     private Class<?>[] elements;
     private boolean[] scale;
     private int[] probability;
+    private int num;
 
     public Menu(Class<?>[] ce, boolean[] sca, int[] pro)
     {
@@ -58,20 +59,35 @@ public class Menu{
         JButton b;
         String netto = "New WORLDINO";
         b = new JButton(netto);
-        b.setPreferredSize(new Dimension(150, 200));
+        b.setPreferredSize(new Dimension(150, 150));
         b.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 JDialog dialog = new JDialog(f);
+                dialog.setLayout(new BorderLayout());
+                JPanel pannellino = new JPanel(new BorderLayout());
+                JPanel pannellinoLabel = new JPanel(new GridLayout(2, 1));
+                pannellino.add(pannellinoLabel, BorderLayout.WEST);
+                JPanel pannellinoText = new JPanel(new GridLayout(2, 1));
+                pannellino.add(pannellinoText, BorderLayout.EAST);
+                dialog.add(pannellino, BorderLayout.CENTER);
+
                 JLabel content = new JLabel("Inserisci nome mondo.txt");
-                dialog.setLayout(new GridLayout(3, 1));
-                dialog.add(content);
+                pannellinoLabel.add(content);
                 JTextArea text = new JTextArea();
+                text.setPreferredSize(new Dimension(125, 50));
+                pannellinoText.add(text);
+
+                JLabel contentDimensione = new JLabel("Inserisci dimensione del mondo di righe(maggiore di 10)");
+                pannellinoLabel.add(contentDimensione);
+                JTextArea dimensione = new JTextArea();
+                dimensione.setPreferredSize(new Dimension(125, 50));
+                pannellinoText.add(dimensione);
+
                 JButton b = new JButton("Invia");
-                dialog.add(text);
-                dialog.add(b);
-                dialog.setSize(300,100);
+                dialog.add(b, BorderLayout.SOUTH);
+                dialog.setSize(500,100);
                 dialog.setLocationRelativeTo(f);
                 dialog.setVisible(true);
 
@@ -80,10 +96,11 @@ public class Menu{
                     public void actionPerformed(ActionEvent e) {
                         dialog.setVisible(false);
                         String Name = text.getText();
+                        num = Integer.parseInt(dimensione.getText());
                         Map map;
                         try
                         {
-                            map = MapBuilder.generateRandomMap(elements, probability); // generazione della mappa
+                            map = MapBuilder.generateRandomMap(num, elements, probability); // generazione della mappa
                             ImgBuilder imgMatrix = new ImgBuilder(elements, scale, map.getISize(), map.getJSize());
                             GUIControlView view = new GUIControlView(map, imgMatrix); // generazione della Gui grafica in base alla struttura del modello
                             TextualView view2 = new TextualView(map);
@@ -109,7 +126,7 @@ public class Menu{
         for(String m : mondi) 
         {
             b = new JButton(m);
-            b.setPreferredSize(new Dimension(150, 200));
+            b.setPreferredSize(new Dimension(150, 150));
             b.addActionListener(new ActionListener() {
 
                 @Override

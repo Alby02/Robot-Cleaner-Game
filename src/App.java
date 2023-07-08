@@ -19,7 +19,5 @@ public class App {
         final int[] probability = {100, -25, 10, 5, 5, 5, 25, 5}; //probabilità che spawni un elemento 
         Menu m = new Menu(element, scale, probability);
         m.startView();
-
-        // So che sono in grado di fare di meglio ma non ho voglia
     }
 }

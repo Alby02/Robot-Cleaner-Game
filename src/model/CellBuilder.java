@@ -29,11 +29,28 @@ public class CellBuilder {
         return (Cell) el.getConstructor(int.class, int.class).newInstance(i, j);
     }
 
+    /**
+     * Crea una nuova istanza di `CellState` utilizzando il costruttore della classe.
+     *
+     * @param el la classe della cella di stato
+     * @param i l'indice di colonna della cella da creare
+     * @param j l'indice di riga della cella da creare
+     * @param s lo stato della cella
+     * @return la nuova istanza di `CellState` creata
+     * @throws ReflectiveOperationException se si verifica un errore di riflessione durante la creazione dell'istanza
+     */
     public static CellState createCellState(Class<?> el, int i, int j, int s) throws ReflectiveOperationException
     {
         return (CellState) el.getConstructor(int.class, int.class, int.class).newInstance(i, j, s);
     }
 
+    /**
+     * Converte un carattere in un intero utilizzando le convenzioni.
+     *
+     * @param c il carattere da convertire
+     * @return l'intero corrispondente al carattere
+     * @throws CharConversionException se il carattere non è ammesso
+     */
     public static int charParser (char c) throws CharConversionException
     {
         int x;
@@ -47,11 +64,23 @@ public class CellBuilder {
             throw new CharConversionException("Carattere non ammesso " + (int)c);
         return x;
     }
-
+    
+    /**
+     * Una tabella di associazione tra ID di celle e classi di celle.
+     */
     static class IdClassTable
     {
         private Class<?> table[];
-
+        /**
+         * Costruisce una nuova istanza di `IdClassTable` utilizzando un array di classi.
+         *
+         * @param el l'array delle classi delle celle
+         * @throws CharConversionException se si verifica un errore durante la conversione del carattere ID
+         * @throws IllegalArgumentException se si verifica un errore durante la creazione dell'istanza
+         * @throws IllegalAccessException se si verifica un errore durante l'accesso al campo ID
+         * @throws NoSuchFieldException se si verifica un errore se il campo ID non viene trovato
+         * @throws SecurityException se si verifica un errore di sicurezza durante l'accesso al campo ID
+         */
         public IdClassTable(Class<?> el[]) throws CharConversionException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException
         {
             this.table = new Class[36];
@@ -62,7 +91,14 @@ public class CellBuilder {
                 this.table[p] = el[i];
             }
         }
-
+        
+        /**
+         * Restituisce la classe di cella associata all'ID.
+         *
+         * @param ID l'ID della cella
+         * @return la classe di cella associata all'ID, o null se non esiste un'associazione
+         * @throws CharConversionException se si verifica un errore durante la conversione del carattere ID
+         */
         public Class<?> getClassByID(char ID) throws CharConversionException
         {
             return this.table[charParser(ID)];

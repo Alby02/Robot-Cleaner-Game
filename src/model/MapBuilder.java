@@ -13,7 +13,6 @@ import model.exception.FileStructureWrongException;
 import model.exception.MapToSmallException;
 
 public class MapBuilder {
-
     /**
      * Genera una mappa leggendo i dati da un file di testo.
      * Se la cella è un'istanza di Eventable, si aggiunge la cella.
@@ -89,10 +88,12 @@ public class MapBuilder {
     }
 
     /**
-     * Genera una mappa casuale di dimensioni predefinite (10x10).
+     * Genera una mappa casuale di dimensioni scelte.
      *
+     * @param ce l'array delle classi delle celle utilizzate nella mappa
+     * @param probability un array di interi che rappresenta la probabilità di selezione delle classi di celle
      * @return la mappa casuale generata
-     * @throws ReflectiveOperationException
+     * @throws ReflectiveOperationException se si verifica un errore di riflessione durante la generazione della mappa
      */
     public static Map generateRandomMap(Class<?>[] ce, int[] probability) throws ReflectiveOperationException
     {
@@ -100,7 +101,6 @@ public class MapBuilder {
         try {
             m =  generateRandomMap(10, ce, probability);
         } catch (MapToSmallException e) {
-            System.err.println("Sei un cretino");
             e.printStackTrace();
             System.exit(-1);
         }
@@ -117,9 +117,11 @@ public class MapBuilder {
      *
      * @param xSize la dimensione in larghezza della mappa
      * @param ySize la dimensione in altezza della mappa
+     * @param ce l'array delle classi delle celle utilizzate nella mappa
+     * @param probability un array di interi che rappresenta la probabilità di selezione delle classi di celle
      * @return la mappa casuale generata
      * @throws MapToSmallException se le dimensioni della mappa sono inferiori a 10
-     * @throws ReflectiveOperationException
+     * @throws ReflectiveOperationException se si verifica un errore di riflessione durante la generazione della mappa
      */
     public static Map generateRandomMap(int xSize, int ySize, Class<?>[] ce, int[] probability) throws MapToSmallException, ReflectiveOperationException {
         if (xSize < 10 || ySize < 10)
@@ -129,6 +131,13 @@ public class MapBuilder {
         return new Map(mappa, new Point(1, 1));
     }
 
+    /**
+     * Restituisce l'indice del primo valore negativo nell'array specificato.
+     *
+     * @param pro l'array di interi
+     * @return l'indice del primo valore negativo
+     * @throws IllegalArgumentException se tutti i valori nell'array sono non negativi
+     */
     private static int inderxOfNegative(int[] pro){
         int i;
         for(i = 0; i < pro.length && pro[i] >= 0; i++);
@@ -137,6 +146,12 @@ public class MapBuilder {
         return i;
     }
 
+    /**
+     * Calcola la somma dei valori assoluti dell'array specificato.
+     *
+     * @param pro l'array di interi
+     * @return la somma dei valori assoluti
+     */
     private static int sommaPro(int[] pro)
     {
         int soomma, i;
@@ -144,6 +159,13 @@ public class MapBuilder {
         return soomma;
     }
 
+    /**
+     * Restituisce l'indice dell'array in cui la somma dei valori assoluti è superiore al valore specificato.
+     *
+     * @param pro l'array di interi
+     * @param val il valore di confronto
+     * @return l'indice dell'array in cui la somma supera il valore specificato
+     */
     private static int getIndexProb(int[] pro, int val)
     {
         int so, i;
@@ -151,11 +173,27 @@ public class MapBuilder {
         return i;
     }
 
+    /**
+     * Restituisce il numero di stati della classe specificata.
+     *
+     * @param c la classe delle celle
+     * @return il numero di stati della classe
+     * @throws ReflectiveOperationException se si verifica un errore di riflessione durante il recupero degli stati
+     */
     private static int getNOfStates(Class<?> c) throws ReflectiveOperationException
     {
         return ((String[])c.getDeclaredMethod("getStates").invoke(null)).length;
     }
 
+    /**
+     * Inizializza la mappa con celle casuali utilizzando le classi, le probabilità e il bordo specificati.
+     *
+     * @param mappa la mappa di celle
+     * @param ce l'array delle classi delle celle
+     * @param probability un array di interi che rappresenta la probabilità di selezione delle classi di celle
+     * @param Border l'indice della classe di cella da utilizzare per il bordo
+     * @throws ReflectiveOperationException se si verifica un errore di riflessione durante la creazione delle celle
+     */
     private static void Azzera(Cell[][] mappa,Class<?>[] ce, int[] probability, int Border) throws ReflectiveOperationException{
 
         int ProTot = sommaPro(probability); 
@@ -181,6 +219,15 @@ public class MapBuilder {
         }
     }
 
+    /**
+     * Scrive la mappa specificata su un file di testo.
+     *
+     * @param fileName il nome del file di testo in cui scrivere la mappa
+     * @param m la mappa da scrivere
+     * @param el l'array delle classi delle celle utilizzate nella mappa
+     * @throws IOException se si verifica un errore durante la scrittura del file
+     * @throws ReflectiveOperationException se si verifica un errore di riflessione durante la scrittura del file
+     */
     public static void toFile(String FileName, Map m, Class<?> el[]) throws IOException, ReflectiveOperationException
     {
         File dir = new File("saves");

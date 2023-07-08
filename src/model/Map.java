@@ -25,8 +25,12 @@ public class Map{
         this.nRandom = new Random();
         this.robot = new Robot(this, p);
         generateSupportArray();
-    }        
-
+    } 
+           
+    /**
+     * Genera un array di supporto contenente tutte le celle che implementano l'interfaccia `Eventable`.
+     * Le celle vengono aggiunte all'array `eventable`.
+     */
     private void generateSupportArray()
     {
         this.eventable = new LinkedList<Eventable>();

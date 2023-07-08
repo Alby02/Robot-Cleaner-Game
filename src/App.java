@@ -1,11 +1,4 @@
-
-import model.element.Cat;
-import model.element.Fire;
-import model.element.Oven;
-import model.element.Sink;
-import model.element.Wall;
-import model.element.Washer;
-import model.element.Water;
+import model.element.*;
 import view.Menu;
 
 /**

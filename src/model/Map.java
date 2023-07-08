@@ -76,7 +76,7 @@ public class Map{
         }
         else
         {
-            throw new IllegalPositionGameException("Illegal Position Game Exception");
+            throw new IllegalPositionGameException("Illegal Position");
         }
     }
 

@@ -45,7 +45,7 @@ public class TextualView implements WhereIAmView {
 
     @Override
     public void communicateError(String message) {
-        System.out.println("BUMP");
+        System.out.println(message);
     }
 
     @Override
@@ -72,8 +72,8 @@ public class TextualView implements WhereIAmView {
                             }
                         });
                     } catch (IOException e) {
-                        communicateError("An IO Error occurred");
-
+                        if(conti)
+                            communicateError("An IO Error occurred");
                     }
 
                 }

@@ -7,7 +7,6 @@ import model.Map;
 
 public class ColouredLabel extends JLabel {
         
-    private static final ImageIcon ROBOT = new ImageIcon(new ImageIcon("img/Wall-E.png").getImage().getScaledInstance(1024/12, 1024/12, Image.SCALE_DEFAULT));
     private final ImgBuilder imgMatrix;
     private final Map mappa;
 
@@ -38,6 +37,6 @@ public class ColouredLabel extends JLabel {
     public void setRobot()
     {
         this.setBorder(null);
-        this.setIcon(ROBOT);
+        this.setIcon(imgMatrix.ROBOT);
     }
 }

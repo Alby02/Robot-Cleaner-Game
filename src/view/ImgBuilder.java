@@ -12,6 +12,7 @@ import model.Map;
 public class ImgBuilder {
 
     private ImageIcon imgMatrix[][];
+    public final ImageIcon ROBOT;
 
     public ImgBuilder(Class<?> el[], final boolean nScale[], final int iScale, final int jScale) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException, SecurityException, IllegalArgumentException, NoSuchFieldException, CharConversionException
     {
@@ -20,6 +21,9 @@ public class ImgBuilder {
         {
             scale = iScale;
         }
+
+        ROBOT = new ImageIcon(new ImageIcon("img/Wall-E.png").getImage().getScaledInstance(1024/scale, 1024/scale, java.awt.Image.SCALE_DEFAULT));
+
         this.imgMatrix = new ImageIcon[36][];
         this.imgMatrix[0] = new ImageIcon[1];
         this.imgMatrix[0][0] = null;

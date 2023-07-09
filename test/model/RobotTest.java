@@ -17,9 +17,9 @@ public class RobotTest {
         Map map = new Map(cells, new Point(1, 1));
 
         try {
-            map.robot.forward();
-            assertEquals(2, map.robot.getI());
-            assertEquals(1, map.robot.getJ());
+            map.ROBOT.forward();
+            assertEquals(2, map.ROBOT.getI());
+            assertEquals(1, map.ROBOT.getJ());
         } catch (IllegalPositionGameException e) {
             e.printStackTrace();
             fail("fallito");

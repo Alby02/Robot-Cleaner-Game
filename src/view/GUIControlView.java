@@ -15,7 +15,7 @@ public class GUIControlView extends JFrame implements WhereIAmView {
     private Map scacco;
 
     public GUIControlView(Map modello, ImgBuilder imgMatrix) throws HeadlessException {
-        super("Robot Cleaner 9000");
+        super("ROBOT Cleaner 9000");
         this.scacco = modello;
         this.setSize(1000, 1000);
         this.setResizable(false);
@@ -33,8 +33,8 @@ public class GUIControlView extends JFrame implements WhereIAmView {
             }
         }
         
-        this.labels[modello.robot.getCellFacingI()][modello.robot.getCellFacingJ()].setSelected();
-        this.labels[modello.robot.getI()][modello.robot.getJ()].setRobot();
+        this.labels[modello.ROBOT.getCellFacingI()][modello.ROBOT.getCellFacingJ()].setSelected();
+        this.labels[modello.ROBOT.getI()][modello.ROBOT.getJ()].setRobot();
         this.add(main, BorderLayout.CENTER);
         
 
@@ -64,8 +64,8 @@ public class GUIControlView extends JFrame implements WhereIAmView {
                 this.labels[i][j].setByType(i, j);
             }
         }
-        this.labels[this.scacco.robot.getI()][this.scacco.robot.getJ()].setRobot();
-        this.labels[this.scacco.robot.getCellFacingI()][this.scacco.robot.getCellFacingJ()].setSelected();
+        this.labels[this.scacco.ROBOT.getI()][this.scacco.ROBOT.getJ()].setRobot();
+        this.labels[this.scacco.ROBOT.getCellFacingI()][this.scacco.ROBOT.getCellFacingJ()].setSelected();
         this.requestFocus();
     }
 

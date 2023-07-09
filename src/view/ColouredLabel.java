@@ -7,8 +7,8 @@ import model.Map;
 
 public class ColouredLabel extends JLabel {
         
-    private final ImgBuilder imgMatrix;
-    private final Map mappa;
+    private ImgBuilder imgMatrix;
+    private Map mappa;
 
     public ColouredLabel(Map mappa, ImgBuilder imgMatrix) {
         this.imgMatrix = imgMatrix;

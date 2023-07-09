@@ -243,7 +243,7 @@ public class MapBuilder {
             for(int j = 0; j < m.getJSize(); j++)
             {
                 char ID = m.getIDCasella(i, j);
-                if(ID == '0' && m.robot.getI() == i && m.robot.getJ() == j)
+                if(ID == '0' && m.ROBOT.getI() == i && m.ROBOT.getJ() == j)
                 {
                     ID = 'R';
                 }

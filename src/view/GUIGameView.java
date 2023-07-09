@@ -13,14 +13,14 @@ import model.Map;
 public class GUIGameView extends JFrame implements WhereIAmView {
 
     private JPanel main;
-    private final JButton buttons[];
+    private JButton buttons[];
 
     private ColouredLabel[][] labels;
     private Map scacco;
 
     public GUIGameView(Map modello, GUIControlView g, ImgBuilder imgMatrix) throws HeadlessException {
 
-        super("Robot Cleaner 9000") ;
+        super("ROBOT Cleaner 9000") ;
         this.scacco = modello;
         this.setSize(1000, 1050);
         this.setResizable(false);
@@ -90,10 +90,10 @@ public class GUIGameView extends JFrame implements WhereIAmView {
 
     @Override
     public void showPosition() {
-        int startRow = Math.max(scacco.robot.getI() -1, 0);
-        int endRow = Math.min(scacco.robot.getI() +1, scacco.getISize() -1);
-        int startCol = Math.max(scacco.robot.getJ() -1, 0);
-        int endCol = Math.min(scacco.robot.getJ() +1, scacco.getJSize() -1);
+        int startRow = Math.max(scacco.ROBOT.getI() -1, 0);
+        int endRow = Math.min(scacco.ROBOT.getI() +1, scacco.getISize() -1);
+        int startCol = Math.max(scacco.ROBOT.getJ() -1, 0);
+        int endCol = Math.min(scacco.ROBOT.getJ() +1, scacco.getJSize() -1);
 
         for(int i=0;i<this.labels.length;i++) {
             for(int j=0; j<this.labels[i].length; j++){
@@ -105,8 +105,8 @@ public class GUIGameView extends JFrame implements WhereIAmView {
                 }
             }
         }
-        this.labels[this.scacco.robot.getI()][this.scacco.robot.getJ()].setRobot();
-        this.labels[this.scacco.robot.getCellFacingI()][this.scacco.robot.getCellFacingJ()].setSelected();
+        this.labels[this.scacco.ROBOT.getI()][this.scacco.ROBOT.getJ()].setRobot();
+        this.labels[this.scacco.ROBOT.getCellFacingI()][this.scacco.ROBOT.getCellFacingJ()].setSelected();
         this.requestFocus();
     }
 

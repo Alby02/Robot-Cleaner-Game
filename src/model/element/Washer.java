@@ -12,7 +12,7 @@ import model.exception.IllegaInteractnGameException;
 
 public class Washer extends CellState implements Interactable, Eventable
 {
-    private static final String states[] = {"base", "broken"};
+    private static String states[] = {"base", "broken"};
 
     //@Override
     public static String[] getStates()

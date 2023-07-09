@@ -43,8 +43,5 @@ public abstract class Cell
      *
      * @return l'identificatore della cella
      */
-    public char getID()
-    {
-        return ID;
-    }
+    public abstract char getID();
 }

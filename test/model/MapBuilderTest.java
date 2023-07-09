@@ -13,7 +13,7 @@ import model.exception.FileStructureWrongException;
 public class MapBuilderTest {
     @Test
     public void testGenerateFromFile() {
-        final Class<?> element[] = {null, Wall.class, Fire.class, Oven.class, Sink.class, Washer.class, Water.class, Cat.class};
+        Class<?> element[] = {null, Wall.class, Fire.class, Oven.class, Sink.class, Washer.class, Water.class, Cat.class};
         String path = "C:/Users/Alberto/Desktop/Robot-Cleaner-Game/";//Importante: non funziona il path relativo nei test JUnit non capisco perchè quindi acco quelo assoluto
         String nome = "testmappa.txt";
         try {
@@ -32,8 +32,8 @@ public class MapBuilderTest {
 
     @Test
     public void testGenerateRandomMap() {
-        final Class<?> element[] = {null, Wall.class, Fire.class, Oven.class, Sink.class, Washer.class, Water.class, Cat.class};
-        final int[] probability = {100, -25, 10, 5, 5, 5, 25, 5};
+        Class<?> element[] = {null, Wall.class, Fire.class, Oven.class, Sink.class, Washer.class, Water.class, Cat.class};
+        int[] probability = {100, -25, 10, 5, 5, 5, 25, 5};
         Map m;
         try {
             m = MapBuilder.generateRandomMap(element, probability);

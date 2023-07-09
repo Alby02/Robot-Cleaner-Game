@@ -9,7 +9,7 @@ public class Robot {
     private int i;
     private int j;
     final public Orientamento dir;
-    private final Map scacchi;
+    private Map scacchi;
 
     /**
      * Costruttore della classe Robot.

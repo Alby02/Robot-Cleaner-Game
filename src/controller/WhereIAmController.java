@@ -71,13 +71,13 @@ public class WhereIAmController implements ActionListener, KeyListener, WindowLi
 
             switch(actionCommand){
                 case "a":
-                    this.model.robot.dir.rotateSX();
+                    this.model.ROBOT.dir.rotateSX();
                     break;
                 case "w":
-                    this.model.robot.forward();
+                    this.model.ROBOT.forward();
                     break;
                 case "d":
-                    this.model.robot.dir.rotateDX();
+                    this.model.ROBOT.dir.rotateDX();
                     break;
                 case "e":
                     this.model.interact();

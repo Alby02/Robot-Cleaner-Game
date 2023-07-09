@@ -11,8 +11,8 @@ import java.util.Random;
 public class Map{
     private Cell mappa[][]; //Matrice delle celle della mappa
     private LinkedList<Eventable> eventable; // Array degli oggetti che possono generare eventi
-    private final Random nRandom; // Generatore di numeri casuali
-    public final Robot robot; // Il robot presente nella mappa
+    private Random nRandom; // Generatore di numeri casuali
+    public final Robot ROBOT; // Il ROBOT presente nella mappa
 
     /**
      * Costruisce un oggetto Map con la mappa e gli oggetti eventabili specificati.
@@ -23,7 +23,7 @@ public class Map{
     public Map(Cell[][] mappa, Point p) {
         this.mappa = mappa;
         this.nRandom = new Random();
-        this.robot = new Robot(this, p);
+        this.ROBOT = new Robot(this, p);
         generateSupportArray();
     } 
            
@@ -55,18 +55,18 @@ public class Map{
      */
     public boolean isCasellaEmpty(int i, int j) 
     {
-        return this.mappa[i][j] == null && !(this.robot.getI() == i && this.robot.getJ() == j);
+        return this.mappa[i][j] == null && !(this.ROBOT.getI() == i && this.ROBOT.getJ() == j);
     }
 
     /**
-     * Sposta il robot dalla posizione precedente alla posizione specificata.
-     * Se la cella nella nuova posizione è vuota o può essere rimossa, il robot si sposta.
+     * Sposta il ROBOT dalla posizione precedente alla posizione specificata.
+     * Se la cella nella nuova posizione è vuota o può essere rimossa, il ROBOT si sposta.
      * Altrimenti, viene sollevata un'eccezione IllegalPositionGameException.
      * 
-     * @param oldI l'indice di colonna della posizione precedente del robot
-     * @param oldJ l'indice di riga della posizione precedente del robot
-     * @param i    l'indice di colonna della posizione del robot
-     * @param j    l'indice di riga della posizione del robot
+     * @param oldI l'indice di colonna della posizione precedente del ROBOT
+     * @param oldJ l'indice di riga della posizione precedente del ROBOT
+     * @param i    l'indice di colonna della posizione del ROBOT
+     * @param j    l'indice di riga della posizione del ROBOT
      * @throws IllegalPositionGameException se la nuova posizione non è valida
      */
     public void BotMove(int oldI, int oldJ, int i, int j) throws IllegalPositionGameException{
@@ -163,7 +163,7 @@ public class Map{
     }
 
     /**
-     * Esegue un'interazione con l'oggetto nella cella di fronte al robot.
+     * Esegue un'interazione con l'oggetto nella cella di fronte al ROBOT.
      * Se la cella è un'istanza di Interactable, viene eseguita l'interazione.
      * Se la cella è un'istanza di Removable, la cella viene rimossa.
      *
@@ -171,7 +171,7 @@ public class Map{
      */
     public void interact() throws IllegaInteractnGameException
     {
-        int i = this.robot.getCellFacingI(), j = this.robot.getCellFacingJ();
+        int i = this.ROBOT.getCellFacingI(), j = this.ROBOT.getCellFacingJ();
         if (this.mappa[i][j] instanceof Interactable)
         {   
             ((Interactable)this.mappa[i][j]).interact();

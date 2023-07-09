@@ -48,8 +48,15 @@ public class CellBuilderTest {
 
     static class TestCell extends Cell
     {
+        public static final int ID = 0;
+
         public TestCell(int i, int j) {
             super(i, j);
+        }
+
+        @Override
+        public char getID() {
+            return ID;
         }
         
     }
@@ -72,8 +79,15 @@ public class CellBuilderTest {
 
     static class TestCellState extends CellState
     {
+        public static final int ID = 0;
+
         public TestCellState(int i, int j, int state) {
             super(i, j, state);
+        }
+
+        @Override
+        public char getID() {
+            return ID;
         }
     }
 
@@ -97,7 +111,7 @@ public class CellBuilderTest {
 
     @Test
     public void testGetClassByID() {
-        final Class<?> element[] = {null, Wall.class, Fire.class, Oven.class, Sink.class, Washer.class, Water.class, Cat.class};
+        Class<?> element[] = {null, Wall.class, Fire.class, Oven.class, Sink.class, Washer.class, Water.class, Cat.class};
         try {
             CellBuilder.IdClassTable tab = new CellBuilder.IdClassTable(element);
             assertEquals(Wall.class, tab.getClassByID('W'));

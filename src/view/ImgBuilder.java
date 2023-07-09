@@ -14,7 +14,7 @@ public class ImgBuilder {
     private ImageIcon imgMatrix[][];
     public final ImageIcon ROBOT;
 
-    public ImgBuilder(Class<?> el[], final boolean nScale[], final int iScale, final int jScale) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException, SecurityException, IllegalArgumentException, NoSuchFieldException, CharConversionException
+    public ImgBuilder(Class<?> el[], boolean nScale[], final int iScale, final int jScale) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException, SecurityException, IllegalArgumentException, NoSuchFieldException, CharConversionException
     {
         int scale = jScale;
         if(jScale > iScale)
